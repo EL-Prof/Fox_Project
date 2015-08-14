@@ -10,12 +10,11 @@
  */
 public class MainPage extends javax.swing.JFrame {
 
-    DB dbase = new DB() ;
+    
     
     public MainPage() {
         initComponents();
-        dbase.initializeconnection();
-    }
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
