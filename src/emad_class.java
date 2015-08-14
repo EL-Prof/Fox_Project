@@ -9,5 +9,5 @@
  * @author 3MadoViski
  */
 public class emad_class {
-    
+    //comment
 }
