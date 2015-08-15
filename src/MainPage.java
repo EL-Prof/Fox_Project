@@ -70,6 +70,11 @@ public class MainPage extends javax.swing.JFrame {
         mainAddBtn.setText("اضافة");
         mainAddBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainAddBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainAddBtnActionPerformed(evt);
+            }
+        });
 
         mainLogOutBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainLogOutBtn.setText("خروج");
@@ -129,26 +134,26 @@ public class MainPage extends javax.swing.JFrame {
         if (mainSearchCBox.getSelectedIndex()== 0) 
         {
             this.dispose() ;
-          //  SearchProduct product  = new SearchProduct() ;
-           // product.setVisible(true) ;
+            SearchProduct product  = new SearchProduct() ;
+            product.setVisible(true) ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 1) 
         {
             this.dispose() ;
-            //SearchCompany company = new SearchCompany() ;
-            //company.setVisible(true) ;
+            SearchCompany company = new SearchCompany() ;
+            company.setVisible(true) ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 2) 
         {
             this.dispose() ;
-           // SearchBill bill = new SearchBill() ;
-            //bill.setVisible(true) ;
+            SearchBill bill = new SearchBill() ;
+            bill.setVisible(true) ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 3) 
         {
             this.dispose() ;
-            //SearchRepair repair = new SearchRepair() ;
-            //repair.setVisible(true) ;
+            SearchRepair repair = new SearchRepair() ;
+            repair.setVisible(true) ;
         }
     }//GEN-LAST:event_mainSearchBtnActionPerformed
 
@@ -157,6 +162,12 @@ public class MainPage extends javax.swing.JFrame {
           Login log  = new Login() ;
           log.setVisible(true) ;
     }//GEN-LAST:event_mainLogOutBtnActionPerformed
+
+    private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
+        this.dispose() ;
+        add ad = new add() ;
+        ad.setVisible(true) ;
+    }//GEN-LAST:event_mainAddBtnActionPerformed
 
     /**
      * @param args the command line arguments
