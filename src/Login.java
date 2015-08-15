@@ -1,5 +1,5 @@
 
-import javafx.scene.layout.Pane;
+//import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -97,7 +97,11 @@ DB db = new DB() ;
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
       if( db.check_password(NameField.getText(), PasswordField.getText()))
-            System.out.println("True");
+      {
+           new MainPage().show();
+           this.dispose();
+      }     
+      
       else
            JOptionPane.showMessageDialog(new JPanel(), "Invalid name or password", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_LoginActionPerformed

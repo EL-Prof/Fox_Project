@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class DB {
 static Connection c;
 ResultSet rset;
-static Statement stmt;
+static public Statement stmt;
     String query ; 
      public static void initializeconnection (){
     
