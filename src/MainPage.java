@@ -35,12 +35,17 @@ public class MainPage extends javax.swing.JFrame {
         mainLogOutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         mainSearchLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchLbl.setText("بحث عن:");
+        getContentPane().add(mainSearchLbl);
+        mainSearchLbl.setBounds(294, 26, 61, 43);
 
         mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات" }));
+        getContentPane().add(mainSearchCBox);
+        mainSearchCBox.setBounds(204, 26, 86, 43);
 
         mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchBtn.setText("بحث");
@@ -50,21 +55,29 @@ public class MainPage extends javax.swing.JFrame {
                 mainSearchBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(mainSearchBtn);
+        mainSearchBtn.setBounds(131, 26, 63, 43);
 
         mainSellBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSellBtn.setText("بيع");
         mainSellBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainSellBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        getContentPane().add(mainSellBtn);
+        mainSellBtn.setBounds(131, 113, 159, 47);
 
         mainReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainReprBtn.setText("تصليح");
         mainReprBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainReprBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        getContentPane().add(mainReprBtn);
+        mainReprBtn.setBounds(131, 178, 159, 45);
 
         mainCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainCompBtn.setText("شركات");
         mainCompBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainCompBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        getContentPane().add(mainCompBtn);
+        mainCompBtn.setBounds(131, 249, 159, 44);
 
         mainAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainAddBtn.setText("اضافة");
@@ -75,6 +88,8 @@ public class MainPage extends javax.swing.JFrame {
                 mainAddBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(mainAddBtn);
+        mainAddBtn.setBounds(131, 319, 159, 47);
 
         mainLogOutBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainLogOutBtn.setText("خروج");
@@ -85,47 +100,8 @@ public class MainPage extends javax.swing.JFrame {
                 mainLogOutBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(mainSellBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mainSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(mainSearchCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(mainReprBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainCompBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainLogOutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainSearchLbl)
-                .addGap(87, 87, 87))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mainSearchLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mainSearchCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mainSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(mainSellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(mainReprBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(mainCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(mainAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(mainLogOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
+        getContentPane().add(mainLogOutBtn);
+        mainLogOutBtn.setBounds(131, 393, 159, 49);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

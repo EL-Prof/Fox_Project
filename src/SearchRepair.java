@@ -47,15 +47,20 @@ public class SearchRepair extends javax.swing.JFrame {
         repairRecieptBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         searchReprTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchReprTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(searchReprTxt);
+        searchReprTxt.setBounds(463, 24, 180, 24);
 
         searchReprLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchReprLbl.setText("كود العميل:");
+        getContentPane().add(searchReprLbl);
+        searchReprLbl.setBounds(653, 22, 87, 24);
 
         searchReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchReprBtn.setText("بحث");
@@ -64,6 +69,8 @@ public class SearchRepair extends javax.swing.JFrame {
                 searchReprBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(searchReprBtn);
+        searchReprBtn.setBounds(580, 70, 63, 30);
 
         noSearchReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchReprBtn.setText("عميل جديد");
@@ -72,6 +79,8 @@ public class SearchRepair extends javax.swing.JFrame {
                 noSearchReprBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(noSearchReprBtn);
+        noSearchReprBtn.setBounds(467, 70, 103, 30);
 
         searchReprTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,6 +93,9 @@ public class SearchRepair extends javax.swing.JFrame {
         searchReprTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPaneRepr.setViewportView(searchReprTbl);
 
+        getContentPane().add(jScrollPaneRepr);
+        jScrollPaneRepr.setBounds(0, 159, 759, 127);
+
         reprMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprMainBtn.setText("القائمة الرئيسية");
         reprMainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +103,8 @@ public class SearchRepair extends javax.swing.JFrame {
                 reprMainBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(reprMainBtn);
+        reprMainBtn.setBounds(305, 330, 137, 42);
 
         repairAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         repairAddBtn.setText("اضافة");
@@ -99,6 +113,8 @@ public class SearchRepair extends javax.swing.JFrame {
                 repairAddBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(repairAddBtn);
+        repairAddBtn.setBounds(575, 330, 71, 42);
 
         repairRecieptBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         repairRecieptBtn.setText("تسليم");
@@ -107,53 +123,8 @@ public class SearchRepair extends javax.swing.JFrame {
                 repairRecieptBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneRepr, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(noSearchReprBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchReprBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(repairRecieptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(searchReprTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchReprLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(305, 305, 305)
-                .addComponent(reprMainBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(repairAddBtn)
-                .addGap(113, 113, 113))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchReprLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchReprTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(repairRecieptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchReprBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(noSearchReprBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPaneRepr, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reprMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(repairAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
-        );
+        getContentPane().add(repairRecieptBtn);
+        repairRecieptBtn.setBounds(192, 17, 215, 35);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
