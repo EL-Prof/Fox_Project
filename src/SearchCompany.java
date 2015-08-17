@@ -4,7 +4,6 @@
  */
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchCompany extends javax.swing.JFrame {
 
-   DB dbase = new DB() ;
+    DB dbase = new DB() ;
     DefaultTableModel model ;
     
     public SearchCompany() {
@@ -74,15 +73,20 @@ public class SearchCompany extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(null);
 
         searchCompLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchCompLbl.setText("اسم الشركة:");
+        getContentPane().add(searchCompLbl);
+        searchCompLbl.setBounds(389, 11, 87, 24);
 
         searchCompTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchCompTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(searchCompTxt);
+        searchCompTxt.setBounds(199, 13, 180, 24);
 
         searchCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchCompBtn.setText("بحث");
@@ -92,6 +96,8 @@ public class SearchCompany extends javax.swing.JFrame {
                 searchCompBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(searchCompBtn);
+        searchCompBtn.setBounds(316, 56, 63, 33);
 
         noSearchCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchCompBtn.setText("الغاء");
@@ -101,6 +107,8 @@ public class SearchCompany extends javax.swing.JFrame {
                 noSearchCompBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(noSearchCompBtn);
+        noSearchCompBtn.setBounds(199, 56, 61, 33);
 
         searchCompTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,6 +121,9 @@ public class SearchCompany extends javax.swing.JFrame {
         searchCompTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPaneComp.setViewportView(searchCompTbl);
 
+        getContentPane().add(jScrollPaneComp);
+        jScrollPaneComp.setBounds(0, 139, 494, 146);
+
         compMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         compMainBtn.setText("القائمة الرئيسية");
         compMainBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -121,55 +132,16 @@ public class SearchCompany extends javax.swing.JFrame {
                 compMainBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(compMainBtn);
+        compMainBtn.setBounds(186, 312, 137, 42);
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(noSearchCompBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(searchCompBtn))
-                            .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchCompLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(compMainBtn)
-                        .addGap(171, 171, 171))))
-            .addComponent(jScrollPaneComp)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchCompLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(noSearchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPaneComp, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(compMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-        );
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(57, 12, 90, 26);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

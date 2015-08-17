@@ -67,7 +67,7 @@ public class repair2 extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(504, 150, 120, 60);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(329, 160, 110, 50);
+        jTextField2.setBounds(340, 160, 110, 50);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton1.setText("بحث");
