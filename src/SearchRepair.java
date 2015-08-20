@@ -43,7 +43,6 @@ public class SearchRepair extends javax.swing.JFrame {
         jScrollPaneRepr = new javax.swing.JScrollPane();
         searchReprTbl = new javax.swing.JTable();
         reprMainBtn = new javax.swing.JButton();
-        repairAddBtn = new javax.swing.JButton();
         repairRecieptBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,16 +105,6 @@ public class SearchRepair extends javax.swing.JFrame {
         });
         getContentPane().add(reprMainBtn);
         reprMainBtn.setBounds(305, 330, 137, 42);
-
-        repairAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        repairAddBtn.setText("اضافة");
-        repairAddBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                repairAddBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(repairAddBtn);
-        repairAddBtn.setBounds(575, 330, 71, 42);
 
         repairRecieptBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         repairRecieptBtn.setText("تسليم");
@@ -212,12 +201,6 @@ public class SearchRepair extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_repairRecieptBtnActionPerformed
 
-    private void repairAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repairAddBtnActionPerformed
-        this.dispose() ;
-        estlam repr = new estlam() ;
-        repr.setVisible(true) ;
-    }//GEN-LAST:event_repairAddBtnActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -264,7 +247,6 @@ public class SearchRepair extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPaneRepr;
     private javax.swing.JButton noSearchReprBtn;
-    private javax.swing.JButton repairAddBtn;
     private javax.swing.JButton repairRecieptBtn;
     private javax.swing.JButton reprMainBtn;
     private javax.swing.JButton searchReprBtn;
