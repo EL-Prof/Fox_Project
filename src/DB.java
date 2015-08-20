@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class DB {
 static Connection c;
 ResultSet rset;
+static String emp_name ;
 static public Statement stmt;
     String query ; 
      public static void initializeconnection (){
@@ -33,7 +34,10 @@ static public Statement stmt;
         rset = stmt.executeQuery(query) ;
         if(rset.next())
         if(pass.equalsIgnoreCase(rset.getString(1)))
-            return true ; 
+        {   
+            emp_name = name ; 
+            return true ;
+        } 
             
             return false ; 
             

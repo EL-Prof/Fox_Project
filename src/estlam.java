@@ -1,3 +1,11 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.spi.DirStateFactory;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,11 +20,23 @@
  */
 public class estlam extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    
+    String query ; 
+    ResultSet rset ; 
     public estlam() {
         initComponents();
+        query = "SELECT code FROM repair ORDER BY code DESC LIMIT 1 " ;
+        try {
+            
+            rset = DB.stmt.executeQuery(query);
+            rset.next();
+            Integer code = rset.getInt(1);
+            code ++ ; 
+            jTextField9.setText(code.toString());
+            jTextField9.setEditable(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -56,11 +76,13 @@ public class estlam extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(680, 540));
+        setMinimumSize(new java.awt.Dimension(675, 550));
+        setSize(new java.awt.Dimension(687, 540));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -184,15 +206,26 @@ public class estlam extends javax.swing.JFrame {
         jLabel16.setBounds(580, 450, 60, 50);
 
         jTextField9.setEditable(false);
+        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(440, 450, 120, 60);
+        jTextField9.setBounds(370, 460, 190, 40);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("حفظ");
+        jButton1.setText("حفـظ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(170, 460, 100, 40);
+        jButton1.setBounds(250, 460, 100, 40);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         jButton2.setText("رجوع\n");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +233,17 @@ public class estlam extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(73, 460, 80, 40);
+        jButton2.setBounds(20, 450, 100, 60);
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setText("جديـد");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(140, 460, 100, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,6 +273,49 @@ public class estlam extends javax.swing.JFrame {
      x.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if(jTextField1.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"Please enter agent name");
+        else 
+        {
+        
+            try {
+                query = "INSERT INTO `foxproject`.`repair` "
+                        + "(`agent_name`, `damage`, `arrival_data`, `cost`, `paid`, `employee_name`) VALUES"+"(" +
+                        "'"+jTextField1.getText()+"'"+","+"'"+ jTextField2.getText()+ "'" +"," + "'"+jTextField3.getText()
+                        +"'"+","+"'"+jTextField6.getText()+"'"+","+"'"+jTextField7.getText()+"'"+","+"'"+DB.emp_name+"'"
+                        + ")";
+                
+                
+               int i = DB.stmt.executeUpdate(query);
+               if(i != 0)
+                   JOptionPane.showMessageDialog(null,"Done!");
+                              if(JOptionPane.OK_OPTION == 0)
+                              get_new();
+            } catch (SQLException ex) {
+                Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
+        
+        
+        
+        
+        
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        get_new();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +355,7 @@ public class estlam extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -296,4 +383,16 @@ public class estlam extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+
+void get_new (){
+estlam e = new estlam();
+        this.dispose();
+        e.setVisible(true);
+
+}
+
+
+
+
 }
