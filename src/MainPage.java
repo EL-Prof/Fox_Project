@@ -30,9 +30,9 @@ public class MainPage extends javax.swing.JFrame {
         mainSearchBtn = new javax.swing.JButton();
         mainSellBtn = new javax.swing.JButton();
         mainReprBtn = new javax.swing.JButton();
-        mainCompBtn = new javax.swing.JButton();
         mainAddBtn = new javax.swing.JButton();
         mainLogOutBtn = new javax.swing.JButton();
+        mainAddBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(420, 500));
@@ -43,12 +43,17 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(mainSearchLbl);
         mainSearchLbl.setBounds(294, 26, 61, 43);
 
-        mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات" }));
+        mainSearchCBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainSearchCBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(mainSearchCBox);
-        mainSearchCBox.setBounds(204, 26, 86, 43);
+        mainSearchCBox.setBounds(180, 29, 110, 40);
 
-        mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         mainSearchBtn.setText("بحث");
         mainSearchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainSearchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +62,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainSearchBtn);
-        mainSearchBtn.setBounds(131, 26, 63, 43);
+        mainSearchBtn.setBounds(80, 30, 80, 40);
 
         mainSellBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSellBtn.setText("بيع");
@@ -78,15 +83,8 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(mainReprBtn);
         mainReprBtn.setBounds(131, 178, 159, 45);
 
-        mainCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mainCompBtn.setText("شركات");
-        mainCompBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        mainCompBtn.setPreferredSize(new java.awt.Dimension(50, 25));
-        getContentPane().add(mainCompBtn);
-        mainCompBtn.setBounds(131, 249, 159, 44);
-
         mainAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mainAddBtn.setText("اضافة");
+        mainAddBtn.setText("شركـات");
         mainAddBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainAddBtn.setPreferredSize(new java.awt.Dimension(50, 25));
         mainAddBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +93,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainAddBtn);
-        mainAddBtn.setBounds(131, 319, 159, 47);
+        mainAddBtn.setBounds(130, 250, 159, 47);
 
         mainLogOutBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainLogOutBtn.setText("خروج");
@@ -108,6 +106,18 @@ public class MainPage extends javax.swing.JFrame {
         });
         getContentPane().add(mainLogOutBtn);
         mainLogOutBtn.setBounds(131, 393, 159, 49);
+
+        mainAddBtn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        mainAddBtn1.setText("اضافة");
+        mainAddBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mainAddBtn1.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainAddBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainAddBtn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mainAddBtn1);
+        mainAddBtn1.setBounds(131, 319, 159, 47);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,17 +155,25 @@ public class MainPage extends javax.swing.JFrame {
           log.setVisible(true) ;
     }//GEN-LAST:event_mainLogOutBtnActionPerformed
 
+    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+        this.dispose();
+        estlam es = new estlam();
+        es.setVisible(true);
+    }//GEN-LAST:event_mainReprBtnActionPerformed
+
+    private void mainSearchCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchCBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainSearchCBoxActionPerformed
+
     private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
         this.dispose() ;
         add ad = new add() ;
         ad.setVisible(true) ;
     }//GEN-LAST:event_mainAddBtnActionPerformed
 
-    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
-hat_w_khod  hk=new hat_w_khod();
-hk.setVisible(true);
-this.dispose();
-    }//GEN-LAST:event_mainReprBtnActionPerformed
+    private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainAddBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +218,7 @@ this.dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton mainAddBtn;
-    private javax.swing.JButton mainCompBtn;
+    private javax.swing.JButton mainAddBtn1;
     private javax.swing.JButton mainLogOutBtn;
     private javax.swing.JButton mainReprBtn;
     private javax.swing.JButton mainSearchBtn;
