@@ -201,6 +201,12 @@ public class SearchRepair extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_repairRecieptBtnActionPerformed
 
+    private void repairAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repairAddBtnActionPerformed
+        this.dispose() ;
+        estlam repr = new estlam() ;
+        repr.setVisible(true) ;
+    }//GEN-LAST:event_repairAddBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
