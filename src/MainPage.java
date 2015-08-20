@@ -35,6 +35,7 @@ public class MainPage extends javax.swing.JFrame {
         mainLogOutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(420, 500));
         getContentPane().setLayout(null);
 
         mainSearchLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -144,6 +145,12 @@ public class MainPage extends javax.swing.JFrame {
         add ad = new add() ;
         ad.setVisible(true) ;
     }//GEN-LAST:event_mainAddBtnActionPerformed
+
+    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+hat_w_khod  hk=new hat_w_khod();
+hk.setVisible(true);
+this.dispose();
+    }//GEN-LAST:event_mainReprBtnActionPerformed
 
     /**
      * @param args the command line arguments

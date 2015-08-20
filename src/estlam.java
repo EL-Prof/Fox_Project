@@ -10,12 +10,12 @@
  *
  * @author Ahmed
  */
-public class repair extends javax.swing.JFrame {
+public class estlam extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
-    public repair() {
+    public estlam() {
         initComponents();
     }
 
@@ -55,6 +55,7 @@ public class repair extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -67,10 +68,10 @@ public class repair extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(340, 0, 130, 40);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("أسم العميل ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(520, 90, 160, 40);
+        jLabel2.setBounds(520, 90, 120, 40);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,13 +79,13 @@ public class repair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(169, 80, 320, 60);
+        jTextField1.setBounds(249, 80, 240, 60);
 
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 80, 510, 60);
+        jLabel3.setBounds(250, 80, 420, 60);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("العطل");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(520, 150, 160, 40);
@@ -95,16 +96,16 @@ public class repair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(170, 140, 320, 60);
+        jTextField2.setBounds(250, 140, 240, 60);
 
         jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(170, 140, 510, 60);
+        jLabel5.setBounds(250, 140, 420, 60);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("تاريخ الاستلام");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(520, 210, 160, 40);
+        jLabel6.setBounds(500, 210, 89, 40);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,13 +113,13 @@ public class repair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(170, 200, 320, 60);
+        jTextField3.setBounds(250, 200, 240, 60);
 
         jLabel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(170, 200, 510, 60);
+        jLabel7.setBounds(250, 200, 420, 60);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("تاريخ التسليم");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(510, 270, 160, 40);
@@ -129,23 +130,23 @@ public class repair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(170, 260, 320, 60);
+        jTextField4.setBounds(250, 260, 240, 60);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("الباقي");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(250, 320, 80, 50);
         getContentPane().add(jTextField5);
         jTextField5.setBounds(180, 330, 60, 30);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("التكلفة");
         getContentPane().add(jLabel11);
         jLabel11.setBounds(600, 320, 80, 50);
         getContentPane().add(jTextField6);
         jTextField6.setBounds(509, 330, 80, 30);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("دفع");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(420, 320, 80, 50);
@@ -158,9 +159,9 @@ public class repair extends javax.swing.JFrame {
 
         jLabel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(170, 260, 510, 60);
+        jLabel14.setBounds(250, 260, 420, 60);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("أقصي ميعاد للتسليم ");
         getContentPane().add(jLabel13);
         jLabel13.setBounds(440, 390, 240, 40);
@@ -177,19 +178,29 @@ public class repair extends javax.swing.JFrame {
         getContentPane().add(jLabel15);
         jLabel15.setBounds(170, 380, 510, 60);
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("الكود");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(580, 450, 100, 50);
+        jLabel16.setBounds(580, 450, 60, 50);
 
         jTextField9.setEditable(false);
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(379, 450, 120, 60);
+        jTextField9.setBounds(440, 450, 120, 60);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("حفظ");
         getContentPane().add(jButton1);
         jButton1.setBounds(170, 460, 100, 40);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("رجوع\n");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(73, 460, 80, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +225,12 @@ public class repair extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         MainPage x = new MainPage();
+     x.setVisible(true);
+     this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,26 +248,27 @@ public class repair extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(repair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(estlam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(repair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(estlam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(repair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(estlam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(repair.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(estlam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new repair().setVisible(true);
+                new estlam().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -10,12 +10,12 @@
  *
  * @author Ahmed
  */
-public class repair3 extends javax.swing.JFrame {
+public class taslem2 extends javax.swing.JFrame {
 
     /**
      * Creates new form repair3
      */
-    public repair3() {
+    public taslem2() {
         initComponents();
     }
 
@@ -41,11 +41,10 @@ public class repair3 extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setEnabled(false);
-        setMinimumSize(new java.awt.Dimension(700, 450));
+        setMinimumSize(new java.awt.Dimension(700, 330));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -53,7 +52,7 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(322, 0, 121, 40);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("رقم الكود");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(550, 60, 120, 30);
@@ -62,7 +61,7 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jTextField1);
         jTextField1.setBounds(389, 50, 120, 60);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("أسم العميل ");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(510, 130, 160, 40);
@@ -80,7 +79,7 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(160, 120, 510, 60);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("الباقي");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(240, 190, 80, 50);
@@ -89,7 +88,7 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jTextField5);
         jTextField5.setBounds(170, 200, 60, 30);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("التكلفة");
         getContentPane().add(jLabel11);
         jLabel11.setBounds(590, 190, 80, 50);
@@ -98,7 +97,7 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jTextField6);
         jTextField6.setBounds(500, 200, 80, 30);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("دفع");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(420, 200, 70, 30);
@@ -111,10 +110,15 @@ public class repair3 extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(160, 190, 510, 60);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setText("رجوع");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(0, 340, 130, 50);
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("رجوع");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(0, 273, 90, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,6 +126,13 @@ public class repair3 extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      MainPage ma=new MainPage();
+      ma.setVisible(true);
+      this.dispose();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,26 +151,26 @@ public class repair3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(repair3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(taslem2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(repair3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(taslem2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(repair3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(taslem2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(repair3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(taslem2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new repair3().setVisible(true);
+                new taslem2().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

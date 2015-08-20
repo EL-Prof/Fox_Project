@@ -19,7 +19,7 @@ static public Statement stmt;
     Class.forName("com.mysql.jdbc.Driver"); 
     c = DriverManager.getConnection("jdbc:mysql://localhost:3306/foxproject" , "root" , null);
       System.out.println("Connection with FoxProject DB Succesed");
-      stmt = c.createStatement();
+              stmt = c.createStatement();
 
         }
         catch(ClassNotFoundException | SQLException ex){

@@ -47,6 +47,7 @@ public class SearchRepair extends javax.swing.JFrame {
         repairRecieptBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(850, 430));
         getContentPane().setLayout(null);
 
         searchReprTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -213,7 +214,7 @@ public class SearchRepair extends javax.swing.JFrame {
 
     private void repairAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repairAddBtnActionPerformed
         this.dispose() ;
-        repair repr = new repair() ;
+        estlam repr = new estlam() ;
         repr.setVisible(true) ;
     }//GEN-LAST:event_repairAddBtnActionPerformed
 

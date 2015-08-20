@@ -39,9 +39,11 @@ public class add extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(720, 480));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -49,7 +51,7 @@ public class add extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(210, 0, 210, 30);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("أسم الصنف");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(534, 80, 140, 50);
@@ -59,50 +61,66 @@ public class add extends javax.swing.JFrame {
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(370, 80, 160, 50);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("النوع");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(610, 140, 70, 40);
+        jLabel3.setBounds(540, 150, 70, 40);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(376, 150, 160, 50);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("سعر الجملة");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(524, 260, 150, 40);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(140, 260, 110, 40);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("سعر البيع");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(260, 260, 110, 40);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(389, 260, 110, 40);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("الكمية\n");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(54, 260, 80, 40);
         getContentPane().add(jTextField3);
         jTextField3.setBounds(0, 260, 50, 40);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("رقم الباركود");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(534, 350, 140, 50);
         getContentPane().add(jTextField4);
         jTextField4.setBounds(289, 350, 220, 60);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setText("حفظ");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 483, 130, 60);
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("إضافة");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(90, 400, 80, 40);
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setText("رجوع");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(0, 400, 73, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     MainPage x = new MainPage();
+     x.setVisible(true);
+     this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +158,8 @@ public class add extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
