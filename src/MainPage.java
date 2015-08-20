@@ -172,7 +172,10 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_mainAddBtnActionPerformed
 
     private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed
-        // TODO add your handling code here:
+        
+        add ad = new add();
+        this.dispose();
+        ad.setVisible(true);
     }//GEN-LAST:event_mainAddBtn1ActionPerformed
 
     /**
