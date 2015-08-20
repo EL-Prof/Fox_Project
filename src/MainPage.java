@@ -43,12 +43,12 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(mainSearchLbl);
         mainSearchLbl.setBounds(294, 26, 61, 43);
 
-        mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات" }));
         getContentPane().add(mainSearchCBox);
-        mainSearchCBox.setBounds(180, 29, 110, 40);
+        mainSearchCBox.setBounds(204, 26, 86, 43);
 
-        mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchBtn.setText("بحث");
         mainSearchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainSearchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +57,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainSearchBtn);
-        mainSearchBtn.setBounds(80, 30, 80, 40);
+        mainSearchBtn.setBounds(131, 26, 63, 43);
 
         mainSellBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSellBtn.setText("بيع");
@@ -82,11 +82,6 @@ public class MainPage extends javax.swing.JFrame {
         mainCompBtn.setText("شركات");
         mainCompBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainCompBtn.setPreferredSize(new java.awt.Dimension(50, 25));
-        mainCompBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainCompBtnActionPerformed(evt);
-            }
-        });
         getContentPane().add(mainCompBtn);
         mainCompBtn.setBounds(131, 249, 159, 44);
 
@@ -161,14 +156,6 @@ hat_w_khod  hk=new hat_w_khod();
 hk.setVisible(true);
 this.dispose();
     }//GEN-LAST:event_mainReprBtnActionPerformed
-
-    private void mainCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainCompBtnActionPerformed
-
-        addcompany adc = new addcompany();
-        this.dispose();
-        adc.setVisible(true);
-
-    }//GEN-LAST:event_mainCompBtnActionPerformed
 
     /**
      * @param args the command line arguments
