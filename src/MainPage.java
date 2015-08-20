@@ -167,7 +167,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
         this.dispose() ;
-        add ad = new add() ;
+        addcompany ad = new addcompany();
         ad.setVisible(true) ;
     }//GEN-LAST:event_mainAddBtnActionPerformed
 
