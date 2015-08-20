@@ -70,6 +70,11 @@ public class MainPage extends javax.swing.JFrame {
         mainReprBtn.setText("تصليح");
         mainReprBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainReprBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainReprBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainReprBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(mainReprBtn);
         mainReprBtn.setBounds(131, 178, 159, 45);
 
