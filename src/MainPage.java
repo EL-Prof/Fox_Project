@@ -69,6 +69,11 @@ public class MainPage extends javax.swing.JFrame {
         mainReprBtn.setText("تصليح");
         mainReprBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainReprBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainReprBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainReprBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(mainReprBtn);
         mainReprBtn.setBounds(131, 178, 159, 45);
 
@@ -144,6 +149,10 @@ public class MainPage extends javax.swing.JFrame {
         add ad = new add() ;
         ad.setVisible(true) ;
     }//GEN-LAST:event_mainAddBtnActionPerformed
+
+    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainReprBtnActionPerformed
 
     /**
      * @param args the command line arguments

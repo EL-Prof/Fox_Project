@@ -94,7 +94,7 @@ public class SearchRepair extends javax.swing.JFrame {
         jScrollPaneRepr.setViewportView(searchReprTbl);
 
         getContentPane().add(jScrollPaneRepr);
-        jScrollPaneRepr.setBounds(0, 159, 759, 127);
+        jScrollPaneRepr.setBounds(0, 159, 840, 127);
 
         reprMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprMainBtn.setText("القائمة الرئيسية");
@@ -162,6 +162,11 @@ public class SearchRepair extends javax.swing.JFrame {
                 
                   model = (DefaultTableModel) searchReprTbl.getModel() ;
                   model.addRow(row) ;
+                  
+                  if(row[4].equals(""))
+                    {
+                        repairRecieptBtn.setVisible(true);
+                    }
                 
             }
         }
@@ -172,11 +177,13 @@ public class SearchRepair extends javax.swing.JFrame {
             System.out.println("error "+ex.getMessage());
         }
         
-        repairRecieptBtn.setVisible(true);
+        
+        
     }//GEN-LAST:event_searchReprBtnActionPerformed
 
     private void noSearchReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchReprBtnActionPerformed
         searchReprTxt.setText(null);
+        repairRecieptBtn.setVisible(false);
         model.setRowCount(0);
     }//GEN-LAST:event_noSearchReprBtnActionPerformed
 

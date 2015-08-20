@@ -154,7 +154,7 @@ public class SearchBill extends javax.swing.JFrame {
                 
             row[3] = dbase.rset.getString(1) ;
             row[2] = dbase.rset.getString(4) ;
-            row[1] = dbase.rset.getDate(3) ;
+            row[1] = dbase.rset.getString(3);
             row[0] = dbase.rset.getDouble(2) ;
                 
                   model = (DefaultTableModel) searchBillTbl.getModel() ;
