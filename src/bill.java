@@ -1,3 +1,10 @@
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import javax.swing.JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +17,17 @@
  */
 public class bill extends javax.swing.JFrame {
 
-    /**
-     * Creates new form sell
-     */
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    Date d = new Date();
+    
+    
     public bill() {
+       
         initComponents();
+        jTextField2.setText(DB.emp_name);
+        jTextField3.setText(dateFormat.format(d));
+        jTextField3.setEditable(false);
+    
     }
 
     /**
@@ -59,8 +72,9 @@ public class bill extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(820, 570));
-        setPreferredSize(new java.awt.Dimension(810, 750));
+        setLocation(new java.awt.Point(500, 300));
+        setMinimumSize(new java.awt.Dimension(788, 570));
+        setPreferredSize(new java.awt.Dimension(800, 718));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -76,7 +90,7 @@ public class bill extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(120, 660, 130, 40);
+        jButton1.setBounds(180, 630, 130, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("رقم الفاتورة");
@@ -85,25 +99,33 @@ public class bill extends javax.swing.JFrame {
 
         jTextField1.setEditable(false);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(630, 60, 50, 30);
+        jTextField1.setBounds(600, 60, 90, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("إسم البائع");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(540, 60, 80, 30);
+        jLabel3.setBounds(510, 60, 80, 30);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField2.setEnabled(false);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(430, 60, 100, 30);
+        jTextField2.setBounds(380, 60, 120, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("التاريخ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(360, 60, 60, 30);
+        jLabel4.setBounds(310, 60, 60, 30);
 
         jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(200, 60, 140, 40);
+        jTextField3.setBounds(160, 60, 130, 30);
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setText("كود المنتج");
@@ -230,16 +252,16 @@ public class bill extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("طباعة");
         getContentPane().add(jButton3);
-        jButton3.setBounds(690, 660, 100, 40);
+        jButton3.setBounds(380, 630, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("إجمالي الفاتورة");
+        jLabel14.setText("إجمالي الفاتورة : ");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(550, 660, 120, 40);
+        jLabel14.setBounds(660, 620, 120, 40);
         getContentPane().add(jTextField10);
-        jTextField10.setBounds(430, 660, 100, 40);
+        jTextField10.setBounds(520, 630, 130, 30);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton5.setText("رجوع");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,14 +269,13 @@ public class bill extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(0, 660, 100, 40);
+        jButton5.setBounds(30, 620, 110, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-MainPage x = new MainPage();
-x.setVisible(true);
+ new MainPage().setVisible(true);
 this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -272,8 +293,15 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        
+        new MainPage().setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton5ActionPerformed
+    
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

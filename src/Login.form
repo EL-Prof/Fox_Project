@@ -89,6 +89,9 @@
           <Font name="Sitka Heading" size="14" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NameFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Login">
       <Properties>
@@ -102,6 +105,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="PasswordField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PasswordFieldActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

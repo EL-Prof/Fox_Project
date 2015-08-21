@@ -1,3 +1,6 @@
+
+import java.time.LocalDateTime;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -68,6 +71,11 @@ public class MainPage extends javax.swing.JFrame {
         mainSellBtn.setText("بيع");
         mainSellBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainSellBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainSellBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainSellBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(mainSellBtn);
         mainSellBtn.setBounds(131, 113, 159, 47);
 
@@ -177,6 +185,14 @@ public class MainPage extends javax.swing.JFrame {
         this.dispose();
         ad.setVisible(true);
     }//GEN-LAST:event_mainAddBtn1ActionPerformed
+
+    private void mainSellBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSellBtnActionPerformed
+        
+        bill b = new bill();
+        this.dispose();
+        b.setVisible(true);
+        
+    }//GEN-LAST:event_mainSellBtnActionPerformed
 
     /**
      * @param args the command line arguments

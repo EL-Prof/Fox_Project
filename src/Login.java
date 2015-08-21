@@ -2,6 +2,7 @@
 //import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,12 +48,23 @@ DB db = new DB() ;
         Passlabel.setText("Password : ");
 
         NameField.setFont(new java.awt.Font("Sitka Heading", 0, 14)); // NOI18N
+        NameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameFieldActionPerformed(evt);
+            }
+        });
 
         Login.setFont(new java.awt.Font("Yu Mincho Light", 1, 14)); // NOI18N
         Login.setText("Login");
         Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginActionPerformed(evt);
+            }
+        });
+
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordFieldActionPerformed(evt);
             }
         });
 
@@ -105,6 +117,14 @@ DB db = new DB() ;
       else
            JOptionPane.showMessageDialog(new JPanel(), "Invalid name or password", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_LoginActionPerformed
+
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
+        PasswordField.requestFocus();
+    }//GEN-LAST:event_NameFieldActionPerformed
+
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+        LoginActionPerformed(evt);
+    }//GEN-LAST:event_PasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments

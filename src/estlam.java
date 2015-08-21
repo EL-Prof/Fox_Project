@@ -293,7 +293,11 @@ public class estlam extends javax.swing.JFrame {
                if(i != 0)
                    JOptionPane.showMessageDialog(null,"Done!");
                               if(JOptionPane.OK_OPTION == 0)
-                              get_new();
+                              {
+                              new estlam().setVisible(true);
+                              this.dispose();
+                              
+                              }
             } catch (SQLException ex) {
                 Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -313,7 +317,8 @@ public class estlam extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        get_new();
+       new estlam().setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -386,9 +391,8 @@ public class estlam extends javax.swing.JFrame {
 
 
 void get_new (){
-estlam e = new estlam();
-        this.dispose();
-        e.setVisible(true);
+    
+        
 
 }
 
