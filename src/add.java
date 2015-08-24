@@ -1,3 +1,11 @@
+
+import java.awt.Image;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +18,33 @@
  */
 public class add extends javax.swing.JFrame {
 
-    /**
-     * Creates new form add
-     */
+    String query; 
+    ResultSet rset ; 
+    Image img ; 
     public add() {
         initComponents();
+        img = new ImageIcon("exist3.png").getImage();
+        jLabel8.setIcon(new ImageIcon(img));
+        DB.initializeconnection();
+         jComboBox1.addItem("");
+         jComboBox2.addItem("");
+                  
+        query = "SELECT name FROM foxproject.product group by name " ; 
+        try {
+         rset =  DB.stmt.executeQuery(query);
+          while (rset.next()) {        
+           jComboBox1.addItem(rset.getString(1));
+        }
+         query = "SELECT type FROM foxproject.product group by type";
+         rset = DB.stmt.executeQuery(query);
+          while (rset.next()) {        
+          jComboBox2.addItem(rset.getString(1));
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     /**
@@ -41,6 +71,10 @@ public class add extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -56,54 +90,72 @@ public class add extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(534, 80, 140, 50);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ماوس ", "keyboard", "Item 3", "Item 4" }));
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(370, 80, 160, 50);
+        jComboBox1.setBounds(180, 90, 130, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("النوع");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(540, 150, 70, 40);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox2.setPreferredSize(new java.awt.Dimension(39, 28));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(376, 150, 160, 50);
+        jComboBox2.setBounds(180, 150, 130, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("سعر الجملة");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(524, 260, 150, 40);
+        jLabel4.setBounds(550, 230, 150, 40);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(140, 260, 110, 40);
+        jTextField1.setBounds(200, 230, 110, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("سعر البيع");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(260, 260, 110, 40);
+        jLabel5.setBounds(320, 230, 90, 40);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(389, 260, 110, 40);
+        jTextField2.setBounds(420, 230, 110, 40);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("الكمية\n");
+        jLabel6.setText("الكمية ");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(54, 260, 80, 40);
+        jLabel6.setBounds(120, 230, 50, 40);
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(0, 260, 50, 40);
+        jTextField3.setBounds(40, 230, 80, 40);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("رقم الباركود");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(534, 350, 140, 50);
+        jLabel7.setBounds(550, 290, 140, 50);
+
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(289, 350, 220, 60);
+        jTextField4.setBounds(350, 300, 180, 40);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
         getContentPane().add(jButton2);
-        jButton2.setBounds(90, 400, 80, 40);
+        jButton2.setBounds(300, 370, 80, 40);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("رجوع");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +163,32 @@ public class add extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(0, 400, 73, 40);
+        jButton3.setBounds(30, 390, 90, 40);
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField5);
+        jTextField5.setBounds(340, 90, 160, 30);
+
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextField6);
+        jTextField6.setBounds(340, 150, 160, 30);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("جديــد");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(150, 390, 80, 40);
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(300, 300, 60, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -121,6 +198,48 @@ public class add extends javax.swing.JFrame {
      x.setVisible(true);
      this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+             
+        jTextField5.setText(jComboBox1.getSelectedItem().toString());
+        
+     if(jComboBox2.getSelectedItem() != null)
+        if(jComboBox2.getSelectedItem().toString().equals(jTextField6.getText())&&! jTextField6.getText().isEmpty())
+        set_barcode();
+        else
+        {
+             jTextField4.setEnabled(true);
+              jTextField4.setText("");
+             jLabel8.setVisible(false);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+
+        jTextField6.setText(jComboBox2.getSelectedItem().toString());
+        
+         if(jComboBox1.getSelectedItem().toString().equals(jTextField5.getText())&&! jTextField5.getText().isEmpty())
+        set_barcode();
+         else
+         {jTextField4.setEnabled(true);
+          jTextField4.setText("");
+            jLabel8.setVisible(false);
+         }  
+        
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+    
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new add().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +277,7 @@ public class add extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
@@ -169,9 +289,47 @@ public class add extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+
+void set_barcode(){
+
+query = "SELECT barcode FROM foxproject.product where name = '"+jTextField5.getText()+"' and type = '"+ jTextField6.getText()+"'" ;
+    System.out.println(query);
+        try {
+            rset = DB.stmt.executeQuery(query);
+         if(rset.next())
+          {
+            jTextField4.setText(rset.getString(1));
+            jTextField4.setEnabled(false);
+            jLabel8.setVisible(true);
+        }
+        else
+         {
+             jTextField4.setEnabled(true);
+             jTextField4.setText("");
+            jLabel8.setVisible(false);
+         }
+        
+        
+        }catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
+
+}
+
+
+
+
+
 }
