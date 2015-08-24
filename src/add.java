@@ -23,7 +23,7 @@ public class add extends javax.swing.JFrame {
     Image img ; 
     public add() {
         initComponents();
-        img = new ImageIcon("exist3.png").getImage();
+        img = new ImageIcon("exist.png").getImage();
         jLabel8.setIcon(new ImageIcon(img));
         DB.initializeconnection();
          jComboBox1.addItem("");
