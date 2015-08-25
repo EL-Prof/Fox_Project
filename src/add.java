@@ -35,11 +35,6 @@ public class add extends javax.swing.JFrame {
           while (rset.next()) {        
            jComboBox1.addItem(rset.getString(1));
         }
-         query = "SELECT type FROM foxproject.product group by type";
-         rset = DB.stmt.executeQuery(query);
-          while (rset.next()) {        
-          jComboBox2.addItem(rset.getString(1));
-        }
         } catch (SQLException ex) {
             Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -202,7 +197,20 @@ public class add extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
              
         jTextField5.setText(jComboBox1.getSelectedItem().toString());
-        
+        if(!jTextField5.getText().isEmpty())
+        {
+            query = "SELECT type FROM foxproject.product where name = '"+jTextField5.getText()+"'" ;
+            
+            try {
+                rset = DB.stmt.executeQuery(query);
+                if(jComboBox2.getItemCount()>0)
+                                     jComboBox2.removeAllItems();
+                    
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
      if(jComboBox2.getSelectedItem() != null)
         if(jComboBox2.getSelectedItem().toString().equals(jTextField6.getText())&&! jTextField6.getText().isEmpty())
         set_barcode();
@@ -215,8 +223,22 @@ public class add extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-
+        
+        if(jComboBox2.getSelectedItem()!= null)
         jTextField6.setText(jComboBox2.getSelectedItem().toString());
+        else 
+            jTextField6.setText("");
+        try {
+            if(rset!= null&&rset.isBeforeFirst())
+            {
+                jComboBox2.addItem("");
+                while (rset.next()) {
+                jComboBox2.addItem(rset.getString(1));
+            }
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
          if(jComboBox1.getSelectedItem().toString().equals(jTextField5.getText())&&! jTextField5.getText().isEmpty())
         set_barcode();
@@ -302,7 +324,7 @@ public class add extends javax.swing.JFrame {
 void set_barcode(){
 
 query = "SELECT barcode FROM foxproject.product where name = '"+jTextField5.getText()+"' and type = '"+ jTextField6.getText()+"'" ;
-    System.out.println(query);
+   
         try {
             rset = DB.stmt.executeQuery(query);
          if(rset.next())
