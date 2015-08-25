@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,9 +22,17 @@ public class add extends javax.swing.JFrame {
 
     String query; 
     ResultSet rset ; 
-    Image img ; 
+    Image img ;
+
+   
+     
     public add() {
         initComponents();
+        jTextField5.setNextFocusableComponent(jTextField6);
+        jTextField6.setNextFocusableComponent(jTextField1);
+        jTextField1.setNextFocusableComponent(jTextField2);
+        jTextField2.setNextFocusableComponent(jTextField3);
+        jTextField3.setNextFocusableComponent(jTextField4);
         img = new ImageIcon("exist.png").getImage();
         jLabel8.setIcon(new ImageIcon(img));
         DB.initializeconnection();
@@ -57,9 +67,9 @@ public class add extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -100,7 +110,6 @@ public class add extends javax.swing.JFrame {
         jLabel3.setBounds(540, 150, 70, 40);
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox2.setPreferredSize(new java.awt.Dimension(39, 28));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -113,21 +122,26 @@ public class add extends javax.swing.JFrame {
         jLabel4.setText("سعر الجملة");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(550, 230, 150, 40);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(200, 230, 110, 40);
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(200, 230, 110, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("سعر البيع");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(320, 230, 90, 40);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(420, 230, 110, 40);
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(420, 230, 110, 40);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("الكمية ");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(120, 230, 50, 40);
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -147,6 +161,11 @@ public class add extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(300, 370, 80, 40);
 
@@ -263,6 +282,50 @@ public class add extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+       
+        if(!jLabel8.isVisible())
+        {
+        if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()
+               || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"برجاء اكمال البيانات");
+      
+       else 
+        {   query = "SELECT * FROM foxproject.product where barcode = "+jTextField4.getText() ; 
+        try {
+            if(DB.stmt.executeQuery(query).next())
+                JOptionPane.showMessageDialog(null,"الباركود مسجل مسبقـا!");
+            else 
+            {
+            query = "INSERT INTO `foxproject`.`product` (`barcode`, `name`, `type`, `quantity`, `Wholesale_price`, `Selling_price`) "
+                    + "VALUES ('"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField3.getText()+"','"
+                    +jTextField1.getText()+"','"+jTextField2.getText()+"')";
+                System.out.println("query is "+ query);
+                if(DB.stmt.executeUpdate(query)>0)
+                {
+                   JOptionPane.showMessageDialog(null, "تم الاضافه بنجاح", "Success", 2, new ImageIcon("Ok.png"));
+                
+                if(JOptionPane.OK_OPTION==0)
+                {
+                new add().setVisible(true);
+                this.dispose();
+                }
+                }
+            
+            }
+        
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }      
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    
+    
+    
+    }
     /**
      * @param args the command line arguments
      */

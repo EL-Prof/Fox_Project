@@ -44,11 +44,11 @@ public class SearchProduct extends javax.swing.JFrame {
          }
          else if (searchProCBox.getSelectedIndex()== 1)
          {
-             query = "Select name from product" ;
+             query = "Select name from product group by name" ;
          }
          else if (searchProCBox.getSelectedIndex()== 2)
          {
-             query = "Select type from product" ;
+             query = "Select type from product group by type" ;
          }
         
          
