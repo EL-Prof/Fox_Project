@@ -406,7 +406,7 @@ public class SearchProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_searchProCBoxActionPerformed
 
     private void searchProTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProTxtActionPerformed
-        // TODO add your handling code here:
+        searchProBtnActionPerformed(evt);
     }//GEN-LAST:event_searchProTxtActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

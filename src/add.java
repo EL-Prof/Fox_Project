@@ -33,13 +33,14 @@ public class add extends javax.swing.JFrame {
         DB.initializeconnection();
          jComboBox1.addItem("");
          jComboBox2.addItem("");
-                  
+combo2_initialize();
         query = "SELECT name FROM foxproject.product group by name " ; 
         try {
          rset =  DB.stmt.executeQuery(query);
           while (rset.next()) {        
            jComboBox1.addItem(rset.getString(1));
         }
+         
         } catch (SQLException ex) {
             Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -220,7 +221,9 @@ public class add extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
              
         jTextField5.setText(jComboBox1.getSelectedItem().toString());
-        if(!jTextField5.getText().isEmpty())
+        if(jTextField5.getText().isEmpty()&& jComboBox2.getSelectedItem()!=null)
+            combo2_initialize();
+        else if(!jTextField5.getText().isEmpty())
         {
             query = "SELECT type FROM foxproject.product where name = '"+jTextField5.getText()+"'" ;
             
@@ -417,7 +420,21 @@ query = "SELECT barcode FROM foxproject.product where name = '"+jTextField5.getT
 
 }
 
+void combo2_initialize(){
 
+query = "SELECT type FROM foxproject.product group by type " ;
+        try {
+            rset =  DB.stmt.executeQuery(query);
+            while (rset.next()) {        
+           jComboBox2.addItem(rset.getString(1));
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+        
+
+}
 
 
 
