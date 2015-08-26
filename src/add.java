@@ -28,11 +28,6 @@ public class add extends javax.swing.JFrame {
      
     public add() {
         initComponents();
-        jTextField5.setNextFocusableComponent(jTextField6);
-        jTextField6.setNextFocusableComponent(jTextField1);
-        jTextField1.setNextFocusableComponent(jTextField2);
-        jTextField2.setNextFocusableComponent(jTextField3);
-        jTextField3.setNextFocusableComponent(jTextField4);
         img = new ImageIcon("exist.png").getImage();
         jLabel8.setIcon(new ImageIcon(img));
         DB.initializeconnection();
@@ -124,6 +119,7 @@ public class add extends javax.swing.JFrame {
         jLabel4.setBounds(550, 230, 150, 40);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField2.setNextFocusableComponent(jTextField3);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(200, 230, 110, 40);
 
@@ -133,6 +129,7 @@ public class add extends javax.swing.JFrame {
         jLabel5.setBounds(320, 230, 90, 40);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1.setNextFocusableComponent(jTextField2);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(420, 230, 110, 40);
 
@@ -142,6 +139,7 @@ public class add extends javax.swing.JFrame {
         jLabel6.setBounds(120, 230, 50, 40);
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField3.setNextFocusableComponent(jTextField4);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -156,11 +154,13 @@ public class add extends javax.swing.JFrame {
         jLabel7.setBounds(550, 290, 140, 50);
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField4.setNextFocusableComponent(jButton2);
         getContentPane().add(jTextField4);
         jTextField4.setBounds(350, 300, 180, 40);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
+        jButton2.setNextFocusableComponent(jButton1);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -171,6 +171,7 @@ public class add extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton3.setText("رجوع");
+        jButton3.setNextFocusableComponent(jTextField5);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -180,6 +181,7 @@ public class add extends javax.swing.JFrame {
         jButton3.setBounds(30, 390, 90, 40);
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField5.setNextFocusableComponent(jTextField6);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -189,11 +191,13 @@ public class add extends javax.swing.JFrame {
         jTextField5.setBounds(340, 90, 160, 30);
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField6.setNextFocusableComponent(jTextField1);
         getContentPane().add(jTextField6);
         jTextField6.setBounds(340, 150, 160, 30);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("جديــد");
+        jButton1.setNextFocusableComponent(jButton3);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
