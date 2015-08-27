@@ -82,7 +82,7 @@ public class estlam extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(675, 550));
-        setSize(new java.awt.Dimension(687, 540));
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
