@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 public class DB {
 static Connection c;
@@ -49,5 +50,34 @@ static public Statement stmt;
     return false ; 
     
     }
+    
+    public boolean ValueIsExist(JTable table , int column , String value) 
+    { 
+      for (int i = 0; i < table.getRowCount(); i++)
+      {
+                if (table.getValueAt(i, column).equals(value))
+                {
+                    return true ;
+                }
+                
+      } 
+      
+      return false ;
+ }
+    
+    public int returnRowIndexForValue(JTable table , int column , String value) 
+    { 
+      for (int i = 0; i < table.getRowCount(); i++)
+      {
+                if (table.getValueAt(i, column).equals(value))
+                {
+                    return i ;
+                }
+                
+      } 
+      
+      return -1 ;
+ }
+    
     
 }

@@ -258,6 +258,8 @@ public class SearchProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_noSearchProBtnActionPerformed
 
     private void searchProBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProBtnActionPerformed
+        if(!dbase.ValueIsExist(searchProTbl, 3 , searchProTxt.getText()))
+        {
         if (searchProCBox.getSelectedIndex()== 0) 
         {
            Object[] row = new Object[6] ;
@@ -389,6 +391,11 @@ public class SearchProduct extends javax.swing.JFrame {
         
      }
     
+   }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"تم البحث بالفعل");
+        }
        
     
     }//GEN-LAST:event_searchProBtnActionPerformed
@@ -406,7 +413,7 @@ public class SearchProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_searchProCBoxActionPerformed
 
     private void searchProTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProTxtActionPerformed
-        searchProBtnActionPerformed(evt);
+        searchProBtnActionPerformed(evt) ;
     }//GEN-LAST:event_searchProTxtActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

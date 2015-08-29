@@ -7,7 +7,9 @@
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +24,16 @@ public class SearchCompany extends javax.swing.JFrame {
     public SearchCompany() {
         initComponents();
         DB.initializeconnection();
+        
+        updatePaidBtn.hide();
+        updatePaidConfBtn.hide();
+        updatePaidLbl.hide();
+        updatePaidTxt.hide();
+        updateTelBtn.hide();
+        updateTelConfBtn.hide();
+        updateTelLbl.hide();
+        updateTelTxt.hide();
+        
         String query = "Select name from company"  ;
          try 
         {
@@ -37,7 +49,7 @@ public class SearchCompany extends javax.swing.JFrame {
                 do
                 { 
                     jComboBox1.addItem(dbase.rset.getString(1));
-                    System.out.println(dbase.rset.getString(1));
+                    jComboBox2.addItem(dbase.rset.getString(1));
                 }
                 while(dbase.rset.next());
                  
@@ -70,6 +82,19 @@ public class SearchCompany extends javax.swing.JFrame {
         searchCompTbl = new javax.swing.JTable();
         compMainBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
+        updateCompTxt = new javax.swing.JTextField();
+        updateCompLbl = new javax.swing.JLabel();
+        noupdateCompBtn = new javax.swing.JButton();
+        updateCompBtn = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox();
+        updatePaidBtn = new javax.swing.JButton();
+        updateTelBtn = new javax.swing.JButton();
+        updatePaidLbl = new javax.swing.JLabel();
+        updateTelLbl = new javax.swing.JLabel();
+        updatePaidTxt = new javax.swing.JTextField();
+        updateTelTxt = new javax.swing.JTextField();
+        updatePaidConfBtn = new javax.swing.JButton();
+        updateTelConfBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -128,66 +153,205 @@ public class SearchCompany extends javax.swing.JFrame {
             }
         });
 
+        updateCompTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCompTxtActionPerformed(evt);
+            }
+        });
+
+        updateCompLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateCompLbl.setText("تحديث بيانات شركة:");
+
+        noupdateCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        noupdateCompBtn.setText("الغاء");
+        noupdateCompBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        noupdateCompBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noupdateCompBtnActionPerformed(evt);
+            }
+        });
+
+        updateCompBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateCompBtn.setText("تحديث");
+        updateCompBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateCompBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCompBtnActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        updatePaidBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatePaidBtn.setText("دفع للشركة");
+        updatePaidBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updatePaidBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePaidBtnActionPerformed(evt);
+            }
+        });
+
+        updateTelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateTelBtn.setText("تغيير رقم التليفون");
+        updateTelBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateTelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTelBtnActionPerformed(evt);
+            }
+        });
+
+        updatePaidLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatePaidLbl.setText("المبلغ المدفوع: ");
+
+        updateTelLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateTelLbl.setText("رقم التليفون الجديد:");
+
+        updatePaidTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        updateTelTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateTelTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTelTxtActionPerformed(evt);
+            }
+        });
+
+        updatePaidConfBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatePaidConfBtn.setText("تأكيد");
+        updatePaidConfBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updatePaidConfBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePaidConfBtnActionPerformed(evt);
+            }
+        });
+
+        updateTelConfBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateTelConfBtn.setText("تأكيد");
+        updateTelConfBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateTelConfBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTelConfBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneComp, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(313, 313, 313)
+                .addComponent(compMainBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
+                                .addComponent(noupdateCompBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateCompBtn))
+                            .addComponent(updateCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addComponent(updateCompLbl)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(searchCompLbl))
+                                .addGap(18, 18, 18)
+                                .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(199, 199, 199)
+                                .addGap(108, 108, 108)
                                 .addComponent(noSearchCompBtn)
                                 .addGap(56, 56, 56)
-                                .addComponent(searchCompBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(186, 186, 186)
-                                .addComponent(compMainBtn)))
-                        .addGap(0, 37, Short.MAX_VALUE))
+                                .addComponent(searchCompBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchCompLbl)
+                        .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPaneComp, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updateTelConfBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateTelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updatePaidConfBtn)
+                                .addGap(37, 37, 37)
+                                .addComponent(updatePaidTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(updatePaidLbl)
+                            .addComponent(updateTelLbl))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(updateTelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updatePaidBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(updateCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateCompLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noupdateCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchCompLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(noSearchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPaneComp, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchCompTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchCompLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noSearchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchCompBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPaneComp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(updatePaidTxt)
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updatePaidConfBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(updatePaidBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updatePaidLbl)))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateTelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateTelLbl)
+                    .addComponent(updateTelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateTelConfBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(compMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchCompTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCompTxtActionPerformed
-        
+        searchCompBtnActionPerformed(evt) ;
     }//GEN-LAST:event_searchCompTxtActionPerformed
 
     private void searchCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCompBtnActionPerformed
+        if(!dbase.ValueIsExist(searchCompTbl , 3 , searchCompTxt.getText()))
+        {
         Object[] row = new Object[4] ;
         String query = "Select * from company where name = '" + searchCompTxt.getText() + "'" ;
         
@@ -221,7 +385,13 @@ public class SearchCompany extends javax.swing.JFrame {
             System.out.println("error "+ex.getMessage());
         }
         
+        }
      
+        else
+        {
+            JOptionPane.showMessageDialog(null,"تم البحث بالفعل");
+        }
+            
     }//GEN-LAST:event_searchCompBtnActionPerformed
 
     private void noSearchCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchCompBtnActionPerformed
@@ -239,6 +409,106 @@ public class SearchCompany extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         searchCompTxt.setText(jComboBox1.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void updateCompTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateCompTxtActionPerformed
+
+    private void noupdateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noupdateCompBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noupdateCompBtnActionPerformed
+
+    private void updateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompBtnActionPerformed
+        updatePaidBtn.setVisible(true);
+        updateTelBtn.setVisible(true);
+    }//GEN-LAST:event_updateCompBtnActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        updateCompTxt.setText(jComboBox2.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void updatePaidBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidBtnActionPerformed
+        updatePaidLbl.setVisible(true);
+        updatePaidTxt.setVisible(true);
+        updatePaidConfBtn.setVisible(true);
+    }//GEN-LAST:event_updatePaidBtnActionPerformed
+
+    private void updateTelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelBtnActionPerformed
+        updateTelLbl.setVisible(true);
+        updateTelTxt.setVisible(true);
+        updateTelConfBtn.setVisible(true);
+    }//GEN-LAST:event_updateTelBtnActionPerformed
+
+    private void updateTelTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateTelTxtActionPerformed
+
+    private void updatePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidConfBtnActionPerformed
+        String query = "Select * from company where name = '" + updateCompTxt.getText() + "'" ;
+        try 
+        {
+            dbase.rset = DB.stmt.executeQuery(query) ;
+            if (!dbase.rset.next())
+            {
+                JOptionPane.showMessageDialog(null,"no search result, company name may be wrong ");
+            }
+            
+            else
+            {
+                double newPaid = Double.parseDouble(updatePaidTxt.getText()) + Double.parseDouble(dbase.rset.getString(3));
+                double newReminder = Double.parseDouble(dbase.rset.getString(4)) - Double.parseDouble(updatePaidTxt.getText());
+                String updateQuery = "UPDATE company SET paid = '" + newPaid + "' , remender = '" + newReminder + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
+                int rowCount = DB.stmt.executeUpdate(updateQuery);
+                if(rowCount == 0)
+                {
+                    JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    searchCompTbl.setValueAt(newPaid , dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText() ) , 1);
+                    searchCompTbl.setValueAt(newReminder , dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText() ) , 0);
+                    
+                    updatePaidConfBtn.setVisible(false);
+                    updatePaidLbl.setVisible(false);
+                    updatePaidTxt.setVisible(false);
+                    
+                    JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
+                }
+            }
+        } 
+        
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updatePaidConfBtnActionPerformed
+
+    private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
+        String query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
+        try 
+        {
+            int rowCount = DB.stmt.executeUpdate(query);
+            if(rowCount == 0)
+                {
+                    JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
+            else
+                {
+                    searchCompTbl.setValueAt(updateTelTxt.getText() , dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText() ) , 2);
+                    
+                    updateTelConfBtn.setVisible(false);
+                    updateTelLbl.setVisible(false);
+                    updateTelTxt.setVisible(false);
+                    
+                    JOptionPane.showMessageDialog(null, "تم التعديل بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
+                }
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateTelConfBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,11 +555,24 @@ public class SearchCompany extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton compMainBtn;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JScrollPane jScrollPaneComp;
     private javax.swing.JButton noSearchCompBtn;
+    private javax.swing.JButton noupdateCompBtn;
     private javax.swing.JButton searchCompBtn;
     private javax.swing.JLabel searchCompLbl;
     private javax.swing.JTable searchCompTbl;
     private javax.swing.JTextField searchCompTxt;
+    private javax.swing.JButton updateCompBtn;
+    private javax.swing.JLabel updateCompLbl;
+    private javax.swing.JTextField updateCompTxt;
+    private javax.swing.JButton updatePaidBtn;
+    private javax.swing.JButton updatePaidConfBtn;
+    private javax.swing.JLabel updatePaidLbl;
+    private javax.swing.JTextField updatePaidTxt;
+    private javax.swing.JButton updateTelBtn;
+    private javax.swing.JButton updateTelConfBtn;
+    private javax.swing.JLabel updateTelLbl;
+    private javax.swing.JTextField updateTelTxt;
     // End of variables declaration//GEN-END:variables
 }
