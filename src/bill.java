@@ -1,7 +1,11 @@
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class bill extends javax.swing.JFrame {
     Double total ,sum=0.0 ;
-    DB db = new DB();
+   String query ; 
+   ResultSet rset ; 
      DefaultTableModel model ;
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -27,6 +32,7 @@ public class bill extends javax.swing.JFrame {
     public bill() {
        
         initComponents();
+        model = (DefaultTableModel) jTable1.getModel();
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(dateFormat.format(d));
         jTextField3.setEditable(false);
@@ -152,46 +158,51 @@ public class bill extends javax.swing.JFrame {
         jButton4.setBounds(350, 290, 90, 49);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("سعر الوحدة");
         jLabel9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(650, 110, 90, 40);
+        jLabel9.setBounds(650, 110, 70, 40);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("أسم المنتج");
         jLabel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel10);
         jLabel10.setBounds(540, 110, 110, 40);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("نوع المنتج");
         jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel11);
         jLabel11.setBounds(440, 110, 100, 40);
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel13.setText("العدد");
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("العـدد");
         jLabel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(740, 110, 40, 40);
+        jLabel13.setBounds(720, 110, 60, 40);
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(255, 0, 51));
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(740, 150, 40, 60);
+        jTextField5.setBounds(720, 150, 60, 60);
 
         jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTextField6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(jTextField6);
-        jTextField6.setBounds(650, 150, 90, 60);
+        jTextField6.setBounds(650, 150, 70, 60);
 
         jTextField7.setEditable(false);
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField7.setDragEnabled(true);
         getContentPane().add(jTextField7);
         jTextField7.setBounds(540, 150, 110, 60);
 
         jTextField8.setEditable(false);
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField8.setDragEnabled(true);
         getContentPane().add(jTextField8);
         jTextField8.setBounds(440, 150, 100, 60);
@@ -217,7 +228,7 @@ public class bill extends javax.swing.JFrame {
 
             },
             new String [] {
-                "اسم المنتج", "الاسم الفرعي ", "الاجمالي", "سعر البيع", "سعر الجمله"
+                "الاجمالي", "الكميه", "سعر الوحده", "النوع ", "اسم المنتج"
             }
         ) {
             Class[] types = new Class [] {
@@ -237,6 +248,13 @@ public class bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 430, 530, 180);
@@ -292,21 +310,34 @@ this.dispose();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 DB.initializeconnection();
+query = "select * from product where barcode = "+jTextField4.getText() ;
+        
+        try {
+            rset = DB.stmt.executeQuery(query);
+            rset.next();
+            jTextField7.setText(rset.getString(2));
+            jTextField6.setText(rset.getString(6));
+            jTextField8.setText(rset.getString(3));
+        } catch (SQLException ex) {
+            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-db.bill(jTextField4.getText());
-jTextField6.setText(db.seelingprice);
-jTextField7.setText(db.name);
-jTextField8.setText(db.type);
 jTextField5.setText("1");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-total=Double.parseDouble(db.seelingprice)*Double.parseDouble(jTextField5.getText());
-Object []  row = {db.name , db.type , total,
-                                                         db.seelingprice , db.wholeprice   } ;
-model = (DefaultTableModel) jTable1.getModel();
+        try {
+            total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
+            Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
+                                                         rset.getString(3) , rset.getString(2)   } ;
 
-model.addRow(row) ;
+            model.addRow(row) ;
+        } catch (SQLException ex) {
+            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
