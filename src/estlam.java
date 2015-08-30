@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -95,6 +96,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(520, 90, 120, 40);
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -112,6 +114,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(520, 150, 160, 40);
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -129,6 +132,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(500, 210, 89, 40);
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -146,6 +150,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(510, 270, 160, 40);
 
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -158,6 +163,8 @@ public class estlam extends javax.swing.JFrame {
         jLabel10.setText("الباقي");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(250, 320, 80, 50);
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField5);
         jTextField5.setBounds(180, 330, 60, 30);
 
@@ -165,6 +172,8 @@ public class estlam extends javax.swing.JFrame {
         jLabel11.setText("التكلفة");
         getContentPane().add(jLabel11);
         jLabel11.setBounds(600, 320, 80, 50);
+
+        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField6);
         jTextField6.setBounds(509, 330, 80, 30);
 
@@ -172,6 +181,8 @@ public class estlam extends javax.swing.JFrame {
         jLabel12.setText("دفع");
         getContentPane().add(jLabel12);
         jLabel12.setBounds(420, 320, 80, 50);
+
+        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField7);
         jTextField7.setBounds(330, 330, 80, 30);
 
@@ -188,6 +199,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel13);
         jLabel13.setBounds(440, 390, 240, 40);
 
+        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -277,7 +289,7 @@ public class estlam extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if(jTextField1.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"Please enter agent name");
+            JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم العميــل");
         else 
         {
         
@@ -291,15 +303,18 @@ public class estlam extends javax.swing.JFrame {
                 
                int i = DB.stmt.executeUpdate(query);
                if(i != 0)
-                   JOptionPane.showMessageDialog(null,"Done!");
+               {   JOptionPane.showMessageDialog(null,"تم الاضافه بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
                               if(JOptionPane.OK_OPTION == 0)
                               {
                               new estlam().setVisible(true);
                               this.dispose();
-                              
+                                           
                               }
-            } catch (SQLException ex) {
-                Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               
+                              } catch (SQLException ex) {
+                 JOptionPane.showMessageDialog(null,"خطـأ في التسجيــل!","Fail!", 2 , new ImageIcon("Fail.png"));
+ 
             }
         
         

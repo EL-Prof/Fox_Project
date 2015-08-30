@@ -1,5 +1,8 @@
 
-import java.time.LocalDateTime;
+import java.awt.Color;
+
+
+//import java.time.LocalDateTime;
 
 /*
  * To change this template, choose Tools | Templates
@@ -59,9 +62,22 @@ public class MainPage extends javax.swing.JFrame {
         mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         mainSearchBtn.setText("بحث");
         mainSearchBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mainSearchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainSearchBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainSearchBtnMouseExited(evt);
+            }
+        });
         mainSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainSearchBtnActionPerformed(evt);
+            }
+        });
+        mainSearchBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainSearchBtnKeyPressed(evt);
             }
         });
         getContentPane().add(mainSearchBtn);
@@ -71,9 +87,25 @@ public class MainPage extends javax.swing.JFrame {
         mainSellBtn.setText("بيع");
         mainSellBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainSellBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainSellBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainSellBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainSellBtnMouseExited(evt);
+            }
+        });
         mainSellBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainSellBtnActionPerformed(evt);
+            }
+        });
+        mainSellBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainSellBtnKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mainSellBtnKeyTyped(evt);
             }
         });
         getContentPane().add(mainSellBtn);
@@ -83,9 +115,22 @@ public class MainPage extends javax.swing.JFrame {
         mainReprBtn.setText("تصليح");
         mainReprBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainReprBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainReprBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainReprBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainReprBtnMouseExited(evt);
+            }
+        });
         mainReprBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainReprBtnActionPerformed(evt);
+            }
+        });
+        mainReprBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainReprBtnKeyPressed(evt);
             }
         });
         getContentPane().add(mainReprBtn);
@@ -95,9 +140,22 @@ public class MainPage extends javax.swing.JFrame {
         mainAddBtn.setText("شركـات");
         mainAddBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainAddBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainAddBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainAddBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainAddBtnMouseExited(evt);
+            }
+        });
         mainAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainAddBtnActionPerformed(evt);
+            }
+        });
+        mainAddBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainAddBtnKeyPressed(evt);
             }
         });
         getContentPane().add(mainAddBtn);
@@ -107,9 +165,22 @@ public class MainPage extends javax.swing.JFrame {
         mainLogOutBtn.setText("خروج");
         mainLogOutBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainLogOutBtn.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainLogOutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainLogOutBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainLogOutBtnMouseExited(evt);
+            }
+        });
         mainLogOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainLogOutBtnActionPerformed(evt);
+            }
+        });
+        mainLogOutBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainLogOutBtnKeyPressed(evt);
             }
         });
         getContentPane().add(mainLogOutBtn);
@@ -119,9 +190,22 @@ public class MainPage extends javax.swing.JFrame {
         mainAddBtn1.setText("اضافة");
         mainAddBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mainAddBtn1.setPreferredSize(new java.awt.Dimension(50, 25));
+        mainAddBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mainAddBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mainAddBtn1MouseExited(evt);
+            }
+        });
         mainAddBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainAddBtn1ActionPerformed(evt);
+            }
+        });
+        mainAddBtn1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mainAddBtn1KeyPressed(evt);
             }
         });
         getContentPane().add(mainAddBtn1);
@@ -131,6 +215,123 @@ public class MainPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mainSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchBtnActionPerformed
+        if (mainSearchCBox.getSelectedIndex()== 0) 
+        {
+                        new SearchProduct().setVisible(true); ;
+                        this.dispose() ;
+        }
+        else if (mainSearchCBox.getSelectedIndex()== 1) 
+        {
+            new SearchCompany().setVisible(true); ;
+            this.dispose() ;
+        }
+        else if (mainSearchCBox.getSelectedIndex()== 2) 
+        {
+           new SearchBill().setVisible(true); ;
+            this.dispose() ;
+        }
+        else if (mainSearchCBox.getSelectedIndex()== 3) 
+        {
+            new SearchRepair().setVisible(true) ;
+            this.dispose() ;
+        }
+    }//GEN-LAST:event_mainSearchBtnActionPerformed
+
+    private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed
+         
+          new Login().setVisible(true); ;
+          this.dispose() ;
+    }//GEN-LAST:event_mainLogOutBtnActionPerformed
+
+    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+        new estlam().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mainReprBtnActionPerformed
+
+    private void mainSearchCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchCBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mainSearchCBoxActionPerformed
+
+    private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
+        
+        new addcompany().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mainAddBtnActionPerformed
+
+    private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed
+        
+        add ad = new add();
+        this.dispose();
+        ad.setVisible(true);
+    }//GEN-LAST:event_mainAddBtn1ActionPerformed
+
+    private void mainSellBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSellBtnActionPerformed
+        
+        bill b = new bill();
+        this.dispose();
+        b.setVisible(true);
+        
+    }//GEN-LAST:event_mainSellBtnActionPerformed
+
+    private void mainSellBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainSellBtnKeyPressed
+        bill b = new bill();
+        this.dispose();
+        b.setVisible(true);
+    }//GEN-LAST:event_mainSellBtnKeyPressed
+
+    private void mainSellBtnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainSellBtnKeyTyped
+        
+    }//GEN-LAST:event_mainSellBtnKeyTyped
+
+    private void mainSellBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainSellBtnMouseEntered
+        mainSellBtn.setBackground(Color.green);
+    }//GEN-LAST:event_mainSellBtnMouseEntered
+
+    private void mainSellBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainSellBtnMouseExited
+        mainSellBtn.setBackground(null);
+    }//GEN-LAST:event_mainSellBtnMouseExited
+
+    private void mainReprBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainReprBtnMouseEntered
+        mainReprBtn.setBackground(Color.green);
+    }//GEN-LAST:event_mainReprBtnMouseEntered
+
+    private void mainReprBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainReprBtnMouseExited
+        mainReprBtn.setBackground(null);
+    }//GEN-LAST:event_mainReprBtnMouseExited
+
+    private void mainAddBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainAddBtnMouseEntered
+        mainAddBtn.setBackground(Color.green);
+    }//GEN-LAST:event_mainAddBtnMouseEntered
+
+    private void mainAddBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainAddBtnMouseExited
+        mainAddBtn.setBackground(null);
+    }//GEN-LAST:event_mainAddBtnMouseExited
+
+    private void mainAddBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainAddBtn1MouseEntered
+        mainAddBtn1.setBackground(Color.green);
+    }//GEN-LAST:event_mainAddBtn1MouseEntered
+
+    private void mainAddBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainAddBtn1MouseExited
+        mainAddBtn1.setBackground(null);
+    }//GEN-LAST:event_mainAddBtn1MouseExited
+
+    private void mainLogOutBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainLogOutBtnMouseEntered
+        mainLogOutBtn.setBackground(Color.green);
+    }//GEN-LAST:event_mainLogOutBtnMouseEntered
+
+    private void mainLogOutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainLogOutBtnMouseExited
+        mainLogOutBtn.setBackground(null);
+    }//GEN-LAST:event_mainLogOutBtnMouseExited
+
+    private void mainSearchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainSearchBtnMouseEntered
+        mainSearchBtn.setBackground(Color.green);
+    }//GEN-LAST:event_mainSearchBtnMouseEntered
+
+    private void mainSearchBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainSearchBtnMouseExited
+        mainSearchBtn.setBackground(null);
+    }//GEN-LAST:event_mainSearchBtnMouseExited
+
+    private void mainSearchBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainSearchBtnKeyPressed
         if (mainSearchCBox.getSelectedIndex()== 0) 
         {
             this.dispose() ;
@@ -155,44 +356,31 @@ public class MainPage extends javax.swing.JFrame {
             SearchRepair repair = new SearchRepair() ;
             repair.setVisible(true) ;
         }
-    }//GEN-LAST:event_mainSearchBtnActionPerformed
+    }//GEN-LAST:event_mainSearchBtnKeyPressed
 
-    private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed
-         this.dispose() ;
-          Login log  = new Login() ;
-          log.setVisible(true) ;
-    }//GEN-LAST:event_mainLogOutBtnActionPerformed
-
-    private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+    private void mainReprBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainReprBtnKeyPressed
         this.dispose();
         estlam es = new estlam();
         es.setVisible(true);
-    }//GEN-LAST:event_mainReprBtnActionPerformed
+    }//GEN-LAST:event_mainReprBtnKeyPressed
 
-    private void mainSearchCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchCBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mainSearchCBoxActionPerformed
-
-    private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
+    private void mainAddBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainAddBtnKeyPressed
         this.dispose() ;
         addcompany ad = new addcompany();
         ad.setVisible(true) ;
-    }//GEN-LAST:event_mainAddBtnActionPerformed
+    }//GEN-LAST:event_mainAddBtnKeyPressed
 
-    private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed
-        
+    private void mainAddBtn1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainAddBtn1KeyPressed
         add ad = new add();
         this.dispose();
         ad.setVisible(true);
-    }//GEN-LAST:event_mainAddBtn1ActionPerformed
+    }//GEN-LAST:event_mainAddBtn1KeyPressed
 
-    private void mainSellBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSellBtnActionPerformed
-        
-        bill b = new bill();
-        this.dispose();
-        b.setVisible(true);
-        
-    }//GEN-LAST:event_mainSellBtnActionPerformed
+    private void mainLogOutBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainLogOutBtnKeyPressed
+          this.dispose() ;
+          Login log  = new Login() ;
+          log.setVisible(true) ;
+    }//GEN-LAST:event_mainLogOutBtnKeyPressed
 
     /**
      * @param args the command line arguments

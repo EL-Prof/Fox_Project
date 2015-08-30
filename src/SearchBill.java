@@ -134,10 +134,13 @@ public class SearchBill extends javax.swing.JFrame {
 
     private void noSearchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchBillBtnActionPerformed
         searchBillTxt.setText(null);
+if(model!= null)
         model.setRowCount(0);
     }//GEN-LAST:event_noSearchBillBtnActionPerformed
-
+    
     private void searchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBillBtnActionPerformed
+        if(!dbase.ValueIsExist(searchBillTbl, 3 , searchBillTxt.getText()))
+        {
         Object[] row = new Object[4] ;
         String query = "Select * from bill where ID = '" + searchBillTxt.getText() + "'" ;
         
@@ -168,10 +171,19 @@ public class SearchBill extends javax.swing.JFrame {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error "+ex.getMessage());
         }
+        
+        }
+        
+        else
+        {
+            JOptionPane.showMessageDialog(null,"تم البحث بالفعل");
+        }
+        
     }//GEN-LAST:event_searchBillBtnActionPerformed
 
     private void searchBillTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBillTxtActionPerformed
-        // TODO add your handling code here:
+          searchBillBtnActionPerformed(evt) ;        
+         
     }//GEN-LAST:event_searchBillTxtActionPerformed
 
     private void billMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billMainBtnActionPerformed

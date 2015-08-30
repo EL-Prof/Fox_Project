@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 public class DB {
 static Connection c;
@@ -19,9 +20,10 @@ static public Statement stmt;
         try{
             
     Class.forName("com.mysql.jdbc.Driver"); 
-    c = DriverManager.getConnection("jdbc:mysql://localhost:3306/foxproject" , "root" , null);
+    c = DriverManager.getConnection("jdbc:mysql://localhost:3306/foxproject?useUnicode=true&characterEncoding=utf-8" , "root" , null);
       System.out.println("Connection with FoxProject DB Succesed");
               stmt = c.createStatement();
+           
 
         }
         catch(ClassNotFoundException | SQLException ex){
@@ -73,5 +75,34 @@ static public Statement stmt;
         }
         
     }
+    
+    public boolean ValueIsExist(JTable table , int column , String value) 
+    { 
+      for (int i = 0; i < table.getRowCount(); i++)
+      {
+                if (table.getValueAt(i, column).equals(value))
+                {
+                    return true ;
+                }
+                
+      } 
+      
+      return false ;
+ }
+    
+    public int returnRowIndexForValue(JTable table , int column , String value) 
+    { 
+      for (int i = 0; i < table.getRowCount(); i++)
+      {
+                if (table.getValueAt(i, column).equals(value))
+                {
+                    return i ;
+                }
+                
+      } 
+      
+      return -1 ;
+ }
+    
     
 }
