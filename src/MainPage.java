@@ -217,40 +217,35 @@ public class MainPage extends javax.swing.JFrame {
     private void mainSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchBtnActionPerformed
         if (mainSearchCBox.getSelectedIndex()== 0) 
         {
-            this.dispose() ;
-            SearchProduct product  = new SearchProduct() ;
-            product.setVisible(true) ;
+                        new SearchProduct().setVisible(true); ;
+                        this.dispose() ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 1) 
         {
+            new SearchCompany().setVisible(true); ;
             this.dispose() ;
-            SearchCompany company = new SearchCompany() ;
-            company.setVisible(true) ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 2) 
         {
+           new SearchBill().setVisible(true); ;
             this.dispose() ;
-            SearchBill bill = new SearchBill() ;
-            bill.setVisible(true) ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 3) 
         {
+            new SearchRepair().setVisible(true) ;
             this.dispose() ;
-            SearchRepair repair = new SearchRepair() ;
-            repair.setVisible(true) ;
         }
     }//GEN-LAST:event_mainSearchBtnActionPerformed
 
     private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed
-         this.dispose() ;
-          Login log  = new Login() ;
-          log.setVisible(true) ;
+         
+          new Login().setVisible(true); ;
+          this.dispose() ;
     }//GEN-LAST:event_mainLogOutBtnActionPerformed
 
     private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
+        new estlam().setVisible(true);
         this.dispose();
-        estlam es = new estlam();
-        es.setVisible(true);
     }//GEN-LAST:event_mainReprBtnActionPerformed
 
     private void mainSearchCBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchCBoxActionPerformed
@@ -258,9 +253,9 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_mainSearchCBoxActionPerformed
 
     private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
-        this.dispose() ;
-        addcompany ad = new addcompany();
-        ad.setVisible(true) ;
+        
+        new addcompany().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_mainAddBtnActionPerformed
 
     private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed

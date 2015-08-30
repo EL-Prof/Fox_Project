@@ -40,7 +40,7 @@ public class SearchProduct extends javax.swing.JFrame {
         
          if (searchProCBox.getSelectedIndex()== 0)
          {
-             query = "Select barcode from product" ;
+             query = "SELECT barcode FROM foxproject.product order by barcode ASC" ;
          }
          else if (searchProCBox.getSelectedIndex()== 1)
          {
@@ -125,7 +125,6 @@ public class SearchProduct extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         noSearchProBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchProBtn.setText("منتج اخر");
@@ -135,8 +134,6 @@ public class SearchProduct extends javax.swing.JFrame {
                 noSearchProBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(noSearchProBtn);
-        noSearchProBtn.setBounds(406, 78, 87, 33);
 
         searchProBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchProBtn.setText("بحث");
@@ -146,13 +143,9 @@ public class SearchProduct extends javax.swing.JFrame {
                 searchProBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(searchProBtn);
-        searchProBtn.setBounds(553, 78, 63, 33);
 
         searchProLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchProLbl.setText("بحث بواسطة:");
-        getContentPane().add(searchProLbl);
-        searchProLbl.setBounds(642, 24, 101, 24);
 
         searchProTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,9 +158,6 @@ public class SearchProduct extends javax.swing.JFrame {
         searchProTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPanePro.setViewportView(searchProTbl);
 
-        getContentPane().add(jScrollPanePro);
-        jScrollPanePro.setBounds(0, 162, 753, 179);
-
         proMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         proMainBtn.setText("القائمة الرئيسية");
         proMainBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -176,18 +166,14 @@ public class SearchProduct extends javax.swing.JFrame {
                 proMainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(proMainBtn);
-        proMainBtn.setBounds(286, 359, 137, 42);
 
         searchProCBox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        searchProCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "الباركود", "اسم المنتج", "نوع المنتج", "" }));
+        searchProCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "الباركود", "اسم المنتج", "نوع المنتج" }));
         searchProCBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchProCBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(searchProCBox);
-        searchProCBox.setBounds(538, 25, 100, 23);
 
         searchProTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,7 +239,9 @@ public class SearchProduct extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void noSearchProBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchProBtnActionPerformed
+        if(model != null)
         model.setRowCount(0);
+        
         searchProTxt.setText(jComboBox1.getSelectedItem().toString());
     }//GEN-LAST:event_noSearchProBtnActionPerformed
 
@@ -293,7 +281,7 @@ public class SearchProduct extends javax.swing.JFrame {
         
         catch (SQLException ex) 
          {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"no search result, product not found ");
             System.out.println("error "+ex.getMessage());
          }
         
