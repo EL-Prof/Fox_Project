@@ -13,6 +13,7 @@ ResultSet rset;
 static String emp_name ;
 static public Statement stmt;
     String query ; 
+    String name,type,wholeprice,quantity,seelingprice ;
      public static void initializeconnection (){
     
         try{
@@ -48,6 +49,29 @@ static public Statement stmt;
          
     return false ; 
     
+    }
+    public void bill(String parcode){
+        String query2 ;
+        query2="select * from product where parcode ="+parcode ;
+        ResultSet x = null ;
+        try {x=stmt.executeQuery(query2);
+            
+        } catch (Exception e) {System.out.println("wrong");
+        }
+        try{
+            while (x.next()) {    
+                name=x.getString("name");
+                type=x.getString("type");
+                wholeprice=x.getString("Wholesale_price");
+                seelingprice=x.getString("selling_price");
+                
+                
+            }
+        }
+        catch(Exception w){
+            System.out.println("wrong");
+        }
+        
     }
     
 }

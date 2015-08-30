@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +17,9 @@ import javax.swing.JFrame;
  * @author Ahmed
  */
 public class bill extends javax.swing.JFrame {
+    Double total ,sum=0.0 ;
+    DB db = new DB();
+     DefaultTableModel model ;
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     Date d = new Date();
@@ -53,13 +57,11 @@ public class bill extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,7 +74,6 @@ public class bill extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(500, 300));
         setMinimumSize(new java.awt.Dimension(788, 570));
         setPreferredSize(new java.awt.Dimension(800, 718));
         getContentPane().setLayout(null);
@@ -90,7 +91,7 @@ public class bill extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(180, 630, 130, 40);
+        jButton1.setBounds(110, 630, 130, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("رقم الفاتورة");
@@ -158,22 +159,16 @@ public class bill extends javax.swing.JFrame {
         jLabel9.setBounds(650, 110, 90, 40);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel10.setText("بعد الخصم");
+        jLabel10.setText("أسم المنتج");
         jLabel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(570, 110, 80, 40);
+        jLabel10.setBounds(540, 110, 110, 40);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel11.setText("خصم %");
+        jLabel11.setText("نوع المنتج");
         jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(490, 110, 80, 40);
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel12.setText("مصاريف اضافيه");
-        jLabel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(400, 110, 90, 40);
+        jLabel11.setBounds(440, 110, 100, 40);
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("العدد");
@@ -186,15 +181,21 @@ public class bill extends javax.swing.JFrame {
         jTextField5.setBounds(740, 150, 40, 60);
 
         jTextField6.setEditable(false);
-        jTextField6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jTextField6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         getContentPane().add(jTextField6);
         jTextField6.setBounds(650, 150, 90, 60);
+
+        jTextField7.setEditable(false);
+        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField7.setDragEnabled(true);
         getContentPane().add(jTextField7);
-        jTextField7.setBounds(570, 150, 80, 60);
+        jTextField7.setBounds(540, 150, 110, 60);
+
+        jTextField8.setEditable(false);
+        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTextField8.setDragEnabled(true);
         getContentPane().add(jTextField8);
-        jTextField8.setBounds(490, 150, 80, 60);
-        getContentPane().add(jTextField9);
-        jTextField9.setBounds(400, 150, 90, 60);
+        jTextField8.setBounds(440, 150, 100, 60);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
@@ -208,7 +209,7 @@ public class bill extends javax.swing.JFrame {
 
         jLabel8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(400, 110, 390, 170);
+        jLabel8.setBounds(440, 110, 350, 170);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTable1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -217,14 +218,14 @@ public class bill extends javax.swing.JFrame {
 
             },
             new String [] {
-                "اسم المنتج", "الاسم الفرعي ", "الكميه", "الاجمالي", "سعر البيع", "الرصيـد"
+                "اسم المنتج", "الاسم الفرعي ", "الاجمالي", "سعر البيع", "سعر الجمله"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -235,6 +236,7 @@ public class bill extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
@@ -251,8 +253,13 @@ public class bill extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("طباعة");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
-        jButton3.setBounds(380, 630, 100, 40);
+        jButton3.setBounds(240, 630, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("إجمالي الفاتورة : ");
@@ -269,7 +276,7 @@ public class bill extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(30, 620, 110, 50);
+        jButton5.setBounds(0, 630, 110, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,10 +292,23 @@ this.dispose();
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+DB.initializeconnection();
 
+db.bill(jTextField4.getText());
+jTextField6.setText(db.seelingprice);
+jTextField7.setText(db.name);
+jTextField8.setText(db.type);
+jTextField5.setText("1");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+total=Double.parseDouble(db.seelingprice)*Double.parseDouble(jTextField5.getText());
+Object []  row = {db.name , db.type , total,
+                                                         db.seelingprice , db.wholeprice   } ;
+model = (DefaultTableModel) jTable1.getModel();
+
+model.addRow(row) ;
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -302,6 +322,16 @@ this.dispose();
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+sum = 0.0 ;
+        for (int i = 0 ; i < model.getRowCount() ; i++) {
+            
+             sum = sum + Double.parseDouble(model.getValueAt(i, 2).toString()) ; 
+                }
+         jLabel14.setVisible(true);
+jTextField10.setText(sum.toString() + "  LE");      
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,7 +377,6 @@ this.dispose();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -369,6 +398,5 @@ this.dispose();
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
