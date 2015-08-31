@@ -282,6 +282,8 @@ public class bill extends javax.swing.JFrame {
         jLabel14.setText("إجمالي الفاتورة : ");
         getContentPane().add(jLabel14);
         jLabel14.setBounds(660, 620, 120, 40);
+
+        jTextField10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         getContentPane().add(jTextField10);
         jTextField10.setBounds(520, 630, 130, 30);
 
@@ -299,7 +301,7 @@ public class bill extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- new MainPage().setVisible(true);
+ new bill().setVisible(true);
 this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -357,7 +359,7 @@ jTextField5.setText("1");
 sum = 0.0 ;
         for (int i = 0 ; i < model.getRowCount() ; i++) {
             
-             sum = sum + Double.parseDouble(model.getValueAt(i, 2).toString()) ; 
+             sum = sum + Double.parseDouble(model.getValueAt(i, 0).toString()) ; 
                 }
          jLabel14.setVisible(true);
 jTextField10.setText(sum.toString() + "  LE");      
