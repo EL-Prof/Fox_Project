@@ -1,3 +1,9 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +15,8 @@
  * @author Ahmed
  */
 public class addcompany extends javax.swing.JFrame {
+    ResultSet rest ;
+    String query ;
 
     /**
      * Creates new form addcompany
@@ -129,9 +137,37 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    if(jTextField1.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم الشركة");
+        else 
+        {DB.initializeconnection();
+        
+            try {
+                query = "INSERT INTO company "
+                        + "(`name`, `tel`, `paid`, `remender`) VALUES"+"(" +
+                        "'"+jTextField4.getText()+"'"+","+"'"+ jTextField1.getText()+ "'" +"," + "'"+jTextField2.getText()
+                        +"'"+","+"'"+jTextField3.getText()+"'"+","+"'"+
+                        ")";
+                
+                
+               int i = DB.stmt.executeUpdate(query);
+               if(i != 0)
+               {   JOptionPane.showMessageDialog(null,"تم الاضافه بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
+                              if(JOptionPane.OK_OPTION == 0)
+                              {
+                              new estlam().setVisible(true);
+                              this.dispose();
+                                           
+                              }
+               }
+               
+                              } catch (SQLException ex) {
+                 JOptionPane.showMessageDialog(null,"خطـأ في التسجيــل!","Fail!", 2 , new ImageIcon("Fail.png"));
+ 
+            }
+                // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
