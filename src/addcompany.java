@@ -23,6 +23,7 @@ public class addcompany extends javax.swing.JFrame {
      */
     public addcompany() {
         initComponents();
+   
     }
 
     /**
@@ -60,6 +61,7 @@ public class addcompany extends javax.swing.JFrame {
         jLabel1.setBounds(250, 0, 170, 30);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setNextFocusableComponent(jTextField5);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(360, 80, 170, 40);
 
@@ -89,25 +91,35 @@ public class addcompany extends javax.swing.JFrame {
         jLabel2.setText("إجمالي الطلبيه");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(540, 160, 110, 30);
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField2.setNextFocusableComponent(jTextField3);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(240, 160, 80, 30);
+        jTextField2.setBounds(210, 160, 110, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("دفع");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(330, 160, 80, 30);
+        jLabel3.setBounds(330, 160, 40, 30);
+
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField3.setNextFocusableComponent(jButton1);
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(20, 160, 80, 30);
+        jTextField3.setBounds(20, 160, 90, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("الباقي");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(124, 164, 80, 30);
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField5.setNextFocusableComponent(jTextField2);
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(440, 160, 80, 30);
+        jTextField5.setBounds(410, 160, 110, 30);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("حفظ");
+        jButton1.setNextFocusableComponent(jButton2);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -118,6 +130,7 @@ public class addcompany extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("رجوع");
+        jButton2.setNextFocusableComponent(jTextField4);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -137,7 +150,7 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if(jTextField1.getText().isEmpty())
+    if(jTextField4.getText().isEmpty())
             JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم الشركة");
         else 
         {DB.initializeconnection();
@@ -146,7 +159,7 @@ this.dispose();
                 query = "INSERT INTO company "
                         + "(`name`, `tel`, `paid`, `remender`) VALUES"+"(" +
                         "'"+jTextField4.getText()+"'"+","+"'"+ jTextField1.getText()+ "'" +"," + "'"+jTextField2.getText()
-                        +"'"+","+"'"+jTextField3.getText()+"'"+","+"'"+
+                        +"'"+","+"'"+jTextField3.getText()+"'"+
                         ")";
                 
                 
@@ -155,7 +168,7 @@ this.dispose();
                {   JOptionPane.showMessageDialog(null,"تم الاضافه بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
                               if(JOptionPane.OK_OPTION == 0)
                               {
-                              new estlam().setVisible(true);
+                              new addcompany().setVisible(true);
                               this.dispose();
                                            
                               }
