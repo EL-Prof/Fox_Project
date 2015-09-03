@@ -1,4 +1,7 @@
 
+import java.awt.Graphics;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -6,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 
 public class DB {
@@ -103,6 +107,8 @@ static public Statement stmt;
       
       return -1 ;
  }
+    
+    
     
     
 }

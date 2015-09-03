@@ -1,4 +1,8 @@
 
+import java.awt.Graphics;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -7,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -356,13 +361,22 @@ jTextField5.setText("1");
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-sum = 0.0 ;
-        for (int i = 0 ; i < model.getRowCount() ; i++) {
+
+        print_component(jPanel1);
+        
+        try {
+            jTable1.print();
             
-             sum = sum + Double.parseDouble(model.getValueAt(i, 0).toString()) ; 
-                }
-         jLabel14.setVisible(true);
-jTextField10.setText(sum.toString() + "  LE");      
+            sum = 0.0 ;
+            for (int i = 0 ; i < model.getRowCount() ; i++) {
+                
+                sum = sum + Double.parseDouble(model.getValueAt(i, 0).toString()) ;      
+            }
+            jLabel14.setVisible(true);
+            jTextField10.setText(sum.toString() + "  LE");
+        } catch (PrinterException ex) {
+            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -431,4 +445,21 @@ jTextField10.setText(sum.toString() + "  LE");
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+
+public  void print_component (JPanel panel){
+    
+        Toolkit tk = panel.getToolkit();
+        PrintJob pj = tk.getPrintJob(this, null, null);
+        Graphics g = pj.getGraphics();
+        panel.print(g);
+        g.dispose();
+    
+    }
+
+
+
+
+
+
 }
