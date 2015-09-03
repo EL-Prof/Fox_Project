@@ -172,7 +172,7 @@ public class SearchRepair extends javax.swing.JFrame {
                   model = (DefaultTableModel) searchReprTbl.getModel() ;
                   model.addRow(row) ;
                   
-                  if(row[4].equals(""))
+                  if(row[4] == null || row[4].equals(""))
                     {
                         recieptLabel.setVisible(true);
                         reprConfirmCbox.setVisible(true);
@@ -218,6 +218,7 @@ public class SearchRepair extends javax.swing.JFrame {
         recieptLabel.setVisible(false);
         reprConfirmCbox.setVisible(false);
         reprConfirmBtn.setVisible(false);
+        if(model != null)
         model.setRowCount(0);
         reprConfirmCbox.removeAllItems();
     }//GEN-LAST:event_noSearchReprBtnActionPerformed
