@@ -4,6 +4,7 @@
  */
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,8 @@ public class SearchCompany extends javax.swing.JFrame {
 
     DB dbase = new DB() ;
     DefaultTableModel model ;
+    ResultSet rset;
+    String query;
     
     public SearchCompany() {
         initComponents();
@@ -34,12 +37,11 @@ public class SearchCompany extends javax.swing.JFrame {
         updateTelLbl.hide();
         updateTelTxt.hide();
         
-        String query = "Select name from company"  ;
+         query = "Select name from company"  ;
          try 
         {
-            dbase.rset = DB.stmt.executeQuery(query) ;
-            System.out.println(query);
-            if (!dbase.rset.next())
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
             {
                 JOptionPane.showMessageDialog(null,"no search result, company may be not registered ");
             }
@@ -48,10 +50,10 @@ public class SearchCompany extends javax.swing.JFrame {
             {
                 do
                 { 
-                    jComboBox1.addItem(dbase.rset.getString(1));
-                    jComboBox2.addItem(dbase.rset.getString(1));
+                    jComboBox1.addItem(rset.getString(1));
+                    jComboBox2.addItem(rset.getString(1));
                 }
-                while(dbase.rset.next());
+                while(rset.next());
                  
             }
             
@@ -98,7 +100,9 @@ public class SearchCompany extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(604, 407));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(850, 600));
+        setResizable(false);
 
         searchCompLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchCompLbl.setText("اسم الشركة:");
@@ -211,6 +215,11 @@ public class SearchCompany extends javax.swing.JFrame {
         updateTelLbl.setText("رقم التليفون الجديد:");
 
         updatePaidTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updatePaidTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePaidTxtActionPerformed(evt);
+            }
+        });
 
         updateTelTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateTelTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -353,13 +362,12 @@ public class SearchCompany extends javax.swing.JFrame {
         if(!dbase.ValueIsExist(searchCompTbl , 3 , searchCompTxt.getText()))
         {
         Object[] row = new Object[4] ;
-        String query = "Select * from company where name = '" + searchCompTxt.getText() + "'" ;
+        query = "Select * from company where name = '" + searchCompTxt.getText() + "'" ;
         
         try 
         {
-            dbase.rset = DB.stmt.executeQuery(query) ;
-            System.out.println(query);
-            if (!dbase.rset.next())
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
             {
                 JOptionPane.showMessageDialog(null,"no search result, company may be not registered ");
             }
@@ -368,14 +376,14 @@ public class SearchCompany extends javax.swing.JFrame {
             {
                 do
                 {
-                  row[3] = dbase.rset.getString(1) ;
-                  row[2] = dbase.rset.getString(2) ;
-                  row[1] = dbase.rset.getDouble(3) ;
-                  row[0] = dbase.rset.getDouble(4) ;
+                  row[3] = rset.getString(1) ;
+                  row[2] = rset.getString(2) ;
+                  row[1] = rset.getDouble(3) ;
+                  row[0] = rset.getDouble(4) ;
                 
                   model = (DefaultTableModel) searchCompTbl.getModel() ;
                   model.addRow(row) ;
-                } while(dbase.rset.next());
+                } while(rset.next());
             }
         }
         
@@ -401,9 +409,9 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_noSearchCompBtnActionPerformed
 
     private void compMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compMainBtnActionPerformed
+        
+        new MainPage().setVisible(true) ;
         this.dispose();
-        MainPage main = new MainPage() ;
-        main.setVisible(true) ;
     }//GEN-LAST:event_compMainBtnActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -411,7 +419,7 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void updateCompTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompTxtActionPerformed
-        // TODO add your handling code here:
+        updateCompBtnActionPerformed(evt) ;
     }//GEN-LAST:event_updateCompTxtActionPerformed
 
     private void noupdateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noupdateCompBtnActionPerformed
@@ -419,6 +427,11 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_noupdateCompBtnActionPerformed
 
     private void updateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompBtnActionPerformed
+        if(!dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
+        {
+            searchCompBtnActionPerformed(evt) ;
+        }
+        
         updatePaidBtn.setVisible(true);
         updateTelBtn.setVisible(true);
     }//GEN-LAST:event_updateCompBtnActionPerformed
@@ -440,24 +453,24 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTelBtnActionPerformed
 
     private void updateTelTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelTxtActionPerformed
-        // TODO add your handling code here:
+        updateTelConfBtnActionPerformed(evt) ;
     }//GEN-LAST:event_updateTelTxtActionPerformed
 
     private void updatePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidConfBtnActionPerformed
-        String query = "Select * from company where name = '" + updateCompTxt.getText() + "'" ;
+        //query = "Select * from company where name = '" + updateCompTxt.getText() + "'" ;
         try 
         {
-            dbase.rset = DB.stmt.executeQuery(query) ;
-            if (!dbase.rset.next())
-            {
-                JOptionPane.showMessageDialog(null,"no search result, company name may be wrong ");
-            }
+            //rset = DB.stmt.executeQuery(query) ;
+            //if (!rset.next())
+            //{
+                //JOptionPane.showMessageDialog(null,"no search result, company name may be wrong ");
+            //}
             
-            else
-            {
-                double newPaid = Double.parseDouble(updatePaidTxt.getText()) + Double.parseDouble(dbase.rset.getString(3));
-                double newReminder = Double.parseDouble(dbase.rset.getString(4)) - Double.parseDouble(updatePaidTxt.getText());
-                String updateQuery = "UPDATE company SET paid = '" + newPaid + "' , remender = '" + newReminder + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
+            //else
+            //{
+                //double newPaid = Double.parseDouble(updatePaidTxt.getText()) + Double.parseDouble(rset.getString(3));
+                //double newReminder = Double.parseDouble(rset.getString(4)) - Double.parseDouble(updatePaidTxt.getText());
+                String updateQuery = "UPDATE company SET paid = paid + '" + Double.parseDouble(updatePaidTxt.getText()) + "' , remender = remender - '" + Double.parseDouble(updatePaidTxt.getText()) + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
                 int rowCount = DB.stmt.executeUpdate(updateQuery);
                 if(rowCount == 0)
                 {
@@ -465,16 +478,20 @@ public class SearchCompany extends javax.swing.JFrame {
                 }
                 else
                 {
-                    searchCompTbl.setValueAt(newPaid , dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText() ) , 1);
-                    searchCompTbl.setValueAt(newReminder , dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText() ) , 0);
+                    int rowIndex = dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText()) ;
+                    double paidNew = (double)searchCompTbl.getValueAt(rowIndex, 1) + Double.parseDouble(updatePaidTxt.getText()) ;
+                    double remenderNew = (double)searchCompTbl.getValueAt(rowIndex, 0) - Double.parseDouble(updatePaidTxt.getText()) ;
+                    searchCompTbl.setValueAt(paidNew , rowIndex , 1);
+                    searchCompTbl.setValueAt(remenderNew , rowIndex , 0);
                     
                     updatePaidConfBtn.setVisible(false);
                     updatePaidLbl.setVisible(false);
                     updatePaidTxt.setVisible(false);
-                    
+                    updatePaidTxt.setText(null);
+                            
                     JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
                 }
-            }
+            //}
         } 
         
         catch (SQLException ex) 
@@ -484,7 +501,7 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
-        String query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
+        query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
         try 
         {
             int rowCount = DB.stmt.executeUpdate(query);
@@ -500,6 +517,7 @@ public class SearchCompany extends javax.swing.JFrame {
                     updateTelConfBtn.setVisible(false);
                     updateTelLbl.setVisible(false);
                     updateTelTxt.setVisible(false);
+                    updateTelTxt.setText(null);
                     
                     JOptionPane.showMessageDialog(null, "تم التعديل بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
                 }
@@ -509,6 +527,10 @@ public class SearchCompany extends javax.swing.JFrame {
             Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateTelConfBtnActionPerformed
+
+    private void updatePaidTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidTxtActionPerformed
+        updatePaidConfBtnActionPerformed(evt) ;
+    }//GEN-LAST:event_updatePaidTxtActionPerformed
 
     /**
      * @param args the command line arguments

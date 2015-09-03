@@ -217,17 +217,17 @@ public class MainPage extends javax.swing.JFrame {
     private void mainSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSearchBtnActionPerformed
         if (mainSearchCBox.getSelectedIndex()== 0) 
         {
-                        new SearchProduct().setVisible(true); ;
+                        new SearchProduct().setVisible(true); 
                         this.dispose() ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 1) 
         {
-            new SearchCompany().setVisible(true); ;
+            new SearchCompany().setVisible(true); 
             this.dispose() ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 2) 
         {
-           new SearchBill().setVisible(true); ;
+           new SearchBill().setVisible(true); 
             this.dispose() ;
         }
         else if (mainSearchCBox.getSelectedIndex()== 3) 
@@ -239,7 +239,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed
          
-          new Login().setVisible(true); ;
+          new Login().setVisible(true); 
           this.dispose() ;
     }//GEN-LAST:event_mainLogOutBtnActionPerformed
 
@@ -253,30 +253,23 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_mainSearchCBoxActionPerformed
 
     private void mainAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtnActionPerformed
-        
         new addcompany().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mainAddBtnActionPerformed
 
     private void mainAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainAddBtn1ActionPerformed
-        
-        add ad = new add();
+        new add().setVisible(true);
         this.dispose();
-        ad.setVisible(true);
     }//GEN-LAST:event_mainAddBtn1ActionPerformed
 
     private void mainSellBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainSellBtnActionPerformed
-        
-        bill b = new bill();
+        new bill().setVisible(true);
         this.dispose();
-        b.setVisible(true);
-        
     }//GEN-LAST:event_mainSellBtnActionPerformed
 
     private void mainSellBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainSellBtnKeyPressed
-        bill b = new bill();
+        new bill().setVisible(true);
         this.dispose();
-        b.setVisible(true);
     }//GEN-LAST:event_mainSellBtnKeyPressed
 
     private void mainSellBtnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainSellBtnKeyTyped
@@ -359,27 +352,25 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_mainSearchBtnKeyPressed
 
     private void mainReprBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainReprBtnKeyPressed
+        new estlam().setVisible(true);
         this.dispose();
-        estlam es = new estlam();
-        es.setVisible(true);
     }//GEN-LAST:event_mainReprBtnKeyPressed
 
     private void mainAddBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainAddBtnKeyPressed
+        
+        new addcompany().setVisible(true) ;
         this.dispose() ;
-        addcompany ad = new addcompany();
-        ad.setVisible(true) ;
     }//GEN-LAST:event_mainAddBtnKeyPressed
 
     private void mainAddBtn1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainAddBtn1KeyPressed
-        add ad = new add();
+        new add().setVisible(true);
         this.dispose();
-        ad.setVisible(true);
+        
     }//GEN-LAST:event_mainAddBtn1KeyPressed
 
     private void mainLogOutBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainLogOutBtnKeyPressed
+          new Login().setVisible(true) ;
           this.dispose() ;
-          Login log  = new Login() ;
-          log.setVisible(true) ;
     }//GEN-LAST:event_mainLogOutBtnKeyPressed
 
     /**

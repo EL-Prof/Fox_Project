@@ -4,6 +4,7 @@
  */
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ public class SearchBill extends javax.swing.JFrame {
 
     DB dbase = new DB() ;
     DefaultTableModel model ;
+    ResultSet rset;
+    String query;
     
     public SearchBill() {
         initComponents();
@@ -134,7 +137,7 @@ public class SearchBill extends javax.swing.JFrame {
 
     private void noSearchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchBillBtnActionPerformed
         searchBillTxt.setText(null);
-if(model!= null)
+        if(model!= null)
         model.setRowCount(0);
     }//GEN-LAST:event_noSearchBillBtnActionPerformed
     
@@ -142,12 +145,12 @@ if(model!= null)
         if(!dbase.ValueIsExist(searchBillTbl, 3 , searchBillTxt.getText()))
         {
         Object[] row = new Object[4] ;
-        String query = "Select * from bill where ID = '" + searchBillTxt.getText() + "'" ;
+        query = "Select * from bill where ID = '" + searchBillTxt.getText() + "'" ;
         
         try 
         {
-            dbase.rset = DB.stmt.executeQuery(query) ;
-            if (!dbase.rset.next())
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
             {
                 JOptionPane.showMessageDialog(null,"no search result, ID may be wrong ");
             }
@@ -155,13 +158,13 @@ if(model!= null)
             else
             {
                 
-            row[3] = dbase.rset.getString(1) ;
-            row[2] = dbase.rset.getString(4) ;
-            row[1] = dbase.rset.getString(3);
-            row[0] = dbase.rset.getDouble(2) ;
+                row[3] = rset.getString(1) ;
+                row[2] = rset.getString(4) ;
+                row[1] = rset.getString(3);
+                row[0] = rset.getDouble(2) ;
                 
-                  model = (DefaultTableModel) searchBillTbl.getModel() ;
-                  model.addRow(row) ;
+                model = (DefaultTableModel) searchBillTbl.getModel() ;
+                model.addRow(row) ;
                 
             }
         }

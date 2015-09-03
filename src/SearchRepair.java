@@ -4,6 +4,7 @@
  */
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,6 +23,8 @@ public class SearchRepair extends javax.swing.JFrame {
 
     DB db = new DB() ;
     DefaultTableModel model ;
+    ResultSet rset;
+    String query;
     
     public SearchRepair() {
         initComponents();
@@ -115,6 +118,11 @@ public class SearchRepair extends javax.swing.JFrame {
         getContentPane().add(reprMainBtn);
         reprMainBtn.setBounds(280, 330, 137, 42);
 
+        reprConfirmCbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reprConfirmCboxActionPerformed(evt);
+            }
+        });
         getContentPane().add(reprConfirmCbox);
         reprConfirmCbox.setBounds(240, 20, 60, 30);
 
@@ -145,13 +153,12 @@ public class SearchRepair extends javax.swing.JFrame {
         if(!db.ValueIsExist(searchReprTbl, 8 , searchReprTxt.getText()))
         {
         Object[] row = new Object[9] ;
-        String query = "Select * from repair where code = '" + searchReprTxt.getText() + "'" ;
+        query = "Select * from repair where code = '" + searchReprTxt.getText() + "'" ;
         
         try 
         {
-            db.rset = DB.stmt.executeQuery(query) ;
-            System.out.println(query);
-            if (!db.rset.next())
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
             {
                 JOptionPane.showMessageDialog(null,"no search result, code may be wrong ");
             }
@@ -159,20 +166,30 @@ public class SearchRepair extends javax.swing.JFrame {
             else
             {
                 
-            row[8] = db.rset.getString(1) ;
-            row[7] = db.rset.getString(2) ;
-            row[6] = db.rset.getString(3) ;
-            row[5] = db.rset.getString(5) ;
-            row[4] = db.rset.getString(4) ;
-            row[3] = db.rset.getString(6) ;
-            row[2] = db.rset.getString(7) ;
-            row[1] = Double.parseDouble(row[3].toString())  - Double.parseDouble(row[2].toString()) ;
-            row[0] = db.rset.getString(8) ;
+            row[8] = rset.getString(1) ;
+            row[7] = rset.getString(2) ;
+            row[6] = rset.getString(3) ;
+            row[5] = rset.getString(5) ;
+            row[4] = rset.getString(4) ;
+            row[3] = rset.getString(6) ;
+            row[2] = rset.getString(7) ;
+            
+            if(!((row[3].toString().equals(""))&&(row[2].toString().equals(""))))
+            {
+                row[1] = Double.parseDouble(row[3].toString())  - Double.parseDouble(row[2].toString()) ;
+            }
+            else 
+            {
+                row[1] = row[3] ;
+            }
+            
+            
+            row[0] = rset.getString(8) ;
                 
                   model = (DefaultTableModel) searchReprTbl.getModel() ;
                   model.addRow(row) ;
                   
-                  if(row[4] == null || row[4].equals(""))
+                  if(row[4].equals(""))
                     {
                         recieptLabel.setVisible(true);
                         reprConfirmCbox.setVisible(true);
@@ -181,7 +198,7 @@ public class SearchRepair extends javax.swing.JFrame {
                         boolean exist = false ;
                         for(int i=0; i<reprConfirmCbox.getItemCount(); i++)
                             {
-                              if (reprConfirmCbox.getItemAt(i).toString().equalsIgnoreCase(db.rset.getString(1)))
+                              if (reprConfirmCbox.getItemAt(i).toString().equalsIgnoreCase(rset.getString(1)))
                                  {
                                     exist = true ;
                                     break;
@@ -191,7 +208,7 @@ public class SearchRepair extends javax.swing.JFrame {
                         
                         if (!exist)
                           {
-                             reprConfirmCbox.addItem(db.rset.getString(1));
+                             reprConfirmCbox.addItem(rset.getString(1));
                           }
                                 
                     }
@@ -218,31 +235,29 @@ public class SearchRepair extends javax.swing.JFrame {
         recieptLabel.setVisible(false);
         reprConfirmCbox.setVisible(false);
         reprConfirmBtn.setVisible(false);
-        if(model != null)
         model.setRowCount(0);
         reprConfirmCbox.removeAllItems();
     }//GEN-LAST:event_noSearchReprBtnActionPerformed
 
     private void reprMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprMainBtnActionPerformed
+        
+        new MainPage().setVisible(true) ;
         this.dispose();
-        MainPage main = new MainPage() ;
-        main.setVisible(true) ;
     }//GEN-LAST:event_reprMainBtnActionPerformed
 
     private void repairAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repairAddBtnActionPerformed
+        
+        new estlam().setVisible(true) ;
         this.dispose() ;
-        estlam repr = new estlam() ;
-        repr.setVisible(true) ;
     }//GEN-LAST:event_repairAddBtnActionPerformed
 
     private void reprConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmBtnActionPerformed
         if (searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,8, reprConfirmCbox.getSelectedItem().toString()), 4).equals(""))
         {
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            String query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,8, reprConfirmCbox.getSelectedItem().toString()), 3) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
+            query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,8, reprConfirmCbox.getSelectedItem().toString()), 3) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
             try {
                 int rowCount = DB.stmt.executeUpdate(query);
-                System.out.println(rowCount);
                 if(rowCount == 0)
                 {
                     JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
@@ -255,16 +270,25 @@ public class SearchRepair extends javax.swing.JFrame {
                   JOptionPane.showMessageDialog(null, "تم التسليم بنجاح", "Success", 2, new ImageIcon("Ok.png"));
                 }
                 
-                } catch (SQLException ex) {
+                }
+            
+            catch (SQLException ex) 
+            {
                 Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("error " + ex.getMessage());
             }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "تم التسليم بالفعل");
         }
+        else 
+          {
+            JOptionPane.showMessageDialog(null, "تم التسليم بالفعل");
+          }
 
     }//GEN-LAST:event_reprConfirmBtnActionPerformed
+
+    private void reprConfirmCboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmCboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reprConfirmCboxActionPerformed
 
     /**
      * @param args the command line arguments
