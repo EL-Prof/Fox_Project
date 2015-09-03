@@ -362,7 +362,7 @@ jTextField5.setText("1");
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        print_component(jPanel1);
+        
         
         try {
             jTable1.print();
