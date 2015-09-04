@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -40,7 +41,7 @@ public class SearchProduct extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, database empty");
+                JOptionPane.showMessageDialog(null,"لا يوجد منتجات");
             }
             else
             {
@@ -57,6 +58,7 @@ public class SearchProduct extends javax.swing.JFrame {
         catch (SQLException ex)
         {
             Logger.getLogger(SearchProduct.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         initialSellect() ;
@@ -319,10 +321,17 @@ public class SearchProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_noSearchProBtnActionPerformed
 
     private void searchProBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProBtnActionPerformed
+        
         if(!dbase.ValueIsExist(searchProTbl, 3 , searchProTxt.getText()))
         {
         if (searchProCBox.getSelectedIndex()== 0) 
         {
+            if(searchProTxt.getText().equals(""))
+              {
+                 JOptionPane.showMessageDialog(null,"من فضلك ادخل الباركود");
+              }
+            else
+            {
            Object[] row = new Object[6] ;
            query = "Select * from product where barcode = '" + searchProTxt.getText() + "'" ;  
            
@@ -331,7 +340,13 @@ public class SearchProduct extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, product not found ");
+                searchProTxt.setText(null) ;
+                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "المنتج غير موجود .. هل ترغب فى اضافة منتج جديد", "Error", JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.YES_OPTION)
+                {
+                    new add().setVisible(true);
+                    this.dispose();
+                }
             }
             
             else
@@ -353,13 +368,21 @@ public class SearchProduct extends javax.swing.JFrame {
         
         catch (SQLException ex) 
          {
-            JOptionPane.showMessageDialog(null,"no search result, product not found ");
-            System.out.println("error "+ex.getMessage());
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
          }
         
+            }
+        
         }
+        
         else if (searchProCBox.getSelectedIndex()== 1)
         {
+            if(searchProTxt.getText().equals(""))
+              {
+                 JOptionPane.showMessageDialog(null,"من فضلك ادخل اسم المنتج");
+              }
+            else
+            {
            Object[] row = new Object[6] ;
            query = "Select * from product where name = '" + searchProTxt.getText() + "'" ;  
         
@@ -368,7 +391,13 @@ public class SearchProduct extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, product not found ");
+                searchProTxt.setText(null) ;
+                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "المنتج غير موجود .. هل ترغب فى اضافة منتج جديد", "Error", JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.YES_OPTION)
+                {
+                    new add().setVisible(true);
+                    this.dispose();
+                }
             }
             
             else
@@ -382,8 +411,12 @@ public class SearchProduct extends javax.swing.JFrame {
                   row[1] = rset.getDouble(6) ;
                   row[0] = rset.getLong(4) ;
                 
-                  model = (DefaultTableModel) searchProTbl.getModel() ;
-                  model.addRow(row) ;
+                  if(!dbase.ValueIsExist(searchProTbl, 3 , row[3].toString()))
+                  {
+                     model = (DefaultTableModel) searchProTbl.getModel() ;
+                     model.addRow(row) ;
+                  }
+                  
                 } while(rset.next());
             }
        }
@@ -391,8 +424,10 @@ public class SearchProduct extends javax.swing.JFrame {
         catch (SQLException ex) 
          {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error "+ex.getMessage());
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
          }
+        
+            }
             
         }
       
@@ -413,6 +448,12 @@ public class SearchProduct extends javax.swing.JFrame {
         
         else if (searchProCBox.getSelectedIndex()== 2)
        {
+           if(searchProTxt.getText().equals(""))
+              {
+                 JOptionPane.showMessageDialog(null,"من فضلك ادخل نوع المنتج");
+              }
+           else
+           {
            Object[] row = new Object[6] ;
            query = "Select * from product where type = '" + searchProTxt.getText() + "'" ;  
         
@@ -421,7 +462,13 @@ public class SearchProduct extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, product not found ");
+                searchProTxt.setText(null) ;
+                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "المنتج غير موجود .. هل ترغب فى اضافة منتج جديد", "Error", JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.YES_OPTION)
+                {
+                    new add().setVisible(true);
+                    this.dispose();
+                }
             }
             
             else
@@ -434,9 +481,13 @@ public class SearchProduct extends javax.swing.JFrame {
                   row[2] = rset.getDouble(5) ;
                   row[1] = rset.getDouble(6) ;
                   row[0] = rset.getLong(4) ;
-                
-                  model = (DefaultTableModel) searchProTbl.getModel() ;
-                  model.addRow(row) ;
+                  
+                  if(!dbase.ValueIsExist(searchProTbl, 3 , row[3].toString()))
+                  {
+                     model = (DefaultTableModel) searchProTbl.getModel() ;
+                     model.addRow(row) ;
+                  }
+                  
                 } while(rset.next());
             }
        }
@@ -444,8 +495,10 @@ public class SearchProduct extends javax.swing.JFrame {
         catch (SQLException ex) 
          {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error "+ex.getMessage());
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
          }
+        
+           }
         
      }
     
