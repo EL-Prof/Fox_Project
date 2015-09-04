@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import sun.awt.FocusingTextField;
 
 /**
  *
@@ -43,7 +45,7 @@ public class SearchCompany extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, company may be not registered ");
+                JOptionPane.showMessageDialog(null,"لا يوجد بيانات");
             }
             
             else
@@ -63,8 +65,60 @@ public class SearchCompany extends javax.swing.JFrame {
         catch (SQLException ex) 
         {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error "+ex.getMessage());
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void search(JTextField text)
+    {
+        if(text.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"من فضلك ادخل اسم الشركة");
+           
+        }
+        
+        else
+        {
+        Object[] row = new Object[4] ;
+        query = "Select * from company where name = '" + text.getText() + "'" ;
+        
+        try 
+        {
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
+            {
+                text.setText(null) ;
+                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "الشركة غير مسجلة..هل ترغب فى اضافتها ؟", "Error", JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.YES_OPTION)
+                {
+                    new addcompany().setVisible(true);
+                    this.dispose();
+                }
+            }
+            
+            else
+            {
+                do
+                {
+                  row[3] = rset.getString(1) ;
+                  row[2] = rset.getString(2) ;
+                  row[1] = rset.getDouble(3) ;
+                  row[0] = rset.getDouble(4) ;
+                
+                  model = (DefaultTableModel) searchCompTbl.getModel() ;
+                  model.addRow(row) ;
+                } while(rset.next());
+            }
+        }
+        
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+      }
+        
     }
 
     /**
@@ -361,38 +415,7 @@ public class SearchCompany extends javax.swing.JFrame {
     private void searchCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCompBtnActionPerformed
         if(!dbase.ValueIsExist(searchCompTbl , 3 , searchCompTxt.getText()))
         {
-        Object[] row = new Object[4] ;
-        query = "Select * from company where name = '" + searchCompTxt.getText() + "'" ;
-        
-        try 
-        {
-            rset = DB.stmt.executeQuery(query) ;
-            if (!rset.next())
-            {
-                JOptionPane.showMessageDialog(null,"no search result, company may be not registered ");
-            }
-            
-            else
-            {
-                do
-                {
-                  row[3] = rset.getString(1) ;
-                  row[2] = rset.getString(2) ;
-                  row[1] = rset.getDouble(3) ;
-                  row[0] = rset.getDouble(4) ;
-                
-                  model = (DefaultTableModel) searchCompTbl.getModel() ;
-                  model.addRow(row) ;
-                } while(rset.next());
-            }
-        }
-        
-        catch (SQLException ex) 
-        {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error "+ex.getMessage());
-        }
-        
+            search(searchCompTxt) ;
         }
      
         else
@@ -423,17 +446,28 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updateCompTxtActionPerformed
 
     private void noupdateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noupdateCompBtnActionPerformed
-        // TODO add your handling code here:
+        updateCompTxt.setText(null);
+        updatePaidBtn.setVisible(false);
+        updateTelBtn.setVisible(false);
+        updatePaidConfBtn.setVisible(false);
+        updatePaidLbl.setVisible(false);
+        updatePaidTxt.setVisible(false);
+        updateTelConfBtn.setVisible(false);
+        updateTelLbl.setVisible(false);
+        updateTelTxt.setVisible(false);
     }//GEN-LAST:event_noupdateCompBtnActionPerformed
 
     private void updateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompBtnActionPerformed
         if(!dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
         {
-            searchCompBtnActionPerformed(evt) ;
+            search(updateCompTxt) ;
+        }
+        if(dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
+        {
+            updatePaidBtn.setVisible(true);
+            updateTelBtn.setVisible(true);
         }
         
-        updatePaidBtn.setVisible(true);
-        updateTelBtn.setVisible(true);
     }//GEN-LAST:event_updateCompBtnActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -475,6 +509,7 @@ public class SearchCompany extends javax.swing.JFrame {
                 if(rowCount == 0)
                 {
                     JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                    updatePaidTxt.setText(null);
                 }
                 else
                 {
@@ -497,10 +532,17 @@ public class SearchCompany extends javax.swing.JFrame {
         catch (SQLException ex) 
         {
             Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل المبلغ بالارقام", "Error", JOptionPane.ERROR_MESSAGE);
+            updatePaidTxt.setText(null);
         }
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
+        
         query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
         try 
         {
@@ -508,6 +550,7 @@ public class SearchCompany extends javax.swing.JFrame {
             if(rowCount == 0)
                 {
                     JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                    updateTelTxt.setText(null);
                 }
             
             else
@@ -525,6 +568,8 @@ public class SearchCompany extends javax.swing.JFrame {
         catch (SQLException ex) 
         {
             Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم تليفون صحيح", "Error", JOptionPane.ERROR_MESSAGE);
+            updateTelTxt.setText(null);
         }
     }//GEN-LAST:event_updateTelConfBtnActionPerformed
 
