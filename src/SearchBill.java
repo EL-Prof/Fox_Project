@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -142,6 +143,12 @@ public class SearchBill extends javax.swing.JFrame {
     }//GEN-LAST:event_noSearchBillBtnActionPerformed
     
     private void searchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBillBtnActionPerformed
+        if(searchBillTxt.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"من فضلك ادخل رقم الفاتورة");
+        }
+        else
+        {
         if(!dbase.ValueIsExist(searchBillTbl, 3 , searchBillTxt.getText()))
         {
         Object[] row = new Object[4] ;
@@ -152,7 +159,8 @@ public class SearchBill extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                JOptionPane.showMessageDialog(null,"no search result, ID may be wrong ");
+                JOptionPane.showMessageDialog(null,"لا يوجد فاتورة بهذا الرقم");
+                searchBillTxt.setText(null);
             }
             
             else
@@ -172,7 +180,7 @@ public class SearchBill extends javax.swing.JFrame {
         catch (SQLException ex) 
         {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error "+ex.getMessage());
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         }
@@ -181,6 +189,8 @@ public class SearchBill extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,"تم البحث بالفعل");
         }
+        
+      }
         
     }//GEN-LAST:event_searchBillBtnActionPerformed
 
