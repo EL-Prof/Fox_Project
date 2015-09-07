@@ -42,7 +42,7 @@ public class bill extends javax.swing.JFrame {
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(DB.dateFormat.format(DB.d));
         jTextField3.setEditable(false);
-    
+            
     }
 
     /**
@@ -378,8 +378,8 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
 
         
         
-        try {
-            jTable1.print();
+        new Printed_bill().setVisible(true);
+           
             
             sum = 0.0 ;
             for (int i = 0 ; i < model.getRowCount() ; i++) {
@@ -388,9 +388,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             }
             jLabel14.setVisible(true);
             jTextField10.setText(sum.toString() + "  LE");
-        } catch (PrinterException ex) {
-            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
