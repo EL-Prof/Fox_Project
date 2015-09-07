@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,8 +32,7 @@ public class bill extends javax.swing.JFrame {
    ResultSet rset ; 
      DefaultTableModel model ;
 
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    Date d = new Date();
+    
     
     
     public bill() {
@@ -39,7 +40,7 @@ public class bill extends javax.swing.JFrame {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
         jTextField2.setText(DB.emp_name);
-        jTextField3.setText(dateFormat.format(d));
+        jTextField3.setText(DB.dateFormat.format(DB.d));
         jTextField3.setEditable(false);
     
     }
@@ -171,14 +172,14 @@ public class bill extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("أسم المنتج");
+        jLabel10.setText("نوع المنتج");
         jLabel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel10);
         jLabel10.setBounds(540, 110, 110, 40);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("نوع المنتج");
+        jLabel11.setText("اسم المنتج");
         jLabel11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel11);
         jLabel11.setBounds(440, 110, 100, 40);
@@ -321,24 +322,37 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
         
         try {
             rset = DB.stmt.executeQuery(query);
-            rset.next();
-            jTextField7.setText(rset.getString(2));
+            if(rset.next() ==true )
+            {
+                jTextField5.setText("1");
+            jTextField8.setText(rset.getString(2));
             jTextField6.setText(rset.getString(6));
-            jTextField8.setText(rset.getString(3));
-        } catch (SQLException ex) {
+            jTextField7.setText(rset.getString(3));
+            }
+            else {
+                 JOptionPane.showMessageDialog(null, "البـاركود غير مسجل ");
+                  jTextField5.setText("");
+            jTextField7.setText("");
+            jTextField6.setText("");
+            jTextField8.setText("");
+            
+            }
+            } catch (SQLException ex) {
             Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-jTextField5.setText("1");
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
+            if(rset != null && rset.isFirst())
+            {      total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
             Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
                                                          rset.getString(3) , rset.getString(2)   } ;
 
             model.addRow(row) ;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
         }

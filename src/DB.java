@@ -7,12 +7,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
 public class DB {
+    static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+   static  Date d = new Date() ;
 static Connection c;
 ResultSet rset;
 static String emp_name ;
@@ -30,8 +37,8 @@ static public Statement stmt;
            
 
         }
-        catch(ClassNotFoundException | SQLException ex){
-        ex.getMessage();
+        catch(Exception e){
+          JOptionPane.showMessageDialog(null, "Connection with DataBase Failed!", "Error", 2, new ImageIcon("Error.png"));
                 }
         }
 
@@ -49,8 +56,8 @@ static public Statement stmt;
             return false ; 
             
             
-    } catch (SQLException ex) {
-        System.out.println("Connection with dataBase failed");
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Connection with DataBase Failed!", "Error", 2, new ImageIcon("Error.png"));
     }
          
     return false ; 
