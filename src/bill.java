@@ -30,19 +30,31 @@ public class bill extends javax.swing.JFrame {
     Double total ,sum=0.0 ;
    String query ; 
    ResultSet rset ; 
-     DefaultTableModel model ;
+    static  DefaultTableModel bill_model ;
 
     
     
     
     public bill() {
-       
+       DB.initializeconnection();
         initComponents();
-        model = (DefaultTableModel) jTable1.getModel();
+        bill_model = (DefaultTableModel) jTable1.getModel();
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(DB.dateFormat.format(DB.d));
         jTextField3.setEditable(false);
+         
+         query = "SELECT ID FROM foxproject.bill ORDER BY ID DESC LIMIT 1 " ;
+        try {
             
+            rset = DB.stmt.executeQuery(query);
+            rset.next();
+            Integer id = rset.getInt(1);
+            id ++ ; 
+            jTextField1.setText(id.toString());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -110,19 +122,20 @@ public class bill extends javax.swing.JFrame {
         jLabel2.setBounds(700, 60, 90, 30);
 
         jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(600, 60, 90, 30);
+        jTextField1.setBounds(570, 60, 120, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("إسم البائع");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(510, 60, 80, 30);
+        jLabel3.setBounds(490, 60, 80, 30);
 
         jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField2.setEnabled(false);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(380, 60, 120, 30);
+        jTextField2.setBounds(360, 60, 120, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("التاريخ");
@@ -351,7 +364,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
                                                          rset.getString(3) , rset.getString(2)   } ;
 
-            model.addRow(row) ;
+            bill_model.addRow(row) ;
             }
         } catch (SQLException ex) {
             Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,19 +389,15 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        
-        
-        new Printed_bill().setVisible(true);
-           
-            
             sum = 0.0 ;
-            for (int i = 0 ; i < model.getRowCount() ; i++) {
+            for (int i = 0 ; i < bill_model.getRowCount() ; i++) {
                 
-                sum = sum + Double.parseDouble(model.getValueAt(i, 0).toString()) ;      
+                sum = sum + Double.parseDouble(bill_model.getValueAt(i, 0).toString()) ;      
             }
             jLabel14.setVisible(true);
             jTextField10.setText(sum.toString() + "  LE");
-         
+    
+                new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
