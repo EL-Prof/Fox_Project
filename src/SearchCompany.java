@@ -505,6 +505,10 @@ public class SearchCompany extends javax.swing.JFrame {
         updateTelConfBtn.setVisible(false);
         updateTelLbl.setVisible(false);
         updateTelTxt.setVisible(false);
+        updateAddBtn.setVisible(false);
+        updateAddConfBtn.setVisible(false);
+        updateAddLbl.setVisible(false);
+        updateAddTxt.setVisible(false);
     }//GEN-LAST:event_noupdateCompBtnActionPerformed
 
     private void updateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompBtnActionPerformed
@@ -512,12 +516,10 @@ public class SearchCompany extends javax.swing.JFrame {
         {
             search(updateCompTxt) ;
         }
-        if(dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
-        {
+        
             updatePaidBtn.setVisible(true);
             updateTelBtn.setVisible(true);
             updateAddBtn.setVisible(true);
-        }
         
     }//GEN-LAST:event_updateCompBtnActionPerformed
 
