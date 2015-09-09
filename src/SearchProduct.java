@@ -27,7 +27,7 @@ public class SearchProduct extends javax.swing.JFrame {
     DefaultTableModel model ;
     ResultSet rset;
     String query;
-    ArrayList nameList = new ArrayList();
+    Set<String> nameList = new HashSet<>();
     ArrayList barcodeList = new ArrayList();
     Set<String> typeHset = new HashSet<>();
     
@@ -200,6 +200,7 @@ public class SearchProduct extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         noSearchProBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchProBtn.setText("منتج اخر");
