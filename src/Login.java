@@ -150,7 +150,11 @@ DB db = new DB() ;
     }//GEN-LAST:event_PasswordFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+addemployee ad = new addemployee();
+ad.setVisible(true);
+this.dispose();
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
