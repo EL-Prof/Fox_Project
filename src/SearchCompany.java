@@ -38,6 +38,10 @@ public class SearchCompany extends javax.swing.JFrame {
         updateTelConfBtn.hide();
         updateTelLbl.hide();
         updateTelTxt.hide();
+        updateAddBtn.hide();
+        updateAddConfBtn.hide();
+        updateAddLbl.hide();
+        updateAddTxt.hide();
         
          query = "Select name from company"  ;
          try 
@@ -151,11 +155,14 @@ public class SearchCompany extends javax.swing.JFrame {
         updateTelTxt = new javax.swing.JTextField();
         updatePaidConfBtn = new javax.swing.JButton();
         updateTelConfBtn = new javax.swing.JButton();
+        updateAddBtn = new javax.swing.JButton();
+        updateAddLbl = new javax.swing.JLabel();
+        updateAddTxt = new javax.swing.JTextField();
+        updateAddConfBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(850, 600));
         setResizable(false);
 
         searchCompLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -300,6 +307,34 @@ public class SearchCompany extends javax.swing.JFrame {
             }
         });
 
+        updateAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateAddBtn.setText("اضافة طلبية");
+        updateAddBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAddBtnActionPerformed(evt);
+            }
+        });
+
+        updateAddLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateAddLbl.setText("اضافة طلبية بمبلغ:");
+
+        updateAddTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateAddTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAddTxtActionPerformed(evt);
+            }
+        });
+
+        updateAddConfBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateAddConfBtn.setText("تأكيد");
+        updateAddConfBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateAddConfBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAddConfBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -340,21 +375,30 @@ public class SearchCompany extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateTelConfBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateTelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(updateTelConfBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(updateTelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(updatePaidConfBtn)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(updatePaidTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(updatePaidLbl)
+                                    .addComponent(updateTelLbl)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(updatePaidConfBtn)
-                                .addGap(37, 37, 37)
-                                .addComponent(updatePaidTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(updatePaidLbl)
-                            .addComponent(updateTelLbl))
+                                .addComponent(updateAddConfBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateAddTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(updateAddLbl)))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(updateTelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(updatePaidBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(updatePaidBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateAddBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(52, 52, 52))))
         );
         layout.setVerticalGroup(
@@ -400,7 +444,13 @@ public class SearchCompany extends javax.swing.JFrame {
                     .addComponent(updateTelLbl)
                     .addComponent(updateTelTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateTelConfBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateAddLbl)
+                    .addComponent(updateAddTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateAddConfBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(compMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -466,6 +516,7 @@ public class SearchCompany extends javax.swing.JFrame {
         {
             updatePaidBtn.setVisible(true);
             updateTelBtn.setVisible(true);
+            updateAddBtn.setVisible(true);
         }
         
     }//GEN-LAST:event_updateCompBtnActionPerformed
@@ -542,10 +593,16 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
-        
+        if(updateTelTxt.getText().length() <= 11)
+        {
         query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
         try 
         {
+            String firstSub = updateTelTxt.getText().substring(0, 6);
+            String lastSub = updateTelTxt.getText().substring(6);
+            Double.parseDouble(firstSub);
+            Double.parseDouble(lastSub);
+            
             int rowCount = DB.stmt.executeUpdate(query);
             if(rowCount == 0)
                 {
@@ -571,11 +628,76 @@ public class SearchCompany extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم تليفون صحيح", "Error", JOptionPane.ERROR_MESSAGE);
             updateTelTxt.setText(null);
         }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(new JPanel(), "رقم تليفون غير صحيح", "Error", JOptionPane.ERROR_MESSAGE);
+            updateTelTxt.setText(null);
+        }
+        catch(IndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JPanel(), "من فضلك اكمل رقم التليفون", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+       }//end if
+        else
+        {
+            JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم تليفون صحيح", "Error", JOptionPane.ERROR_MESSAGE);
+            updateTelTxt.setText(null);
+        }
     }//GEN-LAST:event_updateTelConfBtnActionPerformed
 
     private void updatePaidTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidTxtActionPerformed
         updatePaidConfBtnActionPerformed(evt) ;
     }//GEN-LAST:event_updatePaidTxtActionPerformed
+
+    private void updateAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddBtnActionPerformed
+        updateAddLbl.setVisible(true);
+        updateAddTxt.setVisible(true);
+        updateAddConfBtn.setVisible(true);
+    }//GEN-LAST:event_updateAddBtnActionPerformed
+
+    private void updateAddTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddTxtActionPerformed
+        updateAddConfBtnActionPerformed(evt) ;
+    }//GEN-LAST:event_updateAddTxtActionPerformed
+
+    private void updateAddConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddConfBtnActionPerformed
+     
+        try 
+        {
+           String updateQuery = "UPDATE company SET remender = remender + '" + Double.parseDouble(updateAddTxt.getText()) + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
+           int rowCount = DB.stmt.executeUpdate(updateQuery);
+           if(rowCount == 0)
+              {
+                  JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                  updatePaidTxt.setText(null);
+              }
+           else
+              {
+                  int rowIndex = dbase.returnRowIndexForValue(searchCompTbl, 3 , updateCompTxt.getText()) ;
+                  double remenderNew = (double)searchCompTbl.getValueAt(rowIndex, 0) + Double.parseDouble(updateAddTxt.getText()) ;
+                  searchCompTbl.setValueAt(remenderNew , rowIndex , 0);
+                    
+                  updateAddConfBtn.setVisible(false);
+                  updateAddLbl.setVisible(false);
+                  updateAddTxt.setVisible(false);
+                  updateAddTxt.setText(null);
+                            
+                  JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
+                }
+            
+        } 
+        
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(SearchCompany.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل المبلغ بالارقام", "Error", JOptionPane.ERROR_MESSAGE);
+            updateAddTxt.setText(null);
+        }        
+    }//GEN-LAST:event_updateAddConfBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -630,6 +752,10 @@ public class SearchCompany extends javax.swing.JFrame {
     private javax.swing.JLabel searchCompLbl;
     private javax.swing.JTable searchCompTbl;
     private javax.swing.JTextField searchCompTxt;
+    private javax.swing.JButton updateAddBtn;
+    private javax.swing.JButton updateAddConfBtn;
+    private javax.swing.JLabel updateAddLbl;
+    private javax.swing.JTextField updateAddTxt;
     private javax.swing.JButton updateCompBtn;
     private javax.swing.JLabel updateCompLbl;
     private javax.swing.JTextField updateCompTxt;
