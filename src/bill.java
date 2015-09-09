@@ -98,7 +98,7 @@ public class bill extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
-        setPreferredSize(new java.awt.Dimension(800, 718));
+        setPreferredSize(new java.awt.Dimension(830, 710));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -241,7 +241,7 @@ public class bill extends javax.swing.JFrame {
         jLabel8.setBounds(440, 110, 350, 170);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTable1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -388,7 +388,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        System.out.println(jTable1.getSelectedRow());
             sum = 0.0 ;
             for (int i = 0 ; i < bill_model.getRowCount() ; i++) {
                 
