@@ -61,8 +61,6 @@ public class estlam extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -73,12 +71,14 @@ public class estlam extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(675, 550));
-        setPreferredSize(new java.awt.Dimension(672, 528));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -89,25 +89,27 @@ public class estlam extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("أسم العميل ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(520, 90, 120, 40);
+        jLabel2.setBounds(510, 80, 120, 30);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1.setNextFocusableComponent(jTextField4);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(249, 80, 240, 60);
+        jTextField1.setBounds(249, 80, 240, 40);
 
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(250, 80, 420, 60);
+        jLabel3.setBounds(250, 80, 420, 40);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("العطل");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("العطـل");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(520, 150, 160, 40);
+        jLabel4.setBounds(520, 170, 70, 30);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -116,16 +118,16 @@ public class estlam extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(250, 140, 240, 60);
+        jTextField2.setBounds(250, 160, 240, 50);
 
         jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(250, 140, 420, 60);
+        jLabel5.setBounds(250, 160, 420, 50);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("تاريخ الاستلام");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(500, 210, 89, 40);
+        jLabel6.setBounds(500, 210, 120, 40);
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField3.setNextFocusableComponent(jTextField6);
@@ -135,21 +137,11 @@ public class estlam extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(250, 200, 240, 60);
+        jTextField3.setBounds(250, 210, 240, 40);
 
         jLabel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(250, 200, 420, 60);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("الباقي");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(240, 270, 80, 50);
-
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField5.setNextFocusableComponent(jButton1);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(170, 280, 60, 30);
+        jLabel7.setBounds(250, 210, 420, 40);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("التكلفة");
@@ -164,12 +156,12 @@ public class estlam extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("دفع");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(410, 270, 80, 50);
+        jLabel12.setBounds(320, 270, 80, 50);
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField7.setNextFocusableComponent(jTextField5);
+        jTextField7.setNextFocusableComponent(jButton1);
         getContentPane().add(jTextField7);
-        jTextField7.setBounds(320, 280, 80, 30);
+        jTextField7.setBounds(230, 280, 80, 30);
 
         jLabel9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel9);
@@ -223,6 +215,25 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(260, 460, 100, 40);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("رقـم الموبايل");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(510, 120, 120, 30);
+
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField4.setNextFocusableComponent(jTextField2);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(250, 120, 240, 40);
+
+        jLabel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(250, 120, 420, 40);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,11 +264,11 @@ public class estlam extends javax.swing.JFrame {
         
             try {
                 query = "INSERT INTO `foxproject`.`repair` "
-                        + "(`agent_name`, `damage`, `arrival_data`, `cost`, `paid`, `employee_name`) VALUES"+"(" +
+                        + "(`agent_name`, `damage`, `arrival_data`, `cost`, `paid`, `employee_name`,`mob_no`) VALUES"+"(" +
                         "'"+jTextField1.getText()+"'"+","+"'"+ jTextField2.getText()+ "'" +"," + "'"+jTextField3.getText()
                         +"'"+","+"'"+jTextField6.getText()+"'"+","+"'"+jTextField7.getText()+"'"+","+"'"+DB.emp_name+"'"
-                        + ")";
-                
+                        +",'"+jTextField4.getText()+ "')";
+                System.out.println("q:"+query);
                 
                int i = DB.stmt.executeUpdate(query);
                if(i != 0)
@@ -294,6 +305,10 @@ public class estlam extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,9 +350,9 @@ public class estlam extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -345,12 +360,13 @@ public class estlam extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField9;

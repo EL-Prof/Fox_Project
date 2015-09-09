@@ -76,6 +76,7 @@ combo2_initialize();
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(720, 480));
@@ -156,6 +157,11 @@ combo2_initialize();
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField4.setNextFocusableComponent(jButton2);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField4);
         jTextField4.setBounds(350, 300, 180, 40);
 
@@ -207,7 +213,17 @@ combo2_initialize();
         getContentPane().add(jButton1);
         jButton1.setBounds(150, 390, 80, 40);
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(300, 300, 60, 40);
+        jLabel8.setBounds(310, 300, 60, 40);
+
+        jButton4.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
+        jButton4.setText("بحث سكانر");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(210, 310, 89, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,19 +311,22 @@ combo2_initialize();
         {
         if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()
                || jTextField4.getText().isEmpty() || jTextField5.getText().isEmpty() || jTextField6.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"برجاء اكمال البيانات");
-      
+           JOptionPane.showMessageDialog(null,"برجاء اكمال البيانات");
+            
+        
        else 
         {   query = "SELECT * FROM foxproject.product where barcode = "+jTextField4.getText() ; 
         
             if(DB.stmt.executeQuery(query).next())
-                JOptionPane.showMessageDialog(null,"الباركود مسجل مسبقـا!");
+            {JOptionPane.showMessageDialog(null,"الباركود مسجل مسبقـا!");
+            return;
+            }
             else 
             {
             query = "INSERT INTO `foxproject`.`product` (`barcode`, `name`, `type`, `quantity`, `Wholesale_price`, `Selling_price`) "
                     + "VALUES ('"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField3.getText()+"','"
                     +jTextField1.getText()+"','"+jTextField2.getText()+"')";
-                System.out.println("query is "+ query);
+                
                 if(DB.stmt.executeUpdate(query)>0)
                 {
                    JOptionPane.showMessageDialog(null, "تم الاضافه بنجاح", "Success", 2, new ImageIcon("Ok.png"));
@@ -327,27 +346,58 @@ combo2_initialize();
         
     }                                        
         else {
+            if(jTextField3.getText() != null &&!jTextField3.getText().equals(""))
+            {   if(jTextField1.getText().equals("")&&jTextField2.getText().equals(""))
             query = "UPDATE `foxproject`.`product` \n" +
 "SET quantity = quantity +" + Integer.parseInt(jTextField3.getText())+
 " WHERE barcode = '"+jTextField4.getText()+"'" ; 
-            System.out.println("query "+ query);
-           int i = DB.stmt.executeUpdate(query);
+                else 
+                    if(jTextField1.getText().equals("")||jTextField2.getText().equals(""))
+                    { JOptionPane.showMessageDialog(null, "برجاء اكمال البيانات");
+                    return;
+                    }
+                    else
+                    query = "UPDATE `foxproject`.`product` SET `quantity`= quantity + "
+                            +Integer.parseInt(jTextField3.getText())+ ", `Wholesale_price`= "+Double.parseDouble(jTextField1.getText())
+                            + ",`Selling_price`="+Double.parseDouble(jTextField2.getText())+"WHERE `barcode`='"+jTextField4.getText()+"'" ; 
+            }
+            else {
+                if(jTextField1.getText().equals("")||jTextField2.getText().equals(""))
+                {  JOptionPane.showMessageDialog(null, "برجاء اكمال البيانات");
+                return;
+                }
+                else
+                    query = "UPDATE `foxproject`.`product` SET `Wholesale_price`= "+Double.parseDouble(jTextField1.getText())
+                            + ",`Selling_price`="+Double.parseDouble(jTextField2.getText())+"WHERE `barcode`='"+jTextField4.getText()+"'" ;
             
-           if(i>0)
-                JOptionPane.showMessageDialog(null, "تم اضافة الكميـه بنجـاح!", "Success", 2, new ImageIcon("Ok.png"));
+            }
+            System.out.println("query "+ query);
+            
+            
+           if(DB.stmt.executeUpdate(query)>0)
+                JOptionPane.showMessageDialog(null, "تم تحديـث البيانات بنجـاح!", "Success", 2, new ImageIcon("Ok.png"));
             
            else 
-                 JOptionPane.showMessageDialog(null, "فشـل!", "Success", 2, new ImageIcon("Fail.png"));
+                 JOptionPane.showMessageDialog(null, "لم يتم تعديل البيانات!", "error", 2, new ImageIcon("Fail.png"));
             
         }
        }
        catch(Exception ex) {
        
-       ex.getMessage();
+      JOptionPane.showMessageDialog(null, "فشـل!", "Fail", 2, new ImageIcon("Fail.png"));
        
        }    
               
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        jLabel8.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     
     
@@ -392,6 +442,7 @@ combo2_initialize();
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
