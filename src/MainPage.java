@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 
 //import java.time.LocalDateTime;
@@ -20,6 +22,13 @@ public class MainPage extends javax.swing.JFrame {
     
     public MainPage() {
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
             }
 
     /**
@@ -48,7 +57,7 @@ public class MainPage extends javax.swing.JFrame {
         mainSearchLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSearchLbl.setText("بحث عن:");
         getContentPane().add(mainSearchLbl);
-        mainSearchLbl.setBounds(294, 26, 61, 43);
+        mainSearchLbl.setBounds(294, 26, 80, 43);
 
         mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات", "آجل" }));

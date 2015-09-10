@@ -8,10 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -28,6 +25,13 @@ public class SearchCompany extends javax.swing.JFrame {
     
     public SearchCompany() {
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
         DB.initializeconnection();
         
         updatePaidBtn.hide();

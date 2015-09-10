@@ -10,10 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -38,6 +35,13 @@ public class bill extends javax.swing.JFrame {
     public bill() {
        DB.initializeconnection();
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
         bill_model = (DefaultTableModel) jTable1.getModel();
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(DB.dateFormat.format(DB.d));
@@ -302,7 +306,7 @@ public class bill extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("إجمالي الفاتورة : ");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(660, 620, 120, 40);
+        jLabel14.setBounds(660, 620, 130, 40);
 
         jTextField10.setEditable(false);
         jTextField10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N

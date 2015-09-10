@@ -1,8 +1,6 @@
 
 //import javafx.scene.layout.Pane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +19,12 @@ DB db = new DB() ;
      */
     public Login() {
         initComponents();
-        
+         try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+         
     }
 
     /**

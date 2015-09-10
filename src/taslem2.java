@@ -1,3 +1,7 @@
+
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +21,13 @@ public class taslem2 extends javax.swing.JFrame {
      */
     public taslem2() {
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
     }
 
     /**

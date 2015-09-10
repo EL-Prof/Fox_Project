@@ -26,6 +26,9 @@ String query ;
 
 public ageeel() {
         initComponents();
+        
+     
+        
     }
 
     /**

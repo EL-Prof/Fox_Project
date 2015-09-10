@@ -3,6 +3,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -25,6 +27,12 @@ public class Printed_bill extends javax.swing.JFrame {
     
     public Printed_bill(String total , String serial) {
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
       
      jTable1.setModel(bill.bill_model);
      jLabel5.setText("<html>"+dateFormat.format(d).substring(0, 10)+"<br>"+dateFormat.format(d).substring(11)+"<html>");

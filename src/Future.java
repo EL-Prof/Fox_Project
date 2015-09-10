@@ -3,10 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -27,6 +24,12 @@ public class Future extends javax.swing.JFrame {
     
     public Future() {
         initComponents();
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
         DB.initializeconnection();
         updateFuturePaidBtn.hide();
         updateFuturePaidLbl.hide();
@@ -56,7 +59,7 @@ public class Future extends javax.swing.JFrame {
                 int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "هذا العميل غير مسجل..هل ترغب فى اضافته ؟", "Error", JOptionPane.YES_NO_OPTION);
                 if(dialogResult == JOptionPane.YES_OPTION)
                 {
-                   // new addcompany().setVisible(true);
+                    new ageeel().setVisible(true);
                     this.dispose();
                 }
             }

@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import javax.naming.spi.DirStateFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,6 +28,13 @@ public class estlam extends javax.swing.JFrame {
     ResultSet rset ; 
     public estlam() {
         initComponents();
+        
+        try{
+			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
+			SwingUtilities.updateComponentTreeUI(this);
+			}catch(Exception e){e.printStackTrace();
+    }
+        
          jTextField3.setText(DB.dateFormat.format(DB.d));
         query = "SELECT code FROM repair ORDER BY code DESC LIMIT 1 " ;
         try {
