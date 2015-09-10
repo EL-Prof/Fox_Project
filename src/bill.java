@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Ahmed
  */
 public class bill extends javax.swing.JFrame {
-    Double total ,sum=0.0 ;
+    Double total ;
    String query ; 
    ResultSet rset ; 
     static  DefaultTableModel bill_model ;
@@ -96,6 +96,7 @@ public class bill extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
@@ -303,9 +304,10 @@ public class bill extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(660, 620, 120, 40);
 
+        jTextField10.setEditable(false);
         jTextField10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         getContentPane().add(jTextField10);
-        jTextField10.setBounds(520, 630, 130, 30);
+        jTextField10.setBounds(490, 630, 160, 30);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton5.setText("رجوع");
@@ -318,7 +320,7 @@ public class bill extends javax.swing.JFrame {
         jButton5.setBounds(0, 630, 110, 40);
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setText("أجل\n");
+        jButton6.setText("أجل ");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -326,6 +328,15 @@ public class bill extends javax.swing.JFrame {
         });
         getContentPane().add(jButton6);
         jButton6.setBounds(240, 630, 90, 40);
+
+        jButton7.setLabel("مسـح");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(173, 580, 70, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -381,7 +392,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
+calc_total();
 
 
 
@@ -399,24 +410,27 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.out.println(jTable1.getSelectedRow());
-            sum = 0.0 ;
-            for (int i = 0 ; i < bill_model.getRowCount() ; i++) {
-                
-                sum = sum + Double.parseDouble(bill_model.getValueAt(i, 0).toString()) ;      
-            }
-            jLabel14.setVisible(true);
-            jTextField10.setText(sum.toString() + "  LE");
-    
-                new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
+       
+             new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 ageeel ag = new ageeel();
 ag.setVisible(true);
-this.dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        int  s = jTable1.getSelectedRow() ;
+        if(s>-1)
+        {
+            bill_model.removeRow(s);
+            calc_total();
+        }
+            else 
+            JOptionPane.showMessageDialog(null, "برجاء تحديد العنصر المراد حذفه");
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,6 +474,7 @@ this.dispose();
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -497,7 +512,20 @@ public  void print_component (JPanel panel){
     
     }
 
+void calc_total (){
 
+    total = 0.0 ; 
+    for (int i = 0; i < bill_model.getRowCount(); i++) {
+        total += Double.parseDouble(bill_model.getValueAt(i, 0).toString());
+    }
+
+jTextField10.setText(total.toString()+" LE");
+
+
+
+
+
+}
 
 
 
