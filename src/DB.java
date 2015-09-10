@@ -117,5 +117,25 @@ static public Statement stmt;
     
     
     
+      public boolean check_password2 ( String pass){
+    query = "Select password from employee WHERE name = 'manger'";       
+    try {
+        rset = stmt.executeQuery(query) ;
+        if(rset.next())
+        if(pass.equalsIgnoreCase(rset.getString(1)))
+        {   
+            emp_name = name ; 
+            return true ;
+        } 
+            
+            return false ; 
+            
+            
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Connection with DataBase Failed!", "Error", 2, new ImageIcon("Error.png"));
+    }
+         
+    return false ; 
     
+    }
 }

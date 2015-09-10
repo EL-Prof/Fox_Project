@@ -95,6 +95,7 @@ public class bill extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
@@ -295,7 +296,7 @@ public class bill extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(240, 630, 100, 40);
+        jButton3.setBounds(330, 630, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("إجمالي الفاتورة : ");
@@ -315,6 +316,16 @@ public class bill extends javax.swing.JFrame {
         });
         getContentPane().add(jButton5);
         jButton5.setBounds(0, 630, 110, 40);
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton6.setText("أجل\n");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(240, 630, 90, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -400,6 +411,13 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
                 new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+ageeel ag = new ageeel();
+ag.setVisible(true);
+this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +459,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
