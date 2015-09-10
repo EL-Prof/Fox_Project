@@ -239,7 +239,15 @@ public class SearchProduct extends javax.swing.JFrame {
             new String [] {
                 "الكمية", "سعر البيع", "سعر الجملة", "الباركود", "النوع", "اسم المنتج"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         searchProTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPanePro.setViewportView(searchProTbl);
 

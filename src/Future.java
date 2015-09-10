@@ -204,7 +204,15 @@ public class Future extends javax.swing.JFrame {
             new String [] {
                 "المتبقى", "المدفوع", "المبلغ الكلى", "رقم الموبايل", "اسم العميل"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         searchFutureTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPaneFuture.setViewportView(searchFutureTbl);
 

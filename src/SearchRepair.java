@@ -185,7 +185,15 @@ public class SearchRepair extends javax.swing.JFrame {
             new String [] {
                 "اسم العامل", "المتبقى", "المدفوع", "التكلفة", "تاريخ التسليم", "تاريخ الاستلام", "العطل", "رقم التليفون", "اسم العميل", "كود العميل"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         searchReprTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         searchReprTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -230,7 +238,7 @@ public class SearchRepair extends javax.swing.JFrame {
         recieptLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         recieptLabel.setText("تسليم لعميل رقم:");
         getContentPane().add(recieptLabel);
-        recieptLabel.setBounds(200, 20, 120, 30);
+        recieptLabel.setBounds(200, 20, 130, 30);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "كود العميل", "اسم العميل", "الكل" }));
@@ -241,7 +249,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(596, 20, 110, 30);
+        jComboBox1.setBounds(586, 20, 120, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

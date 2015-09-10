@@ -203,7 +203,15 @@ public class SearchCompany extends javax.swing.JFrame {
             new String [] {
                 "المتبقى", "المدفوع", "رقم التليفون", "اسم الشركة"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         searchCompTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPaneComp.setViewportView(searchCompTbl);
 

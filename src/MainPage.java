@@ -50,7 +50,7 @@ public class MainPage extends javax.swing.JFrame {
         mainAddBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(420, 550));
+        setMinimumSize(new java.awt.Dimension(420, 590));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -119,7 +119,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainSellBtn);
-        mainSellBtn.setBounds(120, 130, 159, 47);
+        mainSellBtn.setBounds(130, 220, 159, 47);
 
         mainReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainReprBtn.setText("تصليح");
@@ -144,7 +144,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainReprBtn);
-        mainReprBtn.setBounds(120, 200, 159, 45);
+        mainReprBtn.setBounds(130, 290, 159, 45);
 
         mainAddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainAddBtn.setText("شركـات");
@@ -169,7 +169,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainAddBtn);
-        mainAddBtn.setBounds(120, 270, 159, 47);
+        mainAddBtn.setBounds(130, 360, 159, 47);
 
         mainLogOutBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainLogOutBtn.setText("خروج");
@@ -194,7 +194,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainLogOutBtn);
-        mainLogOutBtn.setBounds(120, 410, 159, 49);
+        mainLogOutBtn.setBounds(130, 500, 159, 49);
 
         mainAddBtn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainAddBtn1.setText("اضافة");
@@ -219,7 +219,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mainAddBtn1);
-        mainAddBtn1.setBounds(120, 340, 159, 47);
+        mainAddBtn1.setBounds(130, 430, 159, 47);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
