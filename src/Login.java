@@ -1,5 +1,11 @@
 
 //import javafx.scene.layout.Pane;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /*
@@ -14,7 +20,9 @@ import javax.swing.*;
  */
 public class Login extends javax.swing.JFrame {
 DB db = new DB() ; 
-    /**
+
+     
+/**
      * Creates new form Login
      */
     public Login() {
@@ -186,7 +194,12 @@ this.dispose();
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        
+//if(!Authorize("9C-B7-0D-7F-AF-E5")){
+//JOptionPane.showMessageDialog(null, "اقفل ياحرامي!", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
+//return;
+//}
         DB.initializeconnection();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -205,4 +218,36 @@ this.dispose();
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+
+public static boolean Authorize(String m){
+InetAddress ip ;
+StringBuilder sb ;    
+try {
+        ip = InetAddress.getLocalHost();
+        System.out.println("IP : "+ip.getHostAddress());
+        NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+        byte [] mac = network.getHardwareAddress();
+         sb = new StringBuilder();
+        
+        for (int i = 0; i < mac.length; i++) {
+            sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+        }
+        System.out.println("Mac : "+sb.toString());
+        if(m.equalsIgnoreCase(sb.toString()))
+return true;
+else 
+    return false;
+        
+    } catch (UnknownHostException | SocketException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+return  false ; 
+}
+
+
+
+
+
 }

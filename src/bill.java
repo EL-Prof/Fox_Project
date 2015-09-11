@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Ahmed
  */
 public class bill extends javax.swing.JFrame {
-    Double total ;
+    Double total , sum ;
    String query ; 
    ResultSet rset ; 
     static  DefaultTableModel bill_model ;
@@ -58,7 +58,7 @@ public class bill extends javax.swing.JFrame {
             
         } catch (SQLException ex) {
             Logger.getLogger(estlam.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
     }
 
     /**
@@ -234,6 +234,7 @@ public class bill extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -253,14 +254,14 @@ public class bill extends javax.swing.JFrame {
 
             },
             new String [] {
-                "الاجمالي", "الكميه", "سعر الوحده", "النوع ", "اسم المنتج"
+                "الاجمالي", "الكميه", "سعر الوحده", "النوع ", "اسم المنتج", "الباركود"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -273,11 +274,16 @@ public class bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 430, 530, 180);
@@ -365,6 +371,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             jTextField8.setText(rset.getString(2));
             jTextField6.setText(rset.getString(6));
             jTextField7.setText(rset.getString(3));
+            jButton2.setEnabled(true);
             }
             else {
                  JOptionPane.showMessageDialog(null, "البـاركود غير مسجل ");
@@ -372,6 +379,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             jTextField7.setText("");
             jTextField6.setText("");
             jTextField8.setText("");
+            jButton2.setEnabled(false);
             
             }
             } catch (SQLException ex) {
@@ -386,7 +394,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             if(rset != null && rset.isFirst())
             {      total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
             Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
-                                                         rset.getString(3) , rset.getString(2)   } ;
+                                                         rset.getString(3) , rset.getString(2) , rset.getString(1) } ;
 
             bill_model.addRow(row) ;
             }
@@ -412,8 +420,23 @@ calc_total();
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-             new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
+            new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
+            
+            for (int i = 0; i < bill_model.getRowCount(); i++) {
+            query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
+                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+Integer.parseInt(bill_model.getValueAt(i, 5).toString())+"'";
+      
+                try {
+                    DB.stmt.executeUpdate(query);
+                    System.out.println("q: "+query);
+                } catch (SQLException ex) {
+                    Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            
+            
+            }
+            
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -516,12 +539,12 @@ public  void print_component (JPanel panel){
 
 void calc_total (){
 
-    total = 0.0 ; 
+    sum = 0.0 ; 
     for (int i = 0; i < bill_model.getRowCount(); i++) {
-        total += Double.parseDouble(bill_model.getValueAt(i, 0).toString());
+        sum += Double.parseDouble(bill_model.getValueAt(i, 0).toString());
     }
 
-jTextField10.setText(total.toString()+" LE");
+jTextField10.setText(sum.toString()+" LE");
 
 
 

@@ -74,7 +74,7 @@ public class Printed_bill extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
