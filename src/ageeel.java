@@ -26,9 +26,10 @@ String query ;
     
     ResultSet rset ; 
 
+public ageeel(){
+}
 
-
-public ageeel() {
+public ageeel(String w) {
         initComponents();
         
      try{
@@ -36,6 +37,7 @@ public ageeel() {
 			SwingUtilities.updateComponentTreeUI(this);
 			}catch(Exception e){e.printStackTrace();
     }
+     jTextField1.setText(w);
         
     }
 

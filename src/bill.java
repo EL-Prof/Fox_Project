@@ -28,6 +28,7 @@ public class bill extends javax.swing.JFrame {
    String query ; 
    ResultSet rset ; 
     static  DefaultTableModel bill_model ;
+    
 
     
     
@@ -440,7 +441,7 @@ calc_total();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-ageeel ag = new ageeel();
+ageeel ag = new ageeel(jTextField10.getText());
 ag.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
