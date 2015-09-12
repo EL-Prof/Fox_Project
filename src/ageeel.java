@@ -202,8 +202,25 @@ public ageeel(String w) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
+try{rset=DB.stmt.executeQuery(query);
+if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.getText())){
+    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no="+jTextField4.getText();
+    int i =DB.stmt.executeUpdate(query);
+    if (i==1) {JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+        
+    }
+   
+}
 
-        // TODO add your handling code here:
+else JOptionPane.showMessageDialog(null, "العميل موجود بإسم أخر");
+}
+
+}
+catch(Exception ew){
+    System.out.println("wrong data ");
+}
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -219,6 +236,7 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
             JOptionPane.showMessageDialog(null, "هذا العميل غير مسجل ");
             jTextField4.setText("");
             jTextField5.setText("");
+            
         }
         else 
         {
