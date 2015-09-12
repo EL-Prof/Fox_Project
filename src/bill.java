@@ -36,7 +36,7 @@ public class bill extends javax.swing.JFrame {
     public bill() {
        DB.initializeconnection();
         initComponents();
-        
+        jTextField4.requestFocus();
         try{
 			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
 			SwingUtilities.updateComponentTreeUI(this);
@@ -170,6 +170,11 @@ public class bill extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
         getContentPane().add(jTextField4);
         jTextField4.setBounds(450, 290, 260, 49);
 
@@ -213,6 +218,11 @@ public class bill extends javax.swing.JFrame {
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(255, 0, 51));
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField5);
         jTextField5.setBounds(720, 150, 60, 60);
 
@@ -373,6 +383,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             jTextField6.setText(rset.getString(6));
             jTextField7.setText(rset.getString(3));
             jButton2.setEnabled(true);
+            
             }
             else {
                  JOptionPane.showMessageDialog(null, "البـاركود غير مسجل ");
@@ -405,7 +416,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
 
 calc_total();
 
-
+jTextField4.requestFocus();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -457,6 +468,16 @@ ag.setVisible(true);
             JOptionPane.showMessageDialog(null, "برجاء تحديد العنصر المراد حذفه");
         
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        if(jTextField4.getText().length() == 2) 
+            jButton4ActionPerformed(null);
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+      if(jButton2.isVisible())
+          jButton2ActionPerformed(evt);
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
