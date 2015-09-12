@@ -215,6 +215,14 @@ if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.get
 
 else JOptionPane.showMessageDialog(null, "العميل موجود بإسم أخر");
 }
+else {
+    query ="INSERT INTO client (agent_name,mob_no,total,paid) VALUES"+ "("+jTextField5.getText() +
+            ","+ jTextField4.getText() + "," + ","+Double.parseDouble(jTextField1.getText())
+            + ","+ Double.parseDouble(jTextField3.getText());
+    int x =DB.stmt.executeUpdate(query); 
+    if(x<0){JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+    }
+}
 
 }
 catch(Exception ew){
