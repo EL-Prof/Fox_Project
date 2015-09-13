@@ -29,7 +29,7 @@ String query ;
 public ageeel(){
 }
 
-public ageeel(String w) {
+public ageeel(Double w) {
         initComponents();
         
      try{
@@ -37,7 +37,7 @@ public ageeel(String w) {
 			SwingUtilities.updateComponentTreeUI(this);
 			}catch(Exception e){e.printStackTrace();
     }
-     jTextField1.setText(w);
+     jTextField1.setText(w.toString());
         
     }
 
@@ -151,7 +151,9 @@ public ageeel(String w) {
                         .addGap(70, 70, 70)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -162,9 +164,6 @@ public ageeel(String w) {
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,9 +192,9 @@ public ageeel(String w) {
                         .addGap(6, 6, 6)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -208,7 +207,8 @@ if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.get
     query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no="+jTextField4.getText();
     int i =DB.stmt.executeUpdate(query);
     if (i==1) {JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
-        
+        this.dispose();
+       new bill().setVisible(true);
     }
    
 }
@@ -226,7 +226,7 @@ else {
 
 }
 catch(Exception ew){
-    System.out.println("wrong data ");
+   JOptionPane.showMessageDialog(null, "من فضلك تأكد من البيانات");
 }
        
     }//GEN-LAST:event_jButton1ActionPerformed

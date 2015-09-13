@@ -440,7 +440,7 @@ jTextField4.requestFocus();
       
                 try {
                     DB.stmt.executeUpdate(query);
-                    System.out.println("q: "+query);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -449,10 +449,19 @@ jTextField4.requestFocus();
             
             }
             
+            query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
+                    jTextField3.getText()+"','"+jTextField2.getText()+"')";
+            
+        try {
+            System.out.println("q: "+query);
+            DB.stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-ageeel ag = new ageeel(jTextField10.getText());
+ageeel ag = new ageeel(sum);
 ag.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
