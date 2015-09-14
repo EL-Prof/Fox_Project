@@ -26,7 +26,7 @@ public class add extends javax.swing.JFrame {
      
     public add() {
         initComponents();
-        
+        jTextField4.requestFocusInWindow();
         try{
 			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
 			SwingUtilities.updateComponentTreeUI(this);
@@ -165,6 +165,11 @@ combo2_initialize();
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+            }
+        });
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
             }
         });
         getContentPane().add(jTextField4);
@@ -403,6 +408,15 @@ combo2_initialize();
         
         jLabel8.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+     if(jTextField4.getText().length()==2)
+     {
+     
+     check_barcode();
+     
+     }
+    }//GEN-LAST:event_jTextField4KeyReleased
     
     
     
@@ -512,6 +526,30 @@ query = "SELECT type FROM foxproject.product group by type " ;
 
 }
 
+void check_barcode(){
 
+query = "SELECT name,type FROM foxproject.product Where barcode = "+jTextField4.getText();
+
+        try {
+            rset =  DB.stmt.executeQuery(query);
+            if(!rset.next()){
+            JOptionPane.showMessageDialog(null, "الباركود غير مسجل ");
+            jLabel8.setVisible(false);
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField4.setEnabled(true);
+            }
+            else {
+                jTextField5.setText(rset.getString(1));
+                 jTextField6.setText(rset.getString(2));
+                 jLabel8.setVisible(true);
+                 jTextField4.setEnabled(false);
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+}
 
 }
