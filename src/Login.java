@@ -187,7 +187,7 @@ ad.setVisible(true);
         }
         //</editor-fold>
         
-        
+    
 //if(!Authorize("9C-B7-0D-7F-AF-E5")){
 //JOptionPane.showMessageDialog(null, "اقفل ياحرامي!", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
 //return;
