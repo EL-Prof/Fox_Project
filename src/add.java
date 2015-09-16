@@ -167,11 +167,6 @@ combo2_initialize();
                 jTextField4ActionPerformed(evt);
             }
         });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
-            }
-        });
         getContentPane().add(jTextField4);
         jTextField4.setBounds(350, 300, 180, 40);
 
@@ -225,15 +220,15 @@ combo2_initialize();
         getContentPane().add(jLabel8);
         jLabel8.setBounds(310, 300, 60, 40);
 
-        jButton4.setFont(new java.awt.Font("Andalus", 0, 16)); // NOI18N
-        jButton4.setText("بحث سكانر");
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButton4.setText("بحث ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(210, 310, 89, 30);
+        jButton4.setBounds(229, 310, 70, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -401,22 +396,13 @@ combo2_initialize();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
+        jButton4ActionPerformed(null);
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-        jLabel8.setVisible(true);
+       check_barcode();
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-     if(jTextField4.getText().length()==2)
-     {
-     
-     check_barcode();
-     
-     }
-    }//GEN-LAST:event_jTextField4KeyReleased
     
     
     

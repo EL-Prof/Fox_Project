@@ -23,21 +23,21 @@ import javax.swing.UIManager;
 public class ageeel extends javax.swing.JFrame {
 
 String query ; 
-    
-    ResultSet rset ; 
+ResultSet rset ; 
 
+bill b ; 
 public ageeel(){
 }
 
-public ageeel(Double w) {
+public ageeel(bill w) {
         initComponents();
-        
+        b = w ; 
      try{
 			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
 			SwingUtilities.updateComponentTreeUI(this);
 			}catch(Exception e){e.printStackTrace();
     }
-     jTextField1.setText(w.toString());
+     jTextField1.setText(w.sum.toString());
         
     }
 
@@ -207,9 +207,11 @@ if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.get
     query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no="+jTextField4.getText();
     int i =DB.stmt.executeUpdate(query);
     if (i==1) {JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+    b.reg_bill();
+    new bill().setVisible(true);
         this.dispose();
-       new bill().setVisible(true);
-    }
+        b.dispose();
+           }
    
 }
 
@@ -232,7 +234,7 @@ catch(Exception ew){
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
+        jButton2ActionPerformed(null);
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

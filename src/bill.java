@@ -170,11 +170,6 @@ public class bill extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField4KeyReleased(evt);
-            }
-        });
         getContentPane().add(jTextField4);
         jTextField4.setBounds(450, 290, 260, 49);
 
@@ -367,11 +362,11 @@ this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
+        jButton4ActionPerformed(null);
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-DB.initializeconnection();
+
 query = "select * from product where barcode = "+jTextField4.getText() ;
         
         try {
@@ -433,36 +428,13 @@ jTextField4.requestFocus();
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
             new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
-            
-            for (int i = 0; i < bill_model.getRowCount(); i++) {
-            query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
-                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+Integer.parseInt(bill_model.getValueAt(i, 5).toString())+"'";
-      
-                try {
-                    DB.stmt.executeUpdate(query);
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
-            
-            
-            }
-            
-            query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
-                    jTextField3.getText()+"','"+jTextField2.getText()+"')";
-            
-        try {
-            System.out.println("q: "+query);
-            DB.stmt.executeUpdate(query);
-        } catch (SQLException ex) {
-          JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
-        }
+         
+            reg_bill();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-ageeel ag = new ageeel(sum);
-ag.setVisible(true);
+ new ageeel(this).setVisible(true);
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -477,11 +449,6 @@ ag.setVisible(true);
             JOptionPane.showMessageDialog(null, "برجاء تحديد العنصر المراد حذفه");
         
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
-        if(jTextField4.getText().length() == 2) 
-            jButton4ActionPerformed(null);
-    }//GEN-LAST:event_jTextField4KeyReleased
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
       if(jButton2.isVisible())
@@ -577,13 +544,32 @@ void calc_total (){
 
 jTextField10.setText(sum.toString()+" LE");
 
-
-
-
-
 }
 
+public void reg_bill(){
 
+     for (int i = 0; i < bill_model.getRowCount(); i++) {
+            query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
+                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+Integer.parseInt(bill_model.getValueAt(i, 5).toString())+"'";
+      
+                try {
+                    DB.stmt.executeUpdate(query);
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            }
+   query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
+                    jTextField3.getText()+"','"+jTextField2.getText()+"')";
+            
+        try {
+            System.out.println("q: "+query);
+            DB.stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
+        }
 
+}
 
 }
