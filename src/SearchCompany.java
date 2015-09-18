@@ -22,6 +22,7 @@ public class SearchCompany extends javax.swing.JFrame {
     DefaultTableModel model ;
     ResultSet rset;
     String query;
+    int dialogResult ;
     
     public SearchCompany() {
         initComponents();
@@ -96,12 +97,13 @@ public class SearchCompany extends javax.swing.JFrame {
             if (!rset.next())
             {
                 text.setText(null) ;
-                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "الشركة غير مسجلة..هل ترغب فى اضافتها ؟", "Error", JOptionPane.YES_NO_OPTION);
+                dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "الشركة غير مسجلة..هل ترغب فى اضافتها ؟", "Error", JOptionPane.YES_NO_OPTION);
                 if(dialogResult == JOptionPane.YES_OPTION)
                 {
                     new addcompany().setVisible(true);
                     this.dispose();
                 }
+                
             }
             
             else
@@ -524,14 +526,33 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_noupdateCompBtnActionPerformed
 
     private void updateCompBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompBtnActionPerformed
-        if(!dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
+        dialogResult = 0 ;
+        if(updateCompTxt.getText().equals(""))
         {
-            search(updateCompTxt) ;
+            updatePaidBtn.setVisible(false);
+            updateTelBtn.setVisible(false);
+            updateAddBtn.setVisible(false);
+            JOptionPane.showMessageDialog(null , "من فضلك ادخل اسم الشركة المراد تحديث بياناتها");
         }
-        
-            updatePaidBtn.setVisible(true);
-            updateTelBtn.setVisible(true);
-            updateAddBtn.setVisible(true);
+        else
+        {
+           if(!dbase.ValueIsExist(searchCompTbl , 3 , updateCompTxt.getText()))
+             {
+                search(updateCompTxt) ;
+             }
+           if(dialogResult == 1)
+           {
+               updatePaidBtn.setVisible(false);
+               updateTelBtn.setVisible(false);
+               updateAddBtn.setVisible(false);
+           }
+           else
+           {
+               updatePaidBtn.setVisible(true);
+               updateTelBtn.setVisible(true);
+               updateAddBtn.setVisible(true);
+           }
+        }
         
     }//GEN-LAST:event_updateCompBtnActionPerformed
 

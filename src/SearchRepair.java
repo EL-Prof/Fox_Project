@@ -139,7 +139,7 @@ public class SearchRepair extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(880, 500));
+        setMinimumSize(new java.awt.Dimension(940, 500));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -187,7 +187,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -201,9 +201,14 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         jScrollPaneRepr.setViewportView(searchReprTbl);
+        searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
+        searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
+        searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
+        searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
+        searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
 
         getContentPane().add(jScrollPaneRepr);
-        jScrollPaneRepr.setBounds(0, 159, 870, 220);
+        jScrollPaneRepr.setBounds(0, 159, 930, 220);
 
         reprMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprMainBtn.setText("القائمة الرئيسية");
@@ -214,7 +219,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reprMainBtn);
-        reprMainBtn.setBounds(360, 410, 137, 42);
+        reprMainBtn.setBounds(380, 410, 137, 42);
 
         reprConfirmCbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,7 +317,7 @@ public class SearchRepair extends javax.swing.JFrame {
     }//GEN-LAST:event_repairAddBtnActionPerformed
 
     private void reprConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmBtnActionPerformed
-        if (searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4).equals(""))
+        if (searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4)== null||searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4).equals(""))         
         {
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
             query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 3) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
