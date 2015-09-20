@@ -439,7 +439,10 @@ jTextField4.requestFocus();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
- new ageeel(this).setVisible(true);
+if(sum==null || sum==0)
+    JOptionPane.showMessageDialog(null, "من فضلك قم باضافة فاتوره");
+else 
+        new ageeel(this).setVisible(true);
 
     }//GEN-LAST:event_jButton6ActionPerformed
 

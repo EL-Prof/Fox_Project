@@ -193,46 +193,11 @@ public ageeel(bill w) {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
-try{rset=DB.stmt.executeQuery(query);
-if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.getText())){
-    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no = '"+jTextField4.getText()+"'";
-    int i =DB.stmt.executeUpdate(query);
-    if (i==1) {JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
-    b.reg_bill();
-    new bill().setVisible(true);
-        this.dispose();
-        b.dispose();
-        
-           }
-   
-}
-
-else JOptionPane.showMessageDialog(null, "العميل موجود بإسم أخر");
-}
-else {
-    query ="INSERT INTO client (`agent_name`,`mob_no`,`total`,`paid`) VALUES"+ "('"+jTextField5.getText() +
-            "','"+ jTextField4.getText() + "','" +Double.parseDouble(jTextField1.getText())
-            + "','"+ Double.parseDouble(jTextField3.getText())+"')";
-    int x =DB.stmt.executeUpdate(query); 
-    if(x<0){JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
-    }
-}
-
-}
-catch(Exception ew){
-    System.out.println(ew.getMessage());
-   JOptionPane.showMessageDialog(null, "من فضلك تأكد من البيانات");
-}
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         jButton2ActionPerformed(null);
@@ -265,6 +230,44 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
+        try{
+            rset=DB.stmt.executeQuery(query);
+            if(rset.next()){
+                if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.getText())){
+                    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no = '"+jTextField4.getText()+"'";
+                    int i =DB.stmt.executeUpdate(query);
+                    if (i!=0) {System.out.println("ay7aga");
+                        JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+                        b.reg_bill();
+                        this.dispose();
+                        b.dispose();
+
+                    }
+
+                }
+
+                else JOptionPane.showMessageDialog(null, "العميل موجود بإسم أخر");
+            }
+            else {
+                query ="INSERT INTO client (`agent_name`,`mob_no`,`total`,`paid`) VALUES"+ "('"+jTextField5.getText() +
+                "','"+ jTextField4.getText() + "','" +Double.parseDouble(jTextField1.getText())
+                + "','"+ Double.parseDouble(jTextField3.getText())+"')";
+                int x =DB.stmt.executeUpdate(query);
+                if(x>0){JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+                this.dispose();
+                }
+            }
+
+        }
+        catch(Exception ew){
+            System.out.println(ew.getMessage());
+            JOptionPane.showMessageDialog(null, "من فضلك تأكد من البيانات");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
