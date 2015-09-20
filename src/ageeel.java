@@ -36,8 +36,9 @@ public ageeel(bill w) {
 			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
 			SwingUtilities.updateComponentTreeUI(this);
 			}catch(Exception e){e.printStackTrace();
-    }
-     jTextField1.setText(w.sum.toString());
+    } 
+     
+          jTextField1.setText(w.sum.toString());
         
     }
 
@@ -171,11 +172,9 @@ public ageeel(bill w) {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,13 +203,14 @@ public ageeel(bill w) {
 query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
 try{rset=DB.stmt.executeQuery(query);
 if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.getText())){
-    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no="+jTextField4.getText();
+    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no = '"+jTextField4.getText()+"'";
     int i =DB.stmt.executeUpdate(query);
     if (i==1) {JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
     b.reg_bill();
     new bill().setVisible(true);
         this.dispose();
         b.dispose();
+        
            }
    
 }
@@ -218,9 +218,9 @@ if(rset.next()){if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.get
 else JOptionPane.showMessageDialog(null, "العميل موجود بإسم أخر");
 }
 else {
-    query ="INSERT INTO client (agent_name,mob_no,total,paid) VALUES"+ "("+jTextField5.getText() +
-            ","+ jTextField4.getText() + "," + ","+Double.parseDouble(jTextField1.getText())
-            + ","+ Double.parseDouble(jTextField3.getText());
+    query ="INSERT INTO client (`agent_name`,`mob_no`,`total`,`paid`) VALUES"+ "('"+jTextField5.getText() +
+            "','"+ jTextField4.getText() + "','" +Double.parseDouble(jTextField1.getText())
+            + "','"+ Double.parseDouble(jTextField3.getText())+"')";
     int x =DB.stmt.executeUpdate(query); 
     if(x<0){JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
     }
@@ -228,6 +228,7 @@ else {
 
 }
 catch(Exception ew){
+    System.out.println(ew.getMessage());
    JOptionPane.showMessageDialog(null, "من فضلك تأكد من البيانات");
 }
        
