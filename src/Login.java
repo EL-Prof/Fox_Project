@@ -134,7 +134,16 @@ DB db = new DB() ;
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-      if( db.check_password(NameField.getText(), PasswordField.getText()))
+        if (NameField.getText().isEmpty()&& PasswordField.getText().isEmpty())
+        {
+              JOptionPane.showMessageDialog(new JPanel(), "برجاء إدخال الاسم و كلمة المرور", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    else    if (NameField.getText().isEmpty()) {  JOptionPane.showMessageDialog(new JPanel(), "برجاء إدخال اسم العميل", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+    else if(PasswordField.getText().isEmpty()){  JOptionPane.showMessageDialog(new JPanel(), "برجاء إدخال كلمة المرور", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+   else     if( db.check_password(NameField.getText(), PasswordField.getText()))
       {
            new MainPage().show();
            this.dispose();
