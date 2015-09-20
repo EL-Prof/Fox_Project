@@ -124,8 +124,19 @@ public class addemployee extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 DB.initializeconnection();
-  try {      if(jTextField1.getText().isEmpty()||jTextField1.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"برجاء إكمال البيانات");
+  try {      if(jTextField1.getText().isEmpty()&&jTextField3.getText().isEmpty() && jPasswordField1.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"برجاء إدخال البيانات");
+  
+  else if(jTextField1.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال إسم العميل الجديد");
+
+  }
+  else if(jTextField3.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال الرقم السري للعميل");
+
+  }
+  else if (jPasswordField1.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال رمز التأكيد");
+
+  }
+  
  else     if (db.check_password2(jPasswordField1.getText())) {DB.initializeconnection();
         query2="select * from employee where `name`="+ "'"+jTextField1.getText()+"'";
           if(DB.stmt.executeQuery(query2).next())
