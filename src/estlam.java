@@ -28,7 +28,7 @@ public class estlam extends javax.swing.JFrame {
     ResultSet rset ; 
     public estlam() {
         initComponents();
-        
+        DB.initializeconnection();
         try{
 			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
 			SwingUtilities.updateComponentTreeUI(this);
@@ -86,8 +86,14 @@ public class estlam extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(675, 550));
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -211,7 +217,7 @@ public class estlam extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(20, 450, 140, 60);
+        jButton2.setBounds(20, 450, 140, 50);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("جديـد");
@@ -269,7 +275,17 @@ public class estlam extends javax.swing.JFrame {
         if(jTextField1.getText().isEmpty())
             JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم العميــل");
         else 
-        {
+            if(!jTextField6.getText().isEmpty()&&(!isDouble(jTextField6.getText())))
+            {
+                    JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
+            }
+            else 
+                if(!jTextField7.getText().equals("")&&(!isDouble(jTextField7.getText())))
+                     {
+                          JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
+                     }
+                     else 
+                         {
         
             try {
                 query = "INSERT INTO `foxproject`.`repair` "
@@ -277,8 +293,7 @@ public class estlam extends javax.swing.JFrame {
                         "'"+jTextField1.getText()+"'"+","+"'"+ jTextField2.getText()+ "'" +"," + "'"+jTextField3.getText()
                         +"'"+","+"'"+jTextField6.getText()+"'"+","+"'"+jTextField7.getText()+"'"+","+"'"+DB.emp_name+"'"
                         +",'"+jTextField4.getText()+ "')";
-                System.out.println("q:"+query);
-                
+               
                int i = DB.stmt.executeUpdate(query);
                if(i != 0)
                {   JOptionPane.showMessageDialog(null,"تم الاضافه بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
@@ -294,11 +309,6 @@ public class estlam extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null,"خطـأ في التسجيــل!","Fail!", 2 , new ImageIcon("Fail.png"));
  
             }
-        
-        
-        
-        
-        
         
         
         }
@@ -318,6 +328,10 @@ public class estlam extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -382,11 +396,14 @@ public class estlam extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-void get_new (){
-    
-        
-
-}
+ boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
 
 

@@ -33,7 +33,7 @@ public class SearchRepair extends javax.swing.JFrame {
 			}catch(Exception e){e.printStackTrace();
     }
         
-        DB.initializeconnection();
+        
         recieptLabel.hide();
         reprConfirmCbox.hide();
         reprConfirmBtn.hide();
@@ -138,9 +138,14 @@ public class SearchRepair extends javax.swing.JFrame {
         recieptLabel = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(940, 500));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         searchReprTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -201,11 +206,13 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         jScrollPaneRepr.setViewportView(searchReprTbl);
-        searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
-        searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
-        searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
-        searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
-        searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
+        if (searchReprTbl.getColumnModel().getColumnCount() > 0) {
+            searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
+            searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
+            searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
+            searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
+            searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
+        }
 
         getContentPane().add(jScrollPaneRepr);
         jScrollPaneRepr.setBounds(0, 159, 930, 220);
@@ -317,6 +324,9 @@ public class SearchRepair extends javax.swing.JFrame {
     }//GEN-LAST:event_repairAddBtnActionPerformed
 
     private void reprConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmBtnActionPerformed
+   if(reprConfirmCbox.getSelectedItem()== null)
+        JOptionPane.showMessageDialog(null, "برجاء اختيار كود العميل ");
+   else
         if (searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4)== null||searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4).equals(""))         
         {
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -372,6 +382,10 @@ public class SearchRepair extends javax.swing.JFrame {
             searchReprTxt.setVisible(false);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+      new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

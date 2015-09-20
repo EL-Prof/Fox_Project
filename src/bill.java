@@ -34,7 +34,7 @@ public class bill extends javax.swing.JFrame {
     
     
     public bill() {
-       DB.initializeconnection();
+      
         initComponents();
         jTextField4.requestFocus();
         try{
@@ -103,9 +103,15 @@ public class bill extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
         setPreferredSize(new java.awt.Dimension(830, 710));
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -151,11 +157,6 @@ public class bill extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextField3);
         jTextField3.setBounds(160, 60, 130, 30);
 
@@ -366,7 +367,12 @@ this.dispose();
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+if(jTextField4.getText() == null ||jTextField4.getText().equals(""))
+{
+ JOptionPane.showMessageDialog(null, "من فضلك ادخل الباركود");
+ jTextField4.requestFocus();
+ return;
+}
 query = "select * from product where barcode = "+jTextField4.getText() ;
         
         try {
@@ -378,19 +384,21 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
             jTextField6.setText(rset.getString(6));
             jTextField7.setText(rset.getString(3));
             jButton2.setEnabled(true);
-            
+            jTextField5.requestFocus();
+            jTextField5.selectAll();
             }
             else {
                  JOptionPane.showMessageDialog(null, "البـاركود غير مسجل ");
-                  jTextField5.setText("");
+             jTextField5.setText("");
             jTextField7.setText("");
             jTextField6.setText("");
             jTextField8.setText("");
+            jTextField4.setText("");
             jButton2.setEnabled(false);
             
             }
             } catch (SQLException ex) {
-            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "بـرجاء ادخال باركود مناسب ! ");
         }
 
 
@@ -410,7 +418,7 @@ query = "select * from product where barcode = "+jTextField4.getText() ;
         }
 
 calc_total();
-
+jTextField4.setText("");
 jTextField4.requestFocus();
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -422,14 +430,12 @@ jTextField4.requestFocus();
         
     }//GEN-LAST:event_jButton5ActionPerformed
     
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
             new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
          
             reg_bill();
+            new bill().setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -454,6 +460,11 @@ jTextField4.requestFocus();
       if(jButton2.isVisible())
           jButton2ActionPerformed(evt);
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       new MainPage().setVisible(true);
+        
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -564,7 +575,7 @@ public void reg_bill(){
                     jTextField3.getText()+"','"+jTextField2.getText()+"')";
             
         try {
-            System.out.println("q: "+query);
+           
             DB.stmt.executeUpdate(query);
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");

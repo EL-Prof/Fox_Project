@@ -34,7 +34,7 @@ public class SearchBill extends javax.swing.JFrame {
 			}catch(Exception e){e.printStackTrace();
     }
         
-        DB.initializeconnection();
+        
     }
 
     /**
@@ -54,7 +54,12 @@ public class SearchBill extends javax.swing.JFrame {
         searchBillTbl = new javax.swing.JTable();
         billMainBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         noSearchBillBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchBillBtn.setText("الغاء");
@@ -131,7 +136,7 @@ public class SearchBill extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(225, 225, 225)
                 .addComponent(billMainBtn)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +200,9 @@ public class SearchBill extends javax.swing.JFrame {
             }
         }
         
-        catch (SQLException ex) 
+        catch (Exception ex) 
         {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+            
             JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -222,6 +227,10 @@ public class SearchBill extends javax.swing.JFrame {
         MainPage main = new MainPage() ;
         main.setVisible(true) ;
     }//GEN-LAST:event_billMainBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
