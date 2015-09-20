@@ -118,7 +118,7 @@ static public Statement stmt;
     
     
       public boolean check_password2 ( String pass){
-    query = "Select password from employee WHERE name = 'ahmed'";       
+    query = "Select password from employee WHERE name = 'manager'";       
     try {
         rset = stmt.executeQuery(query) ;
         if(rset.next())

@@ -158,10 +158,28 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if(jTextField4.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم الشركة");
+  try{DB.initializeconnection();
+   String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
+   String query3="SELECT * FROM company WHERE tel = "+jTextField1.getText();
+        if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() && jTextField3.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"برجاء إدخال كافة البيانات");
+    else if (jTextField4.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال اسم الشركة");
+
+    }
+    else if (jTextField1.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال رقم تليفون الشركة");
+
+    }
+    else if (DB.stmt.executeQuery(query2).next()){
+        JOptionPane.showMessageDialog(null,"برجاء إدخال إسم أخر الاسم مسجل بالفعل");
+    }
+    else if (DB.stmt.executeQuery(query3).next()){        JOptionPane.showMessageDialog(null,"هذا الرقم مسجل لشركة أخري تحقق من البيانات");
+
+    }
+    
+    
         else 
-        {DB.initializeconnection();
+        {
+        
         
             try {
                 query = "INSERT INTO company "
@@ -186,8 +204,13 @@ this.dispose();
                  JOptionPane.showMessageDialog(null,"خطـأ في التسجيــل!","Fail!", 2 , new ImageIcon("Fail.png"));
  
             }
+        }
+        
                 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+   catch(Exception ew){System.out.println("error");
+   }
+           
     }
     /**
      * @param args the command line arguments
