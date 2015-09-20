@@ -59,8 +59,13 @@ public class addcompany extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(690, 350));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -204,14 +209,21 @@ this.dispose();
                  JOptionPane.showMessageDialog(null,"خطـأ في التسجيــل!","Fail!", 2 , new ImageIcon("Fail.png"));
  
             }
+        
         }
         
-                // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-   catch(Exception ew){System.out.println("error");
-   }
+catch(Exception ew){System.out.println("error");
+   }  
+    }// TODO add your handling code here:
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+      MainPage mn = new MainPage();
+      mn.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+   
            
-    }
+    
     /**
      * @param args the command line arguments
      */

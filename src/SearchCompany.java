@@ -166,10 +166,15 @@ public class SearchCompany extends javax.swing.JFrame {
         updateAddTxt = new javax.swing.JTextField();
         updateAddConfBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         searchCompLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchCompLbl.setText("اسم الشركة:");
@@ -733,6 +738,12 @@ public class SearchCompany extends javax.swing.JFrame {
             updateAddTxt.setText(null);
         }        
     }//GEN-LAST:event_updateAddConfBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       MainPage mn = new MainPage();
+       mn.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
