@@ -243,7 +243,7 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
                         JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
                         b.reg_bill();
                         this.dispose();
-                        b.dispose();
+                        
 
                     }
 
