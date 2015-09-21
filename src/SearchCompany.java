@@ -582,8 +582,14 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTelTxtActionPerformed
 
     private void updatePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidConfBtnActionPerformed
-        //query = "Select * from company where name = '" + updateCompTxt.getText() + "'" ;
-        try 
+        query = "Select * from company where name = '" + updateCompTxt.getText() + "'" ;
+        if (Double.parseDouble(updatePaidTxt.getText()) <0)
+                        JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل المبلغ بالموجب", "Error", JOptionPane.ERROR_MESSAGE);
+    
+       
+
+
+      else   try 
         {
             //rset = DB.stmt.executeQuery(query) ;
             //if (!rset.next())
@@ -633,7 +639,13 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
-        if(updateTelTxt.getText().length() <= 11)
+        DB.initializeconnection();
+        String query2="SELECT * FROM company WHERE tel="+updateTelTxt ;
+        if(Double.parseDouble(updateTelTxt.getText())<0)
+                                    JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم صحيح", "Error", JOptionPane.ERROR_MESSAGE);
+               
+   
+        else   if(updateTelTxt.getText().length() <= 11)
         {
         query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
         try 
@@ -701,8 +713,10 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updateAddTxtActionPerformed
 
     private void updateAddConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddConfBtnActionPerformed
-     
-        try 
+      if (Double.parseDouble(updateAddTxt.getText())<0)
+                                    JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل المبلغ بالموجب", "Error", JOptionPane.ERROR_MESSAGE);
+
+    else    try 
         {
            String updateQuery = "UPDATE company SET remender = remender + '" + Double.parseDouble(updateAddTxt.getText()) + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
            int rowCount = DB.stmt.executeUpdate(updateQuery);
