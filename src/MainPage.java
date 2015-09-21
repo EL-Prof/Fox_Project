@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -49,9 +50,14 @@ public class MainPage extends javax.swing.JFrame {
         mainLogOutBtn = new javax.swing.JButton();
         mainAddBtn1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(420, 590));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         mainSearchLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -253,9 +259,13 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_mainSearchBtnActionPerformed
 
     private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed
-         
+
+        
+        int o = JOptionPane.showConfirmDialog(null,"هل انت متأكد من تسجيل الخروج", "Confirm", JOptionPane.YES_NO_OPTION);
+        if(o==JOptionPane.OK_OPTION){
           new Login().setVisible(true); 
           this.dispose() ;
+        }
     }//GEN-LAST:event_mainLogOutBtnActionPerformed
 
     private void mainReprBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainReprBtnActionPerformed
@@ -387,6 +397,16 @@ public class MainPage extends javax.swing.JFrame {
           new Login().setVisible(true) ;
           this.dispose() ;
     }//GEN-LAST:event_mainLogOutBtnKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+        int o = JOptionPane.showConfirmDialog(null,"هل انت متأكد من تسجيل الخروج", "Confirm", JOptionPane.YES_NO_OPTION);
+        if(o==JOptionPane.OK_OPTION){
+                  new Login().setVisible(true); 
+                  this.dispose() ;
+        }
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
