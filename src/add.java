@@ -21,9 +21,7 @@ public class add extends javax.swing.JFrame {
     String query; 
     ResultSet rset ; 
     Image img ;
-
-   
-     
+    
     public add() {
         initComponents();
         jTextField4.requestFocusInWindow();
@@ -35,7 +33,6 @@ public class add extends javax.swing.JFrame {
         
         img = new ImageIcon("exist.png").getImage();
         jLabel8.setIcon(new ImageIcon(img));
-        DB.initializeconnection();
          jComboBox1.addItem("");
          jComboBox2.addItem("");
 combo2_initialize();
@@ -128,7 +125,7 @@ combo2_initialize();
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField2.setNextFocusableComponent(jTextField3);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(200, 230, 110, 40);
+        jTextField2.setBounds(200, 240, 110, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("سعر البيع");
@@ -138,7 +135,7 @@ combo2_initialize();
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField1.setNextFocusableComponent(jTextField2);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(420, 230, 110, 40);
+        jTextField1.setBounds(420, 240, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("الكمية ");
@@ -153,12 +150,12 @@ combo2_initialize();
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(40, 230, 80, 40);
+        jTextField3.setBounds(40, 240, 80, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("رقم الباركود");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(550, 290, 140, 50);
+        jLabel7.setBounds(550, 310, 140, 30);
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField4.setNextFocusableComponent(jButton2);
@@ -168,7 +165,7 @@ combo2_initialize();
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(350, 300, 180, 40);
+        jTextField4.setBounds(350, 310, 180, 30);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("إضافة");
@@ -218,7 +215,7 @@ combo2_initialize();
         getContentPane().add(jButton1);
         jButton1.setBounds(150, 390, 80, 40);
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(310, 300, 60, 40);
+        jLabel8.setBounds(310, 310, 60, 30);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton4.setText("بحث ");
@@ -228,7 +225,7 @@ combo2_initialize();
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(229, 310, 70, 20);
+        jButton4.setBounds(230, 310, 70, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -298,7 +295,6 @@ combo2_initialize();
     }//GEN-LAST:event_jComboBox2ActionPerformed
     
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -311,7 +307,20 @@ combo2_initialize();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     try{
+        query = "Select * from product where name = '"+jTextField5.getText()+"' AND type = '"+jTextField6.getText()+"'";        
+        try {
+            rset = DB.stmt.executeQuery(query) ;
+            if (rset.next())
+            {
+                JOptionPane.showMessageDialog(null,"المنتج موجود بالفعل");
+                jTextField4.setText(rset.getString(1));
+                jButton4ActionPerformed(evt);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البيانات", "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try{
         if(!jLabel8.isVisible())
         {
         if(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty()
@@ -376,7 +385,6 @@ combo2_initialize();
                             + ",`Selling_price`="+Double.parseDouble(jTextField2.getText())+"WHERE `barcode`='"+jTextField4.getText()+"'" ;
             
             }
-            System.out.println("query "+ query);
             
             
            if(DB.stmt.executeUpdate(query)>0)
@@ -400,8 +408,15 @@ combo2_initialize();
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-       check_barcode();
+       if(jTextField4.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(null,"من فضلك ادخل الباركود");
+       }
+       else
+       {
+           check_barcode();
+       }
+       
     }//GEN-LAST:event_jButton4ActionPerformed
     
     

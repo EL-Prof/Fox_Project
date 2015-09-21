@@ -30,7 +30,6 @@ public class Future extends javax.swing.JFrame {
 			}catch(Exception e){e.printStackTrace();
     }
         
-        DB.initializeconnection();
         updateFuturePaidBtn.hide();
         updateFuturePaidLbl.hide();
         updateFuturePaidConfBtn.hide();
