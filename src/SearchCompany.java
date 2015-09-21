@@ -639,17 +639,23 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
-        DB.initializeconnection();
-        String query2="SELECT * FROM company WHERE tel="+updateTelTxt ;
+     try{   DB.initializeconnection();
+        String query2="SELECT * FROM company WHERE tel="+Double.parseDouble(updateTelTxt.getText()) ;
+        
+       
+        
         if(Double.parseDouble(updateTelTxt.getText())<0)
                                     JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم صحيح", "Error", JOptionPane.ERROR_MESSAGE);
-               
+        else if(DB.stmt.executeQuery(query2).next())
+            
+                                            JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم اخر الرقم موجود سابقا", "Error", JOptionPane.ERROR_MESSAGE);
+       
    
-        else   if(updateTelTxt.getText().length() <= 11)
+        else   if(updateTelTxt.getText().length() <= 7)
         {
         query = "UPDATE company SET tel = '" + updateTelTxt.getText() + "' WHERE name = '" + updateCompTxt.getText() + "'" ;
         try 
-        {
+        {  
             String firstSub = updateTelTxt.getText().substring(0, 6);
             String lastSub = updateTelTxt.getText().substring(6);
             Double.parseDouble(firstSub);
@@ -697,7 +703,9 @@ public class SearchCompany extends javax.swing.JFrame {
             updateTelTxt.setText(null);
         }
     }//GEN-LAST:event_updateTelConfBtnActionPerformed
-
+  catch(Exception es){System.out.println("wrong");
+  }
+    }
     private void updatePaidTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidTxtActionPerformed
         updatePaidConfBtnActionPerformed(evt) ;
     }//GEN-LAST:event_updatePaidTxtActionPerformed
