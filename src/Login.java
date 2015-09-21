@@ -213,10 +213,10 @@ ad.setVisible(true);
         //</editor-fold>
         
     
-if(!Authorize("E5-11-5B-47-CF-9B")){
-JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
-return;
-}
+//if(!Authorize("E5-11-5B-47-CF-9B")){
+//JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
+//return;
+//}
         DB.initializeconnection();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
