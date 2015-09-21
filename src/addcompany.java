@@ -163,7 +163,7 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  try{DB.initializeconnection();
+  try{
    String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
    String query3="SELECT * FROM company WHERE tel = "+jTextField1.getText();
         if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() && jTextField3.getText().isEmpty())

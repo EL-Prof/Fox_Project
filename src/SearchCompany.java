@@ -639,7 +639,7 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updatePaidConfBtnActionPerformed
 
     private void updateTelConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTelConfBtnActionPerformed
-     try{   DB.initializeconnection();
+     try{   
         String query2="SELECT * FROM company WHERE tel="+Double.parseDouble(updateTelTxt.getText()) ;
         
        
