@@ -368,7 +368,7 @@ public class SearchBill extends javax.swing.JFrame {
         else if(jComboBox5.getSelectedIndex()==1)
         {
             Object[] row = new Object[4] ;
-        query = "Select * from bill " ;
+        query = "Select * from bill ORDER by ID DESC " ;
         
         try 
         {
