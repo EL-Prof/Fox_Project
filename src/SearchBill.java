@@ -90,6 +90,7 @@ public class SearchBill extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jComboBox5 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -118,7 +119,7 @@ public class SearchBill extends javax.swing.JFrame {
         });
 
         searchBillLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        searchBillLbl.setText("رقم الفاتورة:");
+        searchBillLbl.setText("بحث عن:");
 
         searchBillTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,23 +211,19 @@ public class SearchBill extends javax.swing.JFrame {
             }
         });
 
+        jComboBox5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "فاتورة", "الكل" }));
+        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPaneBill, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(noSearchBillBtn)
-                        .addGap(56, 56, 56)
-                        .addComponent(searchBillBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBillLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,6 +254,19 @@ public class SearchBill extends javax.swing.JFrame {
                                     .addComponent(jButton2))
                                 .addComponent(billMainBtn)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(noSearchBillBtn)
+                        .addGap(56, 56, 56)
+                        .addComponent(searchBillBtn))
+                    .addComponent(searchBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchBillLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +274,8 @@ public class SearchBill extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchBillLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBillTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchBillBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,6 +313,8 @@ public class SearchBill extends javax.swing.JFrame {
     }//GEN-LAST:event_noSearchBillBtnActionPerformed
     
     private void searchBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBillBtnActionPerformed
+        if(jComboBox5.getSelectedIndex() == 0)
+        {
         if(searchBillTxt.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null,"من فضلك ادخل رقم الفاتورة");
@@ -350,6 +363,47 @@ public class SearchBill extends javax.swing.JFrame {
         }
         
       }
+        }//end if
+        
+        else if(jComboBox5.getSelectedIndex()==1)
+        {
+            Object[] row = new Object[4] ;
+        query = "Select * from bill " ;
+        
+        try 
+        {
+            rset = DB.stmt.executeQuery(query) ;
+            if (!rset.next())
+            {
+                JOptionPane.showMessageDialog(null,"لا يوجد فواتير");   
+            }
+            
+            else
+            {
+                do
+                {
+                row[3] = rset.getString(1) ;
+                row[2] = rset.getString(4) ;
+                row[1] = rset.getString(3);
+                row[0] = rset.getDouble(2) ;
+                
+                model = (DefaultTableModel) searchBillTbl.getModel() ;
+                if (!dbase.ValueIsExist(searchBillTbl, 3 , row[3].toString()))
+                {
+                    model.addRow(row) ;
+                }
+                
+                }while(rset.next()) ;
+            }
+        }
+        
+          catch (Exception ex) 
+          {
+            JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
+          }
+        
+        }
+        
         
     }//GEN-LAST:event_searchBillBtnActionPerformed
 
@@ -418,6 +472,17 @@ public class SearchBill extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+        if(jComboBox5.getSelectedIndex() == 0)
+        {
+            searchBillTxt.setVisible(true);
+        }
+        else
+        {
+            searchBillTxt.setVisible(false);
+        }
+    }//GEN-LAST:event_jComboBox5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +532,7 @@ public class SearchBill extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
