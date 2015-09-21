@@ -4,6 +4,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -48,6 +50,11 @@ DB db = new DB() ;
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         Nlabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Nlabel.setText("الاسم:");
@@ -165,6 +172,19 @@ ad.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       
+           try {
+               if(DB.c !=null)
+               DB.c.close();
+                if(DB.stmt != null)
+           DB.stmt.close();
+       } catch (SQLException ex) {
+           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -193,10 +213,10 @@ ad.setVisible(true);
         //</editor-fold>
         
     
-//if(!Authorize("9C-B7-0D-7F-AF-E5")){
-//JOptionPane.showMessageDialog(null, "اقفل ياحرامي!", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
-//return;
-//}
+if(!Authorize("E5-11-5B-47-CF-9B")){
+JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
+return;
+}
         DB.initializeconnection();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -217,29 +237,32 @@ ad.setVisible(true);
 
 
 public static boolean Authorize(String m){
-InetAddress ip ;
-StringBuilder sb ;    
-try {
-        ip = InetAddress.getLocalHost();
-        System.out.println("IP : "+ip.getHostAddress());
-        NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-        byte [] mac = network.getHardwareAddress();
-         sb = new StringBuilder();
-        
-        for (int i = 0; i < mac.length; i++) {
-            sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
-        }
-        System.out.println("Mac : "+sb.toString());
-        if(m.equalsIgnoreCase(sb.toString()))
-return true;
-else 
-    return false;
-        
-    } catch (UnknownHostException | SocketException ex) {
-        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-    }
+ try {
+   
+    Enumeration<NetworkInterface> networks = NetworkInterface.getNetworkInterfaces();
+    while(networks.hasMoreElements()) {
+      NetworkInterface network = networks.nextElement();
+      byte[] mac = network.getHardwareAddress();
 
-return  false ; 
+      if(mac != null) {
+        System.out.print("Current MAC address : ");
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < mac.length; i++) {
+          sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+        }
+        System.out.println(sb.toString());
+        if(sb.toString().equalsIgnoreCase(m))
+            return true ;
+      }
+    }
+  } catch (SocketException e) {
+    e.printStackTrace();
+  }
+    
+    
+    
+    return false;
 }
 
 
