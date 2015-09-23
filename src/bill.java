@@ -2,7 +2,9 @@
 import java.awt.Graphics;
 import java.awt.PrintJob;
 import java.awt.Toolkit;
+import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -281,16 +283,14 @@ public class bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
-        }
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 430, 530, 180);
@@ -431,8 +431,31 @@ jTextField4.requestFocus();
     }//GEN-LAST:event_jButton5ActionPerformed
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
-         
+             //new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
+            Printed_bill pBill = new Printed_bill(jTextField10.getText(), jTextField1.getText()) ;
+            pBill.setVisible(true);
+            
+            //print
+            PrinterJob pjob = PrinterJob.getPrinterJob();
+            PageFormat preformat = pjob.defaultPage();
+            preformat.setOrientation(PageFormat.LANDSCAPE);
+            PageFormat postformat = pjob.pageDialog(preformat);
+            //If user does not hit cancel then print.
+            if (preformat != postformat) 
+            {
+               //Set print component
+                pjob.setPrintable(new Printer(pBill), postformat);
+                if (pjob.printDialog())
+                  {
+                try {
+                    pjob.print();
+                } catch (PrinterException ex) {
+                    Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                  }
+            }
+ 
+
             reg_bill();
             new bill().setVisible(true);
             this.dispose();
