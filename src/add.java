@@ -329,7 +329,7 @@ combo2_initialize();
             
         
        else 
-        {   query = "SELECT * FROM foxproject.product where barcode =' "+jTextField4.getText()+"'" ; 
+        {   query = "SELECT * FROM foxproject.product where barcode ='"+jTextField4.getText()+"'" ; 
         
             if(DB.stmt.executeQuery(query).next())
             {JOptionPane.showMessageDialog(null,"الباركود مسجل مسبقـا!");
