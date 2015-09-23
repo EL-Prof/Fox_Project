@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.PrintJob;
 import java.awt.Toolkit;
 import java.awt.print.PageFormat;
+import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.sql.ResultSet;
@@ -105,7 +106,7 @@ public class bill extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
@@ -285,16 +286,14 @@ public class bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
-        }
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 430, 530, 180);
@@ -357,13 +356,10 @@ public class bill extends javax.swing.JFrame {
         getContentPane().add(jButton7);
         jButton7.setBounds(173, 580, 70, 23);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("1sq\neeew3\ndsd  4\nwe  4 \nqwq\n wq\nqwqw\nqwwq\nhfghg  888\nuuuuuuuuuuuuu  777777777\nfff\nfg\n");
-        jScrollPane2.setViewportView(jTextArea1);
+        jScrollPane2.setViewportView(jTextPane1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(60, 220, 210, 96);
+        jScrollPane2.setBounds(40, 110, 340, 170);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -443,20 +439,29 @@ jTextField4.requestFocus();
     }//GEN-LAST:event_jButton5ActionPerformed
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-             //new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
-            Printed_bill pBill = new Printed_bill(jTextField10.getText(), jTextField1.getText()) ;
-            pBill.setVisible(true);
+            String out = reg_bill(); 
+            jTextPane1.setText(out);
+            
+            //new Printed_bill(jTextField10.getText() , jTextField1.getText()).setVisible(true);
+            //Printed_bill pBill = new Printed_bill(jTextField10.getText(), jTextField1.getText()) ;
+            //pBill.setVisible(true);
             
             //print
             PrinterJob pjob = PrinterJob.getPrinterJob();
             PageFormat preformat = pjob.defaultPage();
-            preformat.setOrientation(PageFormat.LANDSCAPE);
+            
+            Paper paper = new Paper();
+        paper.setSize(180.0, (double) (paper.getHeight() + jTextPane1.getHeight() * 10.0));
+        paper.setImageableArea(18, 18, paper.getWidth() - 18 * 2, paper.getHeight() - 18 * 2);
+        preformat.setPaper(paper);
+            
+            preformat.setOrientation(PageFormat.PORTRAIT);
             PageFormat postformat = pjob.pageDialog(preformat);
             //If user does not hit cancel then print.
             if (preformat != postformat) 
             {
                //Set print component
-                pjob.setPrintable(new Printer(jTextArea1), postformat);
+                pjob.setPrintable(new Printer(jTextPane1), postformat);
                 if (pjob.printDialog())
                   {
                 try {
@@ -468,7 +473,7 @@ jTextField4.requestFocus();
             }
  
 
-            reg_bill();
+            
             new bill().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -563,7 +568,6 @@ else
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -573,6 +577,7 @@ else
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
 
@@ -597,7 +602,7 @@ jTextField10.setText(sum.toString()+" LE");
 
 }
 
-public void reg_bill(){
+public String reg_bill(){
   String s = String.format("%-20s %5s %10s %10s\n", "Item", "Price", "Qty","Total")+
          String.format("%-20s %5s %10s %10s\n", "----", "----", "---","-----");
      for (int i = 0; i < bill_model.getRowCount(); i++) {
@@ -626,6 +631,7 @@ public void reg_bill(){
           JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
         }
 
+        return s ;
 }
 
 }

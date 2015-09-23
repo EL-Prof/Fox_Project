@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 public class Printer implements Printable {
     final Component comp;
 
-    public Printer(JTextArea comp){
+    public Printer(JTextPane comp){
         this.comp = comp;
     }
 
