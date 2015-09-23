@@ -104,6 +104,8 @@ public class bill extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
@@ -353,6 +355,14 @@ public class bill extends javax.swing.JFrame {
         getContentPane().add(jButton7);
         jButton7.setBounds(173, 580, 70, 23);
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("1sq\neeew3\ndsd  4\nwe  4 \nqwq\n wq\nqwqw\nqwwq\nhfghg  888\nuuuuuuuuuuuuu  777777777\nfff\nfg\n");
+        jScrollPane2.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(60, 220, 210, 96);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -444,7 +454,7 @@ jTextField4.requestFocus();
             if (preformat != postformat) 
             {
                //Set print component
-                pjob.setPrintable(new Printer(pBill), postformat);
+                pjob.setPrintable(new Printer(jTextArea1), postformat);
                 if (pjob.printDialog())
                   {
                 try {
@@ -549,7 +559,9 @@ else
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;

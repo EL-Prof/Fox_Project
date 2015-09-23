@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import javax.swing.JTextArea;
 
 /*
  * To change this template, choose Tools | Templates
@@ -19,7 +20,7 @@ import java.awt.print.PrinterException;
 public class Printer implements Printable {
     final Component comp;
 
-    public Printer(Component comp){
+    public Printer(JTextArea comp){
         this.comp = comp;
     }
 
@@ -49,8 +50,10 @@ public class Printer implements Printable {
         Graphics2D g2 = (Graphics2D) g;
         g2.translate(pXStart, pYStart);
         g2.scale(xRatio, yRatio);
-        comp.paint(g2);
-
+        //comp.paint(g2);
+        //comp.printAll(g2);
+        comp.paintAll(g2);
+        
         return Printable.PAGE_EXISTS;
     }
 }
