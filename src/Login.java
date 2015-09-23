@@ -174,14 +174,14 @@ ad.setVisible(true);
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
        
-           try {
-               if(DB.c !=null)
-               DB.c.close();
-                if(DB.stmt != null)
-           DB.stmt.close();
-       } catch (SQLException ex) {
-           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-       }
+//           try {
+//               if(DB.c !=null)
+//               DB.c.close();
+//                if(DB.stmt != null)
+//           DB.stmt.close();
+//       } catch (SQLException ex) {
+//           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//       }
       
     }//GEN-LAST:event_formWindowClosed
 
