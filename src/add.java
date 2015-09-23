@@ -321,6 +321,7 @@ combo2_initialize();
                 JOptionPane.showMessageDialog(null,"المنتج موجود بالفعل");
                 jTextField4.setText(rset.getString(1));
                 jButton4ActionPerformed(evt);
+                return;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البيانات", "Error", JOptionPane.ERROR_MESSAGE);
