@@ -529,7 +529,7 @@ query = "SELECT type FROM foxproject.product group by type " ;
 
 void check_barcode(){
 
-query = "SELECT name,type FROM foxproject.product Where barcode = "+jTextField4.getText();
+query = "SELECT name,type FROM foxproject.product Where barcode = '"+jTextField4.getText()+"'";
 
         try {
             rset =  DB.stmt.executeQuery(query);
