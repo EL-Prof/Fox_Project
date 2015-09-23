@@ -375,7 +375,7 @@ if(jTextField4.getText() == null ||jTextField4.getText().equals(""))
  jTextField4.requestFocus();
  return;
 }
-query = "select * from product where barcode = "+jTextField4.getText() ;
+query = "select * from product where barcode = '"+jTextField4.getText()+"'" ;
         
         try {
             rset = DB.stmt.executeQuery(query);
