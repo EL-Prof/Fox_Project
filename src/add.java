@@ -80,8 +80,13 @@ combo2_initialize();
         jLabel8 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(720, 480));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -261,7 +266,7 @@ combo2_initialize();
         else
         {
              jTextField4.setEnabled(true);
-              jTextField4.setText("");
+  //            jTextField4.setText("");
              jLabel8.setVisible(false);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -284,11 +289,11 @@ combo2_initialize();
             Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-         if(jComboBox1.getSelectedItem().toString().equals(jTextField5.getText())&&! jTextField5.getText().isEmpty())
+         if((jComboBox1.getSelectedItem().toString().equals(jTextField5.getText()))&&! jTextField5.getText().isEmpty()&&!jTextField6.getText().isEmpty())
         set_barcode();
          else
          {jTextField4.setEnabled(true);
-          jTextField4.setText("");
+    //      jTextField4.setText("");
             jLabel8.setVisible(false);
          }  
         
@@ -307,6 +312,7 @@ combo2_initialize();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      if(!jLabel8.isVisible()){
         query = "Select * from product where name = '"+jTextField5.getText()+"' AND type = '"+jTextField6.getText()+"'";        
         try {
             rset = DB.stmt.executeQuery(query) ;
@@ -320,6 +326,7 @@ combo2_initialize();
             JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البيانات", "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(add.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
         try{
         if(!jLabel8.isVisible())
         {
@@ -418,6 +425,10 @@ combo2_initialize();
        }
        
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
     
     
     
