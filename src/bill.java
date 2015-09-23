@@ -285,14 +285,16 @@ public class bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
-        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
-        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(260, 430, 530, 180);
@@ -596,7 +598,8 @@ jTextField10.setText(sum.toString()+" LE");
 }
 
 public void reg_bill(){
-
+  String s = String.format("%-20s %5s %10s %10s\n", "Item", "Price", "Qty","Total")+
+         String.format("%-20s %5s %10s %10s\n", "----", "----", "---","-----");
      for (int i = 0; i < bill_model.getRowCount(); i++) {
             query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
                     Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+Integer.parseInt(bill_model.getValueAt(i, 5).toString())+"'";
@@ -607,8 +610,12 @@ public void reg_bill(){
                 } catch (SQLException ex) {
                     Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+               s = s + String.format("%-20s %5s %10s %10s\n",bill_model.getValueAt(i, 4).toString()+"  "+bill_model.getValueAt(i, 3).toString() 
+                    , bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 0).toString()) ; 
             }
+       s = s + String.format("%48s\n" , "-----") + String.format("%-37s %10s\n" , "Total Price" , jTextField10.getText());
+             
+            System.out.println(s);
    query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
                     jTextField3.getText()+"','"+jTextField2.getText()+"')";
             
