@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Printed_bill extends javax.swing.JFrame {
 
- DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd\nhh:mm:ss");
+ DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
  Date d = new Date() ;
  
     
@@ -129,9 +129,11 @@ public class Printed_bill extends javax.swing.JFrame {
         });
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-        jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
-        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
