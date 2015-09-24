@@ -550,15 +550,15 @@ public  void print_component (){
      jTextPane1.setFont(f);
      
     String s = "Date : "+dF.format(d)+"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
-            +String.format("%-10s %5s %5s %7s\n", "Item", "Price", "Qty","Total")+
-         String.format("%-10s %5s %5s %7s\n", "----", "----", "---","-----");
+            +String.format("%-7s %5s %4s %6s\n", "Item", "Price", "Qty","Total")+
+         String.format("%-7s %5s %4s %6s\n", "----", "----", "---","-----");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
-           s = s + String.format("%-10s %5s %5s %7s\n",bill_model.getValueAt(i, 4).toString() 
+           s = s + String.format("%-7s %5s %4s %6s\n",bill_model.getValueAt(i, 4).toString() 
                     , bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 0).toString()) ; 
     }
-     s = s + String.format("%30s\n" , "-----") + String.format("%-23s %-10s\n\n" , "Total Price" , jTextField10.getText())+
-             String.format("%25s\n", "الجندي للاتصالات")+String.format("%27s\n", "^-^ يشرفنا تواجدكم دائما ");
+     s = s + String.format("%25s\n" , "-----") + String.format("%-18s %-10s\n\n" , "Total Price" , jTextField10.getText())+
+             String.format("%23s\n", "الضياء للاتصالات")+String.format("%25s\n", "^-^ يشرفنا تواجدكم دائما ");
      
      System.out.println(s);
      jTextPane1.setText(s);
