@@ -546,18 +546,19 @@ public  void print_component (){
     JTextPane jTextPane1 = new JTextPane();
     Date d = new Date() ;
 
-     Font f = new Font(Font.MONOSPACED , Font.PLAIN , 12);
+     Font f = new Font(Font.MONOSPACED , Font.BOLD , 12);
      jTextPane1.setFont(f);
      
     String s = "Date : "+dF.format(d)+"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
-            +String.format("%-7s %5s %4s %6s\n", "Item", "Price", "Qty","Total")+
-         String.format("%-7s %5s %4s %6s\n", "----", "----", "---","-----");
+            +String.format("%-12s %-4s %-4s %3s\n", "الصنف", "سعر", "عدد","اجم")+
+        String.format("%-4s %-4s %-10s %-5s\n", "---", "---", "---","-----");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
-           s = s + String.format("%-7s %5s %4s %6s\n",bill_model.getValueAt(i, 4).toString() 
-                    , bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 0).toString()) ; 
+           s = s + String.format("%-5s %-3s %-5s %11s\n",bill_model.getValueAt(i, 0).toString() 
+       , bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 4).toString()+
+               " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
-     s = s + String.format("%25s\n" , "-----") + String.format("%-18s %-10s\n\n" , "Total Price" , jTextField10.getText())+
+     s = s + String.format("%-25s\n" , "------") + String.format("%-18s %-10s\n\n" , "Total Price" , jTextField10.getText())+
              String.format("%23s\n", "الضياء للاتصالات")+String.format("%25s\n", "^-^ يشرفنا تواجدكم دائما ");
      
      System.out.println(s);
