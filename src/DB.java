@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 
 public class DB {
-    static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/d");
    static  Date d = new Date() ;
 static Connection c;
 ResultSet rset;

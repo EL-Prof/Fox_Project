@@ -33,7 +33,7 @@ public class bill extends javax.swing.JFrame {
    ResultSet rset ; 
     static  DefaultTableModel bill_model ;
     
-DateFormat dF = new SimpleDateFormat("yyyy/MM/dd  h:mm:ss");
+DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     
     
     
@@ -546,20 +546,23 @@ public  void print_component (){
     JTextPane jTextPane1 = new JTextPane();
     Date d = new Date() ;
 
-     Font f = new Font(Font.MONOSPACED , Font.BOLD , 12);
+     Font f = new Font(Font.MONOSPACED , Font.BOLD , 10);
      jTextPane1.setFont(f);
      
-    String s = "Date : "+dF.format(d)+"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
+    String s = String.format("%24s\n %21s\n", "الضياء لخدمات الموبايل" , "****************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
+            +dF.format(d).substring(10)
+            +"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
             +String.format("%-12s %-4s %-4s %3s\n", "الصنف", "سعر", "عدد","اجم")+
         String.format("%-4s %-4s %-10s %-5s\n", "---", "---", "---","-----");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
-           s = s + String.format("%-5s %-3s %-5s %11s\n",bill_model.getValueAt(i, 0).toString() 
+           s = s + String.format("%-5s %-3s %-4s %11s\n",bill_model.getValueAt(i, 0).toString() 
        , bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 4).toString()+
                " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
-     s = s + String.format("%-25s\n" , "------") + String.format("%-18s %-10s\n\n" , "Total Price" , jTextField10.getText())+
-             String.format("%23s\n", "الضياء للاتصالات")+String.format("%25s\n", "^-^ يشرفنا تواجدكم دائما ");
+     s = s +  String.format("%-10s \n %-13s %-20s\n" , "------", jTextField10.getText(),":الإجمالـي")+
+             String.format("%21s\n %25s\n", "*****************" ,"^-^ يشرفنا تواجدكم دائما ")+
+             "Tel : 0100 054 5178 \nfb.com/aldiaaGenius\n";
      
      System.out.println(s);
      jTextPane1.setText(s);
