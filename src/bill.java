@@ -553,11 +553,11 @@ public  void print_component (){
      Font f = new Font(Font.MONOSPACED , Font.BOLD , 9);
      jTextPane1.setFont(f);
      
-    String s = String.format("%24s\n %20s\n", "الضيــاء لخدمـات المـوبايـل" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
+    String s = String.format("%24s\n %25s\n", "   الضيــاء لخدمـات المـوبايـل" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
             +dF.format(d).substring(10)
-            +"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
-            +String.format("%-18s %-4s %-4s %3s\n", "الصنف", "سعر", "عدد","اجم")+
-        String.format("%-4s %-4s %-12s %-6s\n", "---", "---", "---","---------");
+            +"\n"+"Reciept No. : "+jTextField1.getText()+"\n"
+            +String.format("%-18s %-4s %-4s %3s\n", "اسم الصنف", "سعر", "عدد","اجم")+
+        String.format("%-4s %-4s %-9s %-6s\n", "---", "---", "---","------------");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
            s = s + String.format("%-5s %-3s %-4s %17s\n",bill_model.getValueAt(i, 0).toString() 
@@ -565,7 +565,7 @@ public  void print_component (){
                " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
      s = s +  String.format("%-10s \n %-13s %-20s\n" , "------", jTextField10.getText(),":الإجمالـي")+
-             String.format("%21s\n %25s\n", "*****************" ,"^-^ يشرفنا تواجدكم دائما ")+
+             String.format("%25s\n %25s\n", "********************" ,"^-^ يشرفنا تواجدكم دائما ")+
              "Tel : 0100 054 5178 \nfb.com/aldiaaGenius\n";
      
      System.out.println(s);
