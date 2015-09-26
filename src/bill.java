@@ -435,10 +435,14 @@ jTextField4.requestFocus();
     }//GEN-LAST:event_jButton5ActionPerformed
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-print_component();
+if(jTextField10.getText().isEmpty() || sum==0)
+        JOptionPane.showMessageDialog(null, "من فضلك اضف فاتوره");
+else {
+        print_component();
         reg_bill();
             new bill().setVisible(true);
             this.dispose();
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -546,17 +550,17 @@ public  void print_component (){
     JTextPane jTextPane1 = new JTextPane();
     Date d = new Date() ;
 
-     Font f = new Font(Font.MONOSPACED , Font.BOLD , 10);
+     Font f = new Font(Font.MONOSPACED , Font.BOLD , 9);
      jTextPane1.setFont(f);
      
-    String s = String.format("%24s\n %21s\n", "الضياء لخدمات الموبايل" , "****************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
+    String s = String.format("%24s\n %20s\n", "الضيــاء لخدمـات المـوبايـل" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
             +dF.format(d).substring(10)
             +"\n"+"Reciept No. : "+jTextField1.getText()+"\n\n"
-            +String.format("%-12s %-4s %-4s %3s\n", "الصنف", "سعر", "عدد","اجم")+
-        String.format("%-4s %-4s %-10s %-5s\n", "---", "---", "---","-----");
+            +String.format("%-18s %-4s %-4s %3s\n", "الصنف", "سعر", "عدد","اجم")+
+        String.format("%-4s %-4s %-12s %-6s\n", "---", "---", "---","---------");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
-           s = s + String.format("%-5s %-3s %-4s %11s\n",bill_model.getValueAt(i, 0).toString() 
+           s = s + String.format("%-5s %-3s %-4s %17s\n",bill_model.getValueAt(i, 0).toString() 
        , bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 4).toString()+
                " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
