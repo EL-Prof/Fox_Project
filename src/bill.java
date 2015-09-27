@@ -553,7 +553,7 @@ public  void print_component (){
      Font f = new Font(Font.MONOSPACED , Font.BOLD , 9);
      jTextPane1.setFont(f);
      
-    String s = String.format("%24s\n %25s\n", "   الضيــاء لخدمـات المـوبايـل" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
+    String s = String.format("%24s\n %24s\n", "   الضيــاء لخدمـات المحمول" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
             +dF.format(d).substring(10)
             +"\n"+"Reciept No. : "+jTextField1.getText()+"\n"
             +String.format("%-18s %-4s %-4s %3s\n", "اسم الصنف", "سعر", "عدد","اجم")+
@@ -565,8 +565,8 @@ public  void print_component (){
                " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
      s = s +  String.format("%-10s \n %-13s %-20s\n" , "------", jTextField10.getText(),":الإجمالـي")+
-             String.format("%25s\n %25s\n", "********************" ,"^-^ يشرفنا تواجدكم دائما ")+
-             "Tel : 0100 054 5178 \nfb.com/aldiaaGenius\n";
+             String.format("%24s\n %25s\n", "********************" ,"^-^ يشرفنا تواجدكم دائما ")+
+             "لا يقبل اي مرتجع الا بوجود البون\nTel : 0100 054 5178 \nتابعونا على الفيسبوك\nfb.com/aldiaaGenius\n";
      
      System.out.println(s);
      jTextPane1.setText(s);
@@ -577,7 +577,7 @@ public  void print_component (){
             Paper paper = new Paper();
             System.out.println("height : "+paper.getHeight());
         paper.setSize(300.0, (double) (paper.getHeight() + bill_model.getRowCount()* 10.0));
-        paper.setImageableArea(10, 10, paper.getWidth() - 10 * 2, paper.getHeight() - 10 * 2);
+        paper.setImageableArea(5, 5, paper.getWidth() - 10 * 2, paper.getHeight() - 10 * 2);
         preformat.setPaper(paper);
             
             preformat.setOrientation(PageFormat.PORTRAIT);
