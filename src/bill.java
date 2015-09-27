@@ -553,20 +553,20 @@ public  void print_component (){
      Font f = new Font(Font.MONOSPACED , Font.BOLD , 9);
      jTextPane1.setFont(f);
      
-    String s = String.format("%24s\n %24s\n", "   الضيــاء لخدمـات المحمول" , "********************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
+    String s = String.format("%24s\n%31s\n", "         الضيــاء لخدمـات المحمول" , "*******************") +  "Date : "+dF.format(d).substring(0, 10)+"\n       "
             +dF.format(d).substring(10)
-            +"\n"+"Reciept No. : "+jTextField1.getText()+"\n"
-            +String.format("%-18s %-4s %-4s %3s\n", "اسم الصنف", "سعر", "عدد","اجم")+
-        String.format("%-4s %-4s %-9s %-6s\n", "---", "---", "---","------------");
+            +"\n"+"Receipt No. : "+jTextField1.getText()+"\n"
+            +String.format("%-22s %-5s %-7s %3s\n", "اسم الصنف", "سعر", "عدد","كلي")+
+        String.format("%-7s %-5s %-13s %-6s\n", "---", "---", "---","------------");
     
       for (int i = 0; i <bill_model.getRowCount(); i++) {
-           s = s + String.format("%-5s %-3s %-4s %17s\n",bill_model.getValueAt(i, 0).toString() 
+           s = s + String.format("%-8s %-4s %-6s %19s\n",bill_model.getValueAt(i, 0).toString() 
        , bill_model.getValueAt(i, 1).toString(),bill_model.getValueAt(i, 2).toString(),bill_model.getValueAt(i, 4).toString()+
                " "+bill_model.getValueAt(i, 3).toString()) ; 
     }
      s = s +  String.format("%-10s \n %-13s %-20s\n" , "------", jTextField10.getText(),":الإجمالـي")+
-             String.format("%24s\n %25s\n", "********************" ,"^-^ يشرفنا تواجدكم دائما ")+
-             "لا يقبل اي مرتجع الا بوجود البون\nTel : 0100 054 5178 \nتابعونا على الفيسبوك\nfb.com/aldiaaGenius\n";
+             String.format("%31s\n %28s\n", "*******************" ,"^-^ يشرفنا تواجدكم دائما ")+
+             "لا يقبل اي مرتجع الا بوجود البون         \n   Tel : 0100 054 5178 \n     تابعونا على فيسبوك :الضياء\n     fb.com/aldiaaGenius\n";
      
      System.out.println(s);
      jTextPane1.setText(s);
@@ -576,8 +576,8 @@ public  void print_component (){
             
             Paper paper = new Paper();
             System.out.println("height : "+paper.getHeight());
-        paper.setSize(300.0, (double) (paper.getHeight() + bill_model.getRowCount()* 10.0));
-        paper.setImageableArea(5, 5, paper.getWidth() - 10 * 2, paper.getHeight() - 10 * 2);
+        paper.setSize(400.0, (double) (paper.getHeight() + bill_model.getRowCount()* 10.0));
+        paper.setImageableArea(5, 5, paper.getWidth() - 5 * 2, paper.getHeight() - 5 * 2);
         preformat.setPaper(paper);
             
             preformat.setOrientation(PageFormat.PORTRAIT);
