@@ -99,7 +99,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("الضياء");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\3MadoViski\\Desktop\\8PPZdJu - Imgur (3).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/8PPZdJu - Imgur (3).png"))); // NOI18N
         jLabel2.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
