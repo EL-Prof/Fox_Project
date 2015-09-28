@@ -51,7 +51,7 @@ public class addemployee extends javax.swing.JFrame {
         jLabel2.setText("الاسم:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("الرقم السري:");
+        jLabel3.setText("كلمة المرور:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
