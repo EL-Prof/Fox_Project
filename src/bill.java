@@ -41,11 +41,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
       DB.initializeconnection();
         initComponents();
         jTextField4.requestFocus();
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+     
         
         bill_model = (DefaultTableModel) jTable1.getModel();
         jTextField2.setText(DB.emp_name);
@@ -615,7 +611,7 @@ public void reg_bill(){
   
      for (int i = 0; i < bill_model.getRowCount(); i++) {
             query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
-                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+Integer.parseInt(bill_model.getValueAt(i, 5).toString())+"'";
+                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+bill_model.getValueAt(i, 5)+"'";
       
                 try {
                     DB.stmt.executeUpdate(query);

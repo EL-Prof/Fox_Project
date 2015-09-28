@@ -27,11 +27,7 @@ public class SearchRepair extends javax.swing.JFrame {
     public SearchRepair() {
         initComponents();
         
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+      
         
         
         recieptLabel.hide();

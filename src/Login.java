@@ -1,5 +1,9 @@
 
 //import javafx.scene.layout.Pane;
+import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -29,11 +33,11 @@ DB db = new DB() ;
      */
     public Login() {
         initComponents();
-         try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        Font f= new Font("PT Separated Baloon", Font.BOLD, 38);
+        jLabel1.setFont(f);
+       
          
     }
 
@@ -48,13 +52,9 @@ DB db = new DB() ;
         Login = new javax.swing.JButton();
         PasswordField = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         Nlabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Nlabel.setText("الاسم:");
@@ -92,6 +92,9 @@ DB db = new DB() ;
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        jLabel1.setText("الضياء");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,38 +102,49 @@ DB db = new DB() ;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NameField)
-                            .addComponent(PasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Passlabel)
-                            .addComponent(Nlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)
+                        .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(Nlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
+                        .addGap(53, 53, 53)
+                        .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(Passlabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
                         .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(100, 100, 100)
                         .addComponent(jButton1)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Nlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Passlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Passlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,19 +186,6 @@ ad.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       
-//           try {
-//               if(DB.c !=null)
-//               DB.c.close();
-//                if(DB.stmt != null)
-//           DB.stmt.close();
-//       } catch (SQLException ex) {
-//           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//       }
-      
-    }//GEN-LAST:event_formWindowClosed
-
     /**
      * @param args the command line arguments
      */
@@ -212,8 +213,13 @@ ad.setVisible(true);
         }
         //</editor-fold>
         
+          try{
+			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
+			
+			}catch(Exception e){e.printStackTrace();
+    }
     
-//if(!Authorize("E5-11-5B-47-CF-9B")){
+//if(!Authorize("00-21-9B-28-61-A9")){
 //JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));
 //return;
 //}
@@ -233,6 +239,7 @@ ad.setVisible(true);
     private javax.swing.JLabel Passlabel;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
 

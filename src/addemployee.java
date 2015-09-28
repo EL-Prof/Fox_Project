@@ -20,11 +20,7 @@ public class addemployee extends javax.swing.JFrame {
     public addemployee() {
         initComponents();
         
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+        
         
     }
 

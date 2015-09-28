@@ -36,11 +36,7 @@ public class SearchProduct extends javax.swing.JFrame {
     public SearchProduct() {
         initComponents();
         
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+       
         
         query = "SELECT * FROM foxproject.product" ;
         try 
@@ -126,8 +122,13 @@ public class SearchProduct extends javax.swing.JFrame {
         searchProTxt = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         noSearchProBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchProBtn.setText("منتج اخر");
@@ -222,7 +223,7 @@ public class SearchProduct extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(300, 300, 300)
                 .addComponent(proMainBtn)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,6 +454,11 @@ public class SearchProduct extends javax.swing.JFrame {
         else 
             searchProTxt.setText(jComboBox1.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        
+        new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -32,12 +32,7 @@ public ageeel(){
 public ageeel(bill w) {
         initComponents();
         b = w ; 
-     try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    } 
-     
+ 
           jTextField1.setText(w.sum.toString());
         
     }

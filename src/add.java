@@ -25,11 +25,7 @@ public class add extends javax.swing.JFrame {
     public add() {
         initComponents();
         jTextField4.requestFocusInWindow();
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+       
         
         img = new ImageIcon("exist.png").getImage();
         jLabel8.setIcon(new ImageIcon(img));
@@ -82,6 +78,7 @@ combo2_initialize();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(720, 480));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

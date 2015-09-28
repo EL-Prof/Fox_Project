@@ -29,12 +29,7 @@ public class estlam extends javax.swing.JFrame {
     public estlam() {
         initComponents();
         DB.initializeconnection();
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
-        
+      
          jTextField3.setText(DB.dateFormat.format(DB.d));
         query = "SELECT code FROM repair ORDER BY code DESC LIMIT 1 " ;
         try {

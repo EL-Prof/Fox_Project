@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -18,17 +20,11 @@ import javax.swing.UIManager;
  * @author Mohamed
  */
 public class MainPage extends javax.swing.JFrame {
-
-    
     
     public MainPage() {
         initComponents();
-        
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+           Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         
             }
 

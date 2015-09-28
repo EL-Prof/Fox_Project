@@ -28,13 +28,6 @@ public class SearchBill extends javax.swing.JFrame {
     public SearchBill() {
         initComponents();
         
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
-        
-        
     }
     
     private void search(String q)

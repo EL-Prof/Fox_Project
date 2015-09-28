@@ -24,11 +24,7 @@ public class Future extends javax.swing.JFrame {
     
     public Future() {
         initComponents();
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
+        
         
         updateFuturePaidBtn.hide();
         updateFuturePaidLbl.hide();
@@ -112,8 +108,13 @@ public class Future extends javax.swing.JFrame {
         jScrollPaneFuture = new javax.swing.JScrollPane();
         searchFutureTbl = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         searchFutureTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,6 +429,11 @@ public class Future extends javax.swing.JFrame {
         new MainPage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_futureMainBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       
+       new MainPage().setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

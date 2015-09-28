@@ -27,12 +27,6 @@ public class SearchCompany extends javax.swing.JFrame {
     public SearchCompany() {
         initComponents();
         
-        try{
-			UIManager.setLookAndFeel("com.easynth.lookandfeel.EaSynthLookAndFeel")	;
-			SwingUtilities.updateComponentTreeUI(this);
-			}catch(Exception e){e.printStackTrace();
-    }
-        
         DB.initializeconnection();
         
         updatePaidBtn.hide();
