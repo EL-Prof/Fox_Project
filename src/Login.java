@@ -35,8 +35,8 @@ DB db = new DB() ;
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        Font f= new Font("PT Separated Baloon", Font.BOLD, 38);
-        jLabel1.setFont(f);
+        
+       
        
          
     }
@@ -95,7 +95,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("PT Separated Baloon", 1, 38)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("الضياء");
 

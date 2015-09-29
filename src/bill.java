@@ -38,7 +38,6 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     
     
     public bill() {
-      DB.initializeconnection();
         initComponents();
         jTextField4.requestFocus();
      
@@ -407,7 +406,14 @@ query = "select * from product where barcode = '"+jTextField4.getText()+"'" ;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             if(rset != null && rset.isFirst())
-            {      total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
+            {    
+            if(Integer.parseInt(jTextField5.getText()) <1){
+                        JOptionPane.showMessageDialog(null, "برجاء ادخال كميه مناسبه ");
+jTextField5.setText("");
+            return;
+            }
+            
+                total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
             Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
                                                          rset.getString(3) , rset.getString(2) , rset.getString(1) } ;
 
@@ -415,6 +421,11 @@ query = "select * from product where barcode = '"+jTextField4.getText()+"'" ;
             }
         } catch (SQLException ex) {
             Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (NumberFormatException ex) {
+                                                JOptionPane.showMessageDialog(null, "برجاء ادخال كميه مناسبه ");
+jTextField5.setText("");
+return;
         }
 
 calc_total();
@@ -618,6 +629,7 @@ public void reg_bill(){
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
               
             }

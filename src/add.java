@@ -349,12 +349,9 @@ combo2_initialize();
                 if(DB.stmt.executeUpdate(query)>0)
                 {
                    JOptionPane.showMessageDialog(null, "تم الاضافه بنجاح", "Success", 2, new ImageIcon("Ok.png"));
+                  new add().setVisible(true);
+                  this.dispose();
                 
-                if(JOptionPane.OK_OPTION==0)
-                {
-                new add().setVisible(true);
-                this.dispose();
-                }
                 }
             
             }
@@ -392,9 +389,11 @@ combo2_initialize();
             }
             
             
-           if(DB.stmt.executeUpdate(query)>0)
+           if(DB.stmt.executeUpdate(query)>0){
                 JOptionPane.showMessageDialog(null, "تم تحديـث البيانات بنجـاح!", "Success", 2, new ImageIcon("Ok.png"));
-            
+                new add().setVisible(true);
+                this.dispose();
+           }
            else 
                  JOptionPane.showMessageDialog(null, "لم يتم تعديل البيانات!", "error", 2, new ImageIcon("Fail.png"));
             

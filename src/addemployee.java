@@ -92,7 +92,7 @@ public class addemployee extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +119,7 @@ public class addemployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-DB.initializeconnection();
+
   try {      if(jTextField1.getText().isEmpty()&&jTextField3.getText().isEmpty() && jPasswordField1.getText().isEmpty())
             JOptionPane.showMessageDialog(null,"برجاء إدخال البيانات");
   
@@ -152,8 +152,7 @@ DB.initializeconnection();
                {   JOptionPane.showMessageDialog(null,"تم التسجيل بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
                               if(JOptionPane.OK_OPTION == 0)
                               {
-                              new Login().setVisible(true);
-                              this.dispose();
+                                                           this.dispose();
                                            
                               }
                }
@@ -193,7 +192,16 @@ DB.initializeconnection();
                               {
                               new Login().setVisible(true);
                               this.dispose();
-                                           
+                               }
+          }
+
+        catch (Exception ex){System.out.println("wrong");
+        }
+    
+
+        // TODO add your handling code here:
+    }                                        
+                   
                               }
                }
         }
@@ -205,7 +213,7 @@ DB.initializeconnection();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-/*
+
     /**
      * @param args the command line arguments
      */
