@@ -205,7 +205,7 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
         if(!rset.next())
         {
             JOptionPane.showMessageDialog(null, "هذا العميل غير مسجل ");
-            jTextField4.setText("");
+            jTextField4.setText(jTextField6.getText());
             jTextField5.setText("");
             
         }
@@ -227,6 +227,10 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      if (jTextField5.getText().isEmpty()){                        JOptionPane.showMessageDialog(null,"أدخل اسم العميل");
+return;
+      }
+      else
         query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
         try{
             rset=DB.stmt.executeQuery(query);

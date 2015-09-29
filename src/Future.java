@@ -50,14 +50,11 @@ public class Future extends javax.swing.JFrame {
             rset = DB.stmt.executeQuery(query) ;
             if (!rset.next())
             {
-                text.setText(null) ;
-                int dialogResult = JOptionPane.showConfirmDialog(new JPanel(), "هذا العميل غير مسجل..هل ترغب فى اضافته ؟", "Error", JOptionPane.YES_NO_OPTION);
-                if(dialogResult == JOptionPane.YES_OPTION)
-                {
-                    new ageeel().setVisible(true);
-                    this.dispose();
-                }
+                 JOptionPane.showMessageDialog(null, "هذا العميل غير مسجل");
+                              
+                           
             }
+            
             
             else
             {
@@ -361,12 +358,17 @@ public class Future extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFutureBtnActionPerformed
 
     private void noSearchFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchFutureBtnActionPerformed
+     if(searchFutureTxt.getText().isEmpty()){
+         JOptionPane.showMessageDialog(null, "تم الالغاء");
+     }
+     else{
         searchFutureTxt.setText(null);
         model.setRowCount(0);
         updateFuturePaidBtn.setVisible(false);
         updateFuturePaidLbl.setVisible(false);
         updateFuturePaidConfBtn.setVisible(false);
         updateFuturePaidTxt.setVisible(false);
+     }
     }//GEN-LAST:event_noSearchFutureBtnActionPerformed
 
     private void updateFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFutureBtnActionPerformed
@@ -380,7 +382,11 @@ public class Future extends javax.swing.JFrame {
     }//GEN-LAST:event_updateFutureBtnActionPerformed
 
     private void updateFuturePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFuturePaidConfBtnActionPerformed
-       
+       if(Double.parseDouble(updateFuturePaidTxt.getText())>Double.parseDouble(model.getValueAt(model.getRowCount()-1,0).toString())){
+           JOptionPane.showMessageDialog(null, "المدفوع اكبر من المتبقي");
+           return;
+       }
+       else
         try {
             
             String updateQuery = "UPDATE client SET paid = paid + '" + Double.parseDouble(updateFuturePaidTxt.getText()) + "' WHERE mob_no = '" + searchFutureTxt.getText() + "'";

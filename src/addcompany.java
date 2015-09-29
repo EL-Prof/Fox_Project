@@ -19,7 +19,7 @@ import javax.swing.UIManager;
 public class addcompany extends javax.swing.JFrame {
     ResultSet rest ;
     String query ;
-
+   
     /**
      * Creates new form addcompany
      */
@@ -29,6 +29,8 @@ public class addcompany extends javax.swing.JFrame {
     
    
     }
+   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,8 +51,6 @@ public class addcompany extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -103,7 +103,6 @@ public class addcompany extends javax.swing.JFrame {
         jLabel2.setBounds(540, 160, 110, 30);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField2.setNextFocusableComponent(jTextField3);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(210, 160, 110, 30);
 
@@ -111,16 +110,6 @@ public class addcompany extends javax.swing.JFrame {
         jLabel3.setText("دفع");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(330, 160, 40, 30);
-
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField3.setNextFocusableComponent(jButton1);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(20, 160, 90, 30);
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("الباقي");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(124, 164, 80, 30);
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField5.setNextFocusableComponent(jTextField2);
@@ -160,10 +149,16 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  try{
    String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
    String query3="SELECT * FROM company WHERE tel = "+jTextField1.getText();
-        if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() && jTextField3.getText().isEmpty())
+
+        try{
+            if(!isDouble(jTextField1.getText())){
+                            JOptionPane.showMessageDialog(null,"أدخل رقم التليفون بطريقة صحيحة");
+
+            }
+   
+        if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() )
             JOptionPane.showMessageDialog(null,"برجاء إدخال كافة البيانات");
     else if (jTextField4.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال اسم الشركة");
 
@@ -171,12 +166,29 @@ this.dispose();
     else if (jTextField1.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال رقم تليفون الشركة");
 
     }
+   
     else if (DB.stmt.executeQuery(query2).next()){
         JOptionPane.showMessageDialog(null,"برجاء إدخال إسم أخر الاسم مسجل بالفعل");
     }
     else if (DB.stmt.executeQuery(query3).next()){        JOptionPane.showMessageDialog(null,"هذا الرقم مسجل لشركة أخري تحقق من البيانات");
 
     }
+    else if(!isDouble(jTextField1.getText())){
+          JOptionPane.showMessageDialog(null,"أدخل رقم التليفون بطريقه صحيحة");
+
+        
+    }
+   else  if(!isDouble(jTextField5.getText())){
+  JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقه صحيحة");
+        }
+   else if(!isDouble(jTextField2.getText())){
+         JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقه صحيحة");
+
+   }
+    else if(Double.parseDouble(jTextField5.getText())< Double.parseDouble(jTextField2.getText())){
+        JOptionPane.showMessageDialog(null,"تحقق من الاسعار");
+    }
+      
     
     
         else 
@@ -187,7 +199,7 @@ this.dispose();
                 query = "INSERT INTO company "
                         + "(`name`, `tel`, `paid`, `remender`) VALUES"+"(" +
                         "'"+jTextField4.getText()+"'"+","+"'"+ jTextField1.getText()+ "'" +"," + "'"+jTextField2.getText()
-                        +"'"+","+"'"+jTextField3.getText()+"'"+
+                        +"'"+","+"'"+(Double.parseDouble(jTextField5.getText())-Double.parseDouble(jTextField2.getText()))+"'"+
                         ")";
                 
                 
@@ -211,7 +223,7 @@ this.dispose();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
-catch(Exception ew){System.out.println("error");
+catch(Exception ew){System.out.println(ew.getMessage());
    }  
     }// TODO add your handling code here:
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -264,13 +276,19 @@ catch(Exception ew){System.out.println("error");
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

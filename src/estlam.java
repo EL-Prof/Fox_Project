@@ -139,6 +139,7 @@ public class estlam extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(500, 210, 120, 40);
 
+        jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField3.setNextFocusableComponent(jTextField6);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +270,22 @@ public class estlam extends javax.swing.JFrame {
 
         if(jTextField1.getText().isEmpty())
             JOptionPane.showMessageDialog(null,"برجاء إدخـال اسم العميــل");
+        else if(!isDouble(jTextField4.getText())){            JOptionPane.showMessageDialog(null,"أدخل رقم التليفون بطريقه صحيحة");
+
+        }
+        else if(Double.parseDouble(jTextField6.getText())<0){
+                        JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقة صحيحة");
+
+        
+        }
+        else if(Double.parseDouble(jTextField7.getText())<0){
+                                    JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقة صحيحة");
+
+        }
+        else if(Double.parseDouble(jTextField6.getText())<Double.parseDouble(jTextField7.getText())){
+                                    JOptionPane.showMessageDialog(null,"تحقق من الاسعار");
+
+        }
         else 
             if(!jTextField6.getText().isEmpty()&&(!isDouble(jTextField6.getText())))
             {
