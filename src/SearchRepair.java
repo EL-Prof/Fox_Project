@@ -359,7 +359,18 @@ public class SearchRepair extends javax.swing.JFrame {
     }//GEN-LAST:event_reprConfirmBtnActionPerformed
 
     private void reprConfirmCboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmCboxActionPerformed
-        // TODO add your handling code here:
+        if(reprConfirmCbox.getItemCount() == 0 )
+        {
+            recieptLabel.setVisible(false);
+            reprConfirmCbox.setVisible(false);
+            reprConfirmBtn.setVisible(false);
+        }
+        else
+        {
+            recieptLabel.setVisible(true);
+            reprConfirmCbox.setVisible(true);
+            reprConfirmBtn.setVisible(true);
+        }
     }//GEN-LAST:event_reprConfirmCboxActionPerformed
 
     private void searchReprTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchReprTblMouseClicked
