@@ -28,20 +28,13 @@ import javax.swing.*;
  */
 public class Login extends javax.swing.JFrame {
 DB db = new DB() ; 
-
+  
+   static GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
      
 /**
      * Creates new form Login
      */
     public Login() {
-        try {
-   GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
-     
- ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
-} catch (Exception e) {
- //Handle exception
-}
-
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -231,8 +224,10 @@ ad.setVisible(true);
         //</editor-fold>
         
           try{
+              
 			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
-			
+	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
+		
 			}catch(Exception e){e.printStackTrace();
     }
     
