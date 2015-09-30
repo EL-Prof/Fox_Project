@@ -27,7 +27,7 @@ public class SearchCompany extends javax.swing.JFrame {
     public SearchCompany() {
         initComponents();
         
-        DB.initializeconnection();
+       
         
         updatePaidBtn.hide();
         updatePaidConfBtn.hide();

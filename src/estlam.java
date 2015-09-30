@@ -28,7 +28,6 @@ public class estlam extends javax.swing.JFrame {
     ResultSet rset ; 
     public estlam() {
         initComponents();
-        DB.initializeconnection();
       
          jTextField3.setText(DB.dateFormat.format(DB.d));
         query = "SELECT code FROM repair ORDER BY code DESC LIMIT 1 " ;
