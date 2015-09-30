@@ -273,13 +273,8 @@ public class estlam extends javax.swing.JFrame {
      else   if(!jTextField4.getText().equals("")&&(!isDouble(jTextField4.getText()))){            JOptionPane.showMessageDialog(null,"أدخل رقم التليفون بطريقه صحيحة");
 
        }
-         else 
+        else 
                if(!jTextField6.getText().equals("")&&(!isDouble(jTextField6.getText())))
-                     {
-                          JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
-                     }
-                 else 
-                if(!jTextField7.getText().equals("")&&(!isDouble(jTextField7.getText())))
                      {
                           JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
                      }
@@ -293,17 +288,28 @@ public class estlam extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقة صحيحة");
 
         }
+         
         
-      else if(Double.parseDouble(jTextField6.getText())<Double.parseDouble(jTextField7.getText())){
-                                    JOptionPane.showMessageDialog(null,"تحقق من الاسعار");
-
-       }
+     
         else 
             if(!jTextField6.getText().isEmpty()&&(!isDouble(jTextField6.getText())))
             {
                     JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
             }
-          
+            else 
+                if(!jTextField7.getText().equals("")&&(!isDouble(jTextField7.getText())))
+                     {
+                          JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
+                     }
+                else 
+               if(!jTextField6.getText().equals("")&&(!isDouble(jTextField6.getText())))
+                     {
+                          JOptionPane.showMessageDialog(null,"برجاء ادخال مبالغ صحيحه");
+                     }
+               else if(!jTextField6.getText().isEmpty()&&!jTextField7.getText().isEmpty()&&Double.parseDouble(jTextField6.getText())<Double.parseDouble(jTextField7.getText())){
+                                    JOptionPane.showMessageDialog(null,"تحقق من الاسعار");
+
+        }
                      else 
                          {
         
