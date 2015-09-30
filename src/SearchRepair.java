@@ -23,16 +23,17 @@ public class SearchRepair extends javax.swing.JFrame {
     DefaultTableModel model ;
     ResultSet rset;
     String query;
+    boolean costIsNull = false ;
+    int rowIndex ;
     
     public SearchRepair() {
         initComponents();
         
-      
-        
-        
         recieptLabel.hide();
         reprConfirmCbox.hide();
         reprConfirmBtn.hide();
+        jLabel1.hide();
+        jTextField1.hide();
     }
     
     private void search(String query)
@@ -133,6 +134,8 @@ public class SearchRepair extends javax.swing.JFrame {
         reprConfirmBtn = new javax.swing.JButton();
         recieptLabel = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(940, 500));
@@ -202,13 +205,11 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         jScrollPaneRepr.setViewportView(searchReprTbl);
-        if (searchReprTbl.getColumnModel().getColumnCount() > 0) {
-            searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
-            searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
-            searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
-            searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
-            searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
-        }
+        searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
+        searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
+        searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
+        searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
+        searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
 
         getContentPane().add(jScrollPaneRepr);
         jScrollPaneRepr.setBounds(0, 159, 930, 220);
@@ -241,7 +242,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reprConfirmBtn);
-        reprConfirmBtn.setBounds(30, 20, 70, 30);
+        reprConfirmBtn.setBounds(30, 70, 70, 30);
 
         recieptLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         recieptLabel.setText("تسليم لعميل رقم:");
@@ -258,6 +259,19 @@ public class SearchRepair extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(586, 20, 120, 30);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("ادخل التكلفة:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(260, 80, 110, 20);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(130, 80, 120, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -320,13 +334,16 @@ public class SearchRepair extends javax.swing.JFrame {
     }//GEN-LAST:event_repairAddBtnActionPerformed
 
     private void reprConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprConfirmBtnActionPerformed
-   if(reprConfirmCbox.getSelectedItem()== null)
+
+        if(reprConfirmCbox.getSelectedItem()== null)
         JOptionPane.showMessageDialog(null, "برجاء اختيار كود العميل ");
    else
-        if (searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4)== null||searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4).equals(""))         
+        if (searchReprTbl.getValueAt(rowIndex , 4)== null||searchReprTbl.getValueAt(rowIndex , 4).equals(""))         
         {
+            if(!costIsNull)
+              {
             String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-            query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 3) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
+            query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + searchReprTbl.getValueAt(rowIndex , 3) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
             try {
                 int rowCount = DB.stmt.executeUpdate(query);
                 if(rowCount == 0)
@@ -335,9 +352,9 @@ public class SearchRepair extends javax.swing.JFrame {
                 }
                 else
                 {
-                  searchReprTbl.setValueAt(timeStamp, db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 4);
-                  searchReprTbl.setValueAt(searchReprTbl.getValueAt(db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 3), db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 2);
-                  searchReprTbl.setValueAt(0.0, db.returnRowIndexForValue(searchReprTbl,9, reprConfirmCbox.getSelectedItem().toString()), 1);
+                  searchReprTbl.setValueAt(timeStamp, rowIndex , 4);
+                  searchReprTbl.setValueAt(searchReprTbl.getValueAt(rowIndex , 3), rowIndex , 2);
+                  searchReprTbl.setValueAt(0.0, rowIndex , 1);
                   JOptionPane.showMessageDialog(null, "تم التسليم بنجاح", "Success", 2, new ImageIcon("Ok.png"));
                   reprConfirmCbox.removeItemAt(reprConfirmCbox.getSelectedIndex());
                 }
@@ -349,6 +366,51 @@ public class SearchRepair extends javax.swing.JFrame {
                 Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
             }
+          }
+            else
+            {
+                if (jTextField1.getText() == null||jTextField1.getText().equals(""))
+                {
+                    JOptionPane.showMessageDialog(null,"من فضلك ادخل التكلفة");
+                    jTextField1.requestFocus();
+                }
+                else
+                {
+                  String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+                  try {
+                query = "UPDATE repair SET reset_data = '" + timeStamp + "', paid = '" + Double.parseDouble(jTextField1.getText()) + "', cost = '" + Double.parseDouble(jTextField1.getText()) + "' where code = '" + reprConfirmCbox.getSelectedItem().toString() + "'";
+                int rowCount = DB.stmt.executeUpdate(query);
+                if(rowCount == 0)
+                {
+                    JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث البانات", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                  searchReprTbl.setValueAt(timeStamp, rowIndex , 4);
+                  searchReprTbl.setValueAt(Double.parseDouble(jTextField1.getText()) , rowIndex , 3);
+                  searchReprTbl.setValueAt(Double.parseDouble(jTextField1.getText()) , rowIndex , 2);
+                  searchReprTbl.setValueAt(0.0, rowIndex , 1);
+                  JOptionPane.showMessageDialog(null, "تم التسليم بنجاح", "Success", 2, new ImageIcon("Ok.png"));
+                  reprConfirmCbox.removeItemAt(reprConfirmCbox.getSelectedIndex());
+                  jTextField1.setText(null);
+                }
+                
+              }
+            
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(new JPanel(), "خطأ فى الاتصال بقاعدة البيانات.. تأكد من تشغيل السيرفر", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(new JPanel(), "ادخل المبلغ بالارقام", "Error", JOptionPane.ERROR_MESSAGE);
+                jTextField1.setText(null);
+            }
+            
+           }
+            
+          }
 
         }
         else 
@@ -370,6 +432,20 @@ public class SearchRepair extends javax.swing.JFrame {
             recieptLabel.setVisible(true);
             reprConfirmCbox.setVisible(true);
             reprConfirmBtn.setVisible(true);
+            
+            rowIndex = db.returnRowIndexForValue(searchReprTbl, 9, reprConfirmCbox.getSelectedItem().toString());
+            if(searchReprTbl.getValueAt(rowIndex, 3) == null||searchReprTbl.getValueAt(rowIndex, 3).equals(""))
+            {
+                costIsNull = true;
+                jLabel1.setVisible(true);
+                jTextField1.setVisible(true);
+            }
+            else
+            {
+                costIsNull = false;
+                jLabel1.setVisible(false);
+                jTextField1.setVisible(false);
+            }
         }
     }//GEN-LAST:event_reprConfirmCboxActionPerformed
 
@@ -393,6 +469,10 @@ public class SearchRepair extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
       new MainPage().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+         reprConfirmBtnActionPerformed(evt);
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,7 +519,9 @@ public class SearchRepair extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPaneRepr;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton noSearchReprBtn;
     private javax.swing.JLabel recieptLabel;
     private javax.swing.JButton reprConfirmBtn;

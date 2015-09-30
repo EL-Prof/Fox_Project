@@ -730,9 +730,13 @@ public class SearchCompany extends javax.swing.JFrame {
             updateTelTxt.setText(null);
         }
     }//GEN-LAST:event_updateTelConfBtnActionPerformed
-  catch(Exception es){System.out.println("wrong");
-  }
+  catch(Exception es)
+    { 
+      JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل رقم تليفون صحيح", "Error", JOptionPane.ERROR_MESSAGE);
+      updateTelTxt.setText(null);
     }
+     
+   }
     private void updatePaidTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidTxtActionPerformed
         updatePaidConfBtnActionPerformed(evt) ;
     }//GEN-LAST:event_updatePaidTxtActionPerformed
