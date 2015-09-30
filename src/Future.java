@@ -358,17 +358,14 @@ public class Future extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFutureBtnActionPerformed
 
     private void noSearchFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchFutureBtnActionPerformed
-     if(searchFutureTxt.getText().isEmpty()){
-         JOptionPane.showMessageDialog(null, "تم الالغاء");
-     }
-     else{
+      
         searchFutureTxt.setText(null);
         model.setRowCount(0);
         updateFuturePaidBtn.setVisible(false);
         updateFuturePaidLbl.setVisible(false);
         updateFuturePaidConfBtn.setVisible(false);
         updateFuturePaidTxt.setVisible(false);
-     }
+        JOptionPane.showMessageDialog(null, "تم الالغاء");
     }//GEN-LAST:event_noSearchFutureBtnActionPerformed
 
     private void updateFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFutureBtnActionPerformed
@@ -376,19 +373,30 @@ public class Future extends javax.swing.JFrame {
         {
             search(searchFutureTxt);
         }
-        
-       updateFuturePaidBtn.setVisible(true);
+        if(searchFutureTbl.getRowCount() == 0)
+        {
+            updateFuturePaidBtn.setVisible(false);
+        }
+        else
+        {
+            updateFuturePaidBtn.setVisible(true);
+        }
 
     }//GEN-LAST:event_updateFutureBtnActionPerformed
 
     private void updateFuturePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFuturePaidConfBtnActionPerformed
-       if(Double.parseDouble(updateFuturePaidTxt.getText())>Double.parseDouble(model.getValueAt(model.getRowCount()-1,0).toString())){
-           JOptionPane.showMessageDialog(null, "المدفوع اكبر من المتبقي");
-           return;
-       }
-       else
+       
         try {
-            
+               if(Double.parseDouble(updateFuturePaidTxt.getText())>Double.parseDouble(model.getValueAt(model.getRowCount()-1,0).toString())){
+               JOptionPane.showMessageDialog(null, "المدفوع اكبر من المتبقي");
+               return;
+             }
+               if(Double.parseDouble(updateFuturePaidTxt.getText()) < 0)
+               {
+                   JOptionPane.showMessageDialog(new JPanel(), "من فضلك ادخل المبلغ بالموجب", "Error", JOptionPane.ERROR_MESSAGE);
+                   updateFuturePaidTxt.setText(null);
+                   return;
+               }
             String updateQuery = "UPDATE client SET paid = paid + '" + Double.parseDouble(updateFuturePaidTxt.getText()) + "' WHERE mob_no = '" + searchFutureTxt.getText() + "'";
             int rowCount = DB.stmt.executeUpdate(updateQuery);
             if (rowCount == 0) 
@@ -404,12 +412,13 @@ public class Future extends javax.swing.JFrame {
                 searchFutureTbl.setValueAt(paidNew, rowIndex, 1);
                 searchFutureTbl.setValueAt(remenderNew, rowIndex, 0);
 
+                JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
                 updateFuturePaidConfBtn.setVisible(false);
                 updateFuturePaidLbl.setVisible(false);
                 updateFuturePaidTxt.setVisible(false);
+                updateFuturePaidBtn.setVisible(false);
                 updateFuturePaidTxt.setText(null);
 
-                JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
             }
             
         } catch (SQLException ex) {
