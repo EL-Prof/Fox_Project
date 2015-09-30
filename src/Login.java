@@ -36,8 +36,8 @@ DB db = new DB() ;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         
-       
-       
+       Font f = new Font("PT Separated Baloon", Font.BOLD, 40);
+       jLabel1.setFont(f);
          
     }
 
