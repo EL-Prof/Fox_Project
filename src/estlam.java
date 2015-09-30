@@ -289,7 +289,7 @@ public class estlam extends javax.swing.JFrame {
         
         }
         
-        else if(!jTextField6.getText().isEmpty()&&Double.parseDouble(jTextField7.getText())<0){
+        else if(!jTextField7.getText().isEmpty()&&Double.parseDouble(jTextField7.getText())<0){
                                     JOptionPane.showMessageDialog(null,"أدخل المبلغ بطريقة صحيحة");
 
         }
