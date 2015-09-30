@@ -358,14 +358,21 @@ public class Future extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFutureBtnActionPerformed
 
     private void noSearchFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noSearchFutureBtnActionPerformed
-      
-        searchFutureTxt.setText(null);
-        model.setRowCount(0);
-        updateFuturePaidBtn.setVisible(false);
-        updateFuturePaidLbl.setVisible(false);
-        updateFuturePaidConfBtn.setVisible(false);
-        updateFuturePaidTxt.setVisible(false);
-        JOptionPane.showMessageDialog(null, "تم الالغاء");
+        if(searchFutureTbl.getRowCount() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "تم الالغاء بالفعل");
+        }
+        else
+        {
+            searchFutureTxt.setText(null);
+            model.setRowCount(0);
+            updateFuturePaidBtn.setVisible(false);
+            updateFuturePaidLbl.setVisible(false);
+            updateFuturePaidConfBtn.setVisible(false);
+            updateFuturePaidTxt.setVisible(false);
+            JOptionPane.showMessageDialog(null, "تم الالغاء");
+        }       
+        
     }//GEN-LAST:event_noSearchFutureBtnActionPerformed
 
     private void updateFutureBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFutureBtnActionPerformed
