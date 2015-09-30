@@ -3,7 +3,9 @@
 import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -32,12 +34,17 @@ DB db = new DB() ;
      * Creates new form Login
      */
     public Login() {
+        try {
+   GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); 
+     
+ ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
+} catch (Exception e) {
+ //Handle exception
+}
+
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
-       Font f = new Font("PT Separated Baloon", Font.BOLD, 40);
-       jLabel1.setFont(f);
          
     }
 
