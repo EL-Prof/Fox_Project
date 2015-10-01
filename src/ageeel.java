@@ -230,6 +230,9 @@ query = "Select agent_name from client WHERE mob_no ='"+jTextField6.getText()+"'
       if (jTextField5.getText().isEmpty()){                        JOptionPane.showMessageDialog(null,"أدخل اسم العميل");
 return;
       }
+       if(jTextField3.getText().isEmpty()){jTextField3.setText("0");
+      
+      }
       else
         query="SELECT agent_name FROM client WHERE mob_no="+jTextField4.getText();
         try{
