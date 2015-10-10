@@ -575,7 +575,7 @@ public  void print_component (){
              String.format("%31s\n %28s\n", "*******************" ,"^-^ يشرفنا تواجدكم دائما ")+
              "لا يقبل اي مرتجع الا بوجود البون         \n   Tel : 0100 054 5178 \n     تابعونا على فيسبوك :الضياء\n     fb.com/aldiaaGenius\n";
      
-     System.out.println(s);
+    
      jTextPane1.setText(s);
                 //print
             PrinterJob pjob = PrinterJob.getPrinterJob();
@@ -621,10 +621,19 @@ jTextField10.setText(sum.toString()+" LE");
 public void reg_bill(){
   
      for (int i = 0; i < bill_model.getRowCount(); i++) {
-            query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
+            
+         query = "select quantity from product where barcode ="+ bill_model.getValueAt(i, 5) ; 
+         try {
+         rset = DB.stmt.executeQuery(query);
+         rset.next();
+         if(rset.getInt(1)<Integer.parseInt(bill_model.getValueAt(i, 1).toString()))
+             query = "UPDATE `foxproject`.`product` SET `quantity`=0"
+                    +" WHERE `barcode`='"+bill_model.getValueAt(i, 5)+"'";
+else
+         query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
                     Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+bill_model.getValueAt(i, 5)+"'";
       
-                try {
+                
                     DB.stmt.executeUpdate(query);
                     
                 } catch (SQLException ex) {

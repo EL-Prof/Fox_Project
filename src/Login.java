@@ -274,7 +274,7 @@ public static boolean Authorize(String m){
       byte[] mac = network.getHardwareAddress();
 
       if(mac != null) {
-        System.out.print("Current MAC address : ");
+    
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < mac.length; i++) {
