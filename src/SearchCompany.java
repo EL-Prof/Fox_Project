@@ -600,7 +600,6 @@ public class SearchCompany extends javax.swing.JFrame {
     private void updatePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidConfBtnActionPerformed
 
         String payDate = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
-        System.out.println(payDate.toString());
         query = "Select remender from company where name = '" + updateCompTxt.getText() + "'" ;
        
          try 
@@ -653,8 +652,6 @@ public class SearchCompany extends javax.swing.JFrame {
                     
                     //payments
                     String updateQuery1 = "INSERT INTO `payment`(`company_name`, `paid`, `remain`, `date`) VALUES ('"+updateCompTxt.getText()+"', '"+Double.parseDouble(updatePaidTxt.getText())+"', '"+remenderNew+"', '"+payDate.toString()+"')" ;
-                  
-                    System.out.println(updateQuery1);
                     int rowCount1 = DB.stmt.executeUpdate(updateQuery1);
                     updatePaidTxt.setText(null);
                     if(rowCount1 == 0)
