@@ -34,11 +34,13 @@ public class SearchRepair extends javax.swing.JFrame {
         reprConfirmBtn.hide();
         jLabel1.hide();
         jTextField1.hide();
+        jTextArea1.hide();
+        jLabel2.hide();
     }
     
     private void search(String query)
     {
-        Object[] row = new Object[10] ;
+        Object[] row = new Object[11] ;
         
         try 
         {
@@ -51,6 +53,7 @@ public class SearchRepair extends javax.swing.JFrame {
             else
             {
                 do{
+                    row[10] = rset.getString(10) ;
                     row[9] = rset.getString(1) ;   
                     row[8] = rset.getString(2) ;
                     row[7] = rset.getString(9) ;
@@ -60,6 +63,7 @@ public class SearchRepair extends javax.swing.JFrame {
                     row[3] = rset.getString(6) ;
                     row[2] = rset.getString(7) ;
                     row[0] = rset.getString(8) ;
+                    jTextArea1.setText(rset.getString(11));
             
                   if(!(row[3]==null||row[3].toString().equals("")) && !(row[2]==null||row[2].toString().equals("")))
                     {
@@ -136,9 +140,12 @@ public class SearchRepair extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(965, 500));
+        setMinimumSize(new java.awt.Dimension(1070, 615));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -153,12 +160,12 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(searchReprTxt);
-        searchReprTxt.setBounds(400, 20, 180, 24);
+        searchReprTxt.setBounds(470, 20, 180, 24);
 
         searchReprLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchReprLbl.setText("بحث بواسطة :");
         getContentPane().add(searchReprLbl);
-        searchReprLbl.setBounds(710, 20, 120, 24);
+        searchReprLbl.setBounds(780, 20, 120, 24);
 
         searchReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         searchReprBtn.setText("بحث");
@@ -169,7 +176,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(searchReprBtn);
-        searchReprBtn.setBounds(520, 70, 63, 30);
+        searchReprBtn.setBounds(590, 70, 63, 30);
 
         noSearchReprBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noSearchReprBtn.setText("عميل جديد");
@@ -180,18 +187,18 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(noSearchReprBtn);
-        noSearchReprBtn.setBounds(400, 70, 103, 30);
+        noSearchReprBtn.setBounds(470, 70, 103, 30);
 
         searchReprTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "اسم العامل", "المتبقى", "المدفوع", "التكلفة", "تاريخ التسليم", "تاريخ الاستلام", "العطل", "رقم التليفون", "اسم العميل", "كود العميل"
+                "اسم العامل", "المتبقى", "المدفوع", "التكلفة", "تاريخ التسليم", "تاريخ الاستلام", "العطل", "رقم التليفون", "اسم العميل", "كود العميل", "موديل الجهاز"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -208,11 +215,12 @@ public class SearchRepair extends javax.swing.JFrame {
         searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
         searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
         searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
+        searchReprTbl.getColumnModel().getColumn(6).setPreferredWidth(140);
         searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
         searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
 
         getContentPane().add(jScrollPaneRepr);
-        jScrollPaneRepr.setBounds(0, 159, 960, 220);
+        jScrollPaneRepr.setBounds(0, 159, 1060, 220);
 
         reprMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprMainBtn.setText("القائمة الرئيسية");
@@ -223,7 +231,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reprMainBtn);
-        reprMainBtn.setBounds(380, 410, 137, 42);
+        reprMainBtn.setBounds(420, 530, 137, 42);
 
         reprConfirmCbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +239,7 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reprConfirmCbox);
-        reprConfirmCbox.setBounds(130, 20, 60, 30);
+        reprConfirmCbox.setBounds(200, 20, 60, 30);
 
         reprConfirmBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprConfirmBtn.setText("تأكيد");
@@ -242,12 +250,12 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reprConfirmBtn);
-        reprConfirmBtn.setBounds(30, 70, 70, 30);
+        reprConfirmBtn.setBounds(100, 70, 70, 30);
 
         recieptLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         recieptLabel.setText("تسليم لعميل رقم:");
         getContentPane().add(recieptLabel);
-        recieptLabel.setBounds(200, 20, 130, 30);
+        recieptLabel.setBounds(270, 20, 130, 30);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "كود العميل", "اسم العميل", "الكل" }));
@@ -258,12 +266,12 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(586, 20, 120, 30);
+        jComboBox1.setBounds(660, 20, 120, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("ادخل التكلفة:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(260, 80, 110, 20);
+        jLabel1.setBounds(330, 80, 110, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +279,19 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(130, 80, 120, 20);
+        jTextField1.setBounds(200, 80, 120, 20);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(110, 430, 850, 70);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("ملاحظات");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(480, 400, 70, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -284,6 +304,8 @@ public class SearchRepair extends javax.swing.JFrame {
 
         if(jComboBox1.getSelectedIndex() == 0)
         {
+            jTextArea1.setVisible(true);
+            jLabel2.setVisible(true);
             query = "Select * from repair where code = '" + searchReprTxt.getText() + "'" ;
             if(!db.ValueIsExist(searchReprTbl, 9 , searchReprTxt.getText()))
             {
@@ -298,6 +320,8 @@ public class SearchRepair extends javax.swing.JFrame {
         
         else if(jComboBox1.getSelectedIndex() == 1)
         {
+            jTextArea1.setVisible(true);
+            jLabel2.setVisible(true);
             query = "Select * from repair where agent_name = '" + searchReprTxt.getText() + "'" ;
             search(query);
             
@@ -305,6 +329,8 @@ public class SearchRepair extends javax.swing.JFrame {
         
         else if(jComboBox1.getSelectedIndex() == 2)
         {
+            jTextArea1.setVisible(false);
+            jLabel2.setVisible(false);
             query = "Select * from repair " ;
             search(query);
             
@@ -319,6 +345,8 @@ public class SearchRepair extends javax.swing.JFrame {
         reprConfirmBtn.setVisible(false);
         model.setRowCount(0);
         reprConfirmCbox.removeAllItems();
+        jLabel2.setVisible(false);
+        jTextArea1.setVisible(false);
     }//GEN-LAST:event_noSearchReprBtnActionPerformed
 
     private void reprMainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprMainBtnActionPerformed
@@ -520,7 +548,10 @@ public class SearchRepair extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneRepr;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton noSearchReprBtn;
     private javax.swing.JLabel recieptLabel;
