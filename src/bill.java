@@ -101,6 +101,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(788, 570));
@@ -126,7 +127,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(90, 630, 130, 40);
+        jButton1.setBounds(0, 580, 130, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("رقم الفاتورة");
@@ -156,11 +157,6 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
 
         jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextField3);
         jTextField3.setBounds(160, 60, 130, 30);
 
@@ -226,6 +222,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
         getContentPane().add(jTextField5);
         jTextField5.setBounds(720, 150, 60, 60);
 
+        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(jTextField6);
         jTextField6.setBounds(650, 150, 70, 60);
@@ -315,7 +312,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(310, 630, 100, 40);
+        jButton3.setBounds(350, 630, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("إجمالي الفاتورة : ");
@@ -335,7 +332,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(0, 630, 90, 40);
+        jButton5.setBounds(0, 630, 110, 40);
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton6.setText("أجل ");
@@ -345,7 +342,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(220, 630, 90, 40);
+        jButton6.setBounds(140, 630, 90, 40);
 
         jButton7.setLabel("مسـح");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -355,6 +352,16 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
         });
         getContentPane().add(jButton7);
         jButton7.setBounds(173, 580, 70, 23);
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton8.setText("تسجيــل");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(240, 630, 100, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -417,8 +424,8 @@ jTextField5.setText("");
             return;
             }
             
-                total=Double.parseDouble(jTextField6.getText())*Double.parseDouble(jTextField5.getText());
-            Object []  row = {total ,jTextField5.getText(),jTextField6.getText()  ,
+                total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
+            Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
                                                          rset.getString(3) , rset.getString(2) , rset.getString(1) } ;
 
             bill_model.addRow(row) ;
@@ -487,9 +494,15 @@ else
         
     }//GEN-LAST:event_formWindowClosing
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       
+       reg_bill();
+        JOptionPane.showMessageDialog(null,"تم التسجيل بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
+       new bill().setVisible(true);
+       this.dispose();
+        
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -534,6 +547,7 @@ else
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
