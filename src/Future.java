@@ -345,6 +345,15 @@ public class Future extends javax.swing.JFrame {
                     
                 } while (rset.next());
                 
+                int  srow = searchFutureTbl.getSelectedRow();
+                if(srow>-1)
+                {
+                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
+                    searchFutureTxt.setText(phone) ;
+                    updateFuturePaidBtn.setVisible(true);
+                    
+                }
+                
             }
         } 
         catch (SQLException ex)
