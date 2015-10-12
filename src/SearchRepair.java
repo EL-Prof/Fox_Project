@@ -61,7 +61,7 @@ public class SearchRepair extends javax.swing.JFrame {
                     row[2] = rset.getString(7) ;
                     row[0] = rset.getString(8) ;
             
-                  if(!row[3].toString().equals("") && !row[2].toString().equals(""))
+                  if(!(row[3]==null||row[3].toString().equals("")) && !(row[2]==null||row[2].toString().equals("")))
                     {
                       row[1] = Double.parseDouble(row[3].toString())  - Double.parseDouble(row[2].toString()) ;
                     }
@@ -138,7 +138,7 @@ public class SearchRepair extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(940, 500));
+        setMinimumSize(new java.awt.Dimension(965, 500));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -212,7 +212,7 @@ public class SearchRepair extends javax.swing.JFrame {
         searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
 
         getContentPane().add(jScrollPaneRepr);
-        jScrollPaneRepr.setBounds(0, 159, 930, 220);
+        jScrollPaneRepr.setBounds(0, 159, 960, 220);
 
         reprMainBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         reprMainBtn.setText("القائمة الرئيسية");
