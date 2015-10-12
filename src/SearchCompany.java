@@ -45,6 +45,7 @@ public class SearchCompany extends javax.swing.JFrame {
         updateAddLbl.hide();
         updateAddTxt.hide();
         jButton1.hide();
+        updateAddBtn1.hide();
         
          query = "Select name from company"  ;
          try 
@@ -164,6 +165,7 @@ public class SearchCompany extends javax.swing.JFrame {
         updateAddTxt = new javax.swing.JTextField();
         updateAddConfBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        updateAddBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -361,6 +363,15 @@ public class SearchCompany extends javax.swing.JFrame {
             }
         });
 
+        updateAddBtn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        updateAddBtn1.setText("إضافة بيانات طلبية");
+        updateAddBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateAddBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAddBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -424,11 +435,12 @@ public class SearchCompany extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(updateTelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(updatePaidBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(updateAddBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(updateAddBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateAddBtn1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(311, 311, 311))))
+                        .addGap(312, 312, 312))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,9 +491,11 @@ public class SearchCompany extends javax.swing.JFrame {
                     .addComponent(updateAddLbl)
                     .addComponent(updateAddTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateAddConfBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(updateAddBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(compMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -551,6 +565,7 @@ public class SearchCompany extends javax.swing.JFrame {
             updateTelBtn.setVisible(false);
             updateAddBtn.setVisible(false);
             jButton1.setVisible(false);
+            updateAddBtn1.setVisible(false);
             JOptionPane.showMessageDialog(null , "من فضلك ادخل اسم الشركة المراد تحديث بياناتها");
         }
         else
@@ -565,6 +580,7 @@ public class SearchCompany extends javax.swing.JFrame {
                updateTelBtn.setVisible(false);
                updateAddBtn.setVisible(false);
                jButton1.setVisible(false);
+               updateAddBtn1.setVisible(false);
            }
            else
            {
@@ -572,6 +588,7 @@ public class SearchCompany extends javax.swing.JFrame {
                updateTelBtn.setVisible(true);
                updateAddBtn.setVisible(true);
                jButton1.setVisible(true);
+               updateAddBtn1.setVisible(true);
            }
         }
         
@@ -823,6 +840,13 @@ public class SearchCompany extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void updateAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddBtn1ActionPerformed
+     addorder add =new addorder(updateCompTxt.getText());
+     add.setVisible(true);
+     this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateAddBtn1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -878,6 +902,7 @@ public class SearchCompany extends javax.swing.JFrame {
     private javax.swing.JTable searchCompTbl;
     private javax.swing.JTextField searchCompTxt;
     private javax.swing.JButton updateAddBtn;
+    private javax.swing.JButton updateAddBtn1;
     private javax.swing.JButton updateAddConfBtn;
     private javax.swing.JLabel updateAddLbl;
     private javax.swing.JTextField updateAddTxt;

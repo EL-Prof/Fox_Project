@@ -62,7 +62,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
         mainSearchLbl.setBounds(294, 26, 80, 43);
 
         mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات", "آجل", "مدفوعات لشركة" }));
+        mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات", "آجل", "مدفوعات لشركة", "طلبيات" }));
         mainSearchCBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainSearchCBoxActionPerformed(evt);
@@ -256,6 +256,10 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
         {
             new searchPayment().setVisible(true) ;
             this.dispose() ;
+        }
+        else if(mainSearchCBox.getSelectedIndex()==6){
+            new searchorder().setVisible(true);
+            this.dispose();
         }
         
     }//GEN-LAST:event_mainSearchBtnActionPerformed

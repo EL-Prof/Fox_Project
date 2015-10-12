@@ -1,3 +1,11 @@
+
+import java.awt.ComponentOrientation;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +18,24 @@
  */
 public class addorder extends javax.swing.JFrame {
 
+DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
+String query ;
+
     /**
      * Creates new form addorder
      */
-    public addorder() {
+    public addorder(String q) {
         initComponents();
+        jTextArea1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+                jTextArea2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
+        jTextField2.setText(q);
+         jTextField3.setText(DB.dateFormat.format(DB.d));
+        jTextField3.setEditable(false);
+    }
+
+    private addorder() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -33,15 +54,18 @@ public class addorder extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 600));
@@ -64,7 +88,7 @@ public class addorder extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(110, 50, 60, 40);
+        jTextField1.setBounds(50, 50, 120, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("التاريخ");
@@ -72,6 +96,7 @@ public class addorder extends javax.swing.JFrame {
         jLabel3.setBounds(390, 50, 50, 30);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -86,6 +111,7 @@ public class addorder extends javax.swing.JFrame {
         jLabel4.setBounds(174, 50, 80, 30);
 
         jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -94,67 +120,69 @@ public class addorder extends javax.swing.JFrame {
         getContentPane().add(jTextField3);
         jTextField3.setBounds(260, 50, 120, 30);
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "الاجمالي", "سعر الوحدة", "الاسم", "العدد"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 150, 660, 210);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("بيانات الفاتورة");
+        jLabel5.setText("بيانات الفاتورة :");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(290, 110, 100, 40);
+        jLabel5.setBounds(540, 180, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("المدفوع");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(290, 380, 110, 50);
+        jLabel6.setBounds(280, 440, 110, 40);
 
-        jTextField4.setEditable(false);
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(150, 390, 130, 40);
+        jTextField4.setBounds(140, 440, 130, 40);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("الاجمالي");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(554, 380, 110, 50);
+        jLabel7.setBounds(500, 430, 110, 50);
 
-        jTextField5.setEditable(false);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(409, 390, 130, 40);
+        jTextField5.setBounds(360, 440, 130, 40);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("حفظ\n");
+        jButton1.setText("حفظ ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(0, 503, 100, 40);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("إضافة");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(0, 360, 90, 30);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(190, 296, 350, 120);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(500, 180, 50, 190);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("ملاحظات :");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(560, 360, 80, 30);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(40, 120, 500, 160);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,9 +207,55 @@ public class addorder extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     if(jTextField1.getText().isEmpty()){
+                          JOptionPane.showMessageDialog(null,"من فضلك أدخل رقم الفاتوره");
+     }
+        else if(jTextArea2.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null,"من فضلك محتويات الفاتورة");                                                
+
+                                  } 
+        else if (jTextField5.getText().isEmpty() || jTextField4.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"من فضلك أدخل مبالغ الفاتورة");                                                
+
+        
+        }
+     else
+     try{
+         query="INSERT INTO foxproject.`order` (order_no,content,company_name,cost,paid,date,notes) VALUES("+jTextField1.getText()+",'"+jTextArea2.getText()+"','"+jTextField2.getText()+"',"+Double.parseDouble(jTextField5.getText())+","+Double.parseDouble(jTextField4.getText())+",'"+jTextField3.getText()+"','"+jTextArea1.getText()+"')";
+                          String updateQuery = "UPDATE company SET paid = paid + '" + Double.parseDouble(jTextField4.getText()) + "' , remender = remender + '" + (Double.parseDouble(jTextField5.getText())-Double.parseDouble(jTextField4.getText())) + "' WHERE name = '" + jTextField2.getText() + "'" ;
+int x = DB.stmt.executeUpdate(updateQuery);
+            if(DB.stmt.executeUpdate(query)>0&&x>0)
+                {
+                   JOptionPane.showMessageDialog(null, "تم الاضافه بنجاح", "Success", 2, new ImageIcon("Ok.png"));
+                new SearchCompany().setVisible(true);
+                  this.dispose();
+                
+                }
+            else {                    JOptionPane.showMessageDialog(null,"خطأ في إضافة الفاتورة");                                                
+
+}
+     }
+     catch(Exception ew){System.out.println("wrong");
+     }
+     /*
+     try{
+             //    String updateQuery = "UPDATE company SET paid = paid + '" + Double.parseDouble(jTextField4.getText()) + "' , remender = remender + '" + (Double.parseDouble(jTextField5.getText())-Double.parseDouble(jTextField4.getText())) + "' WHERE name = '" + jTextField2.getText() + "'" ;
+    
+//int x = DB.stmt.executeUpdate(updateQuery);
+if(x>0){                    JOptionPane.showMessageDialog(null,"تم التعديل بنجاح");                                                
+  new SearchCompany().setVisible(true);
+                  this.dispose();
+                
+}
+else {                    JOptionPane.showMessageDialog(null,"خطأ في إضافة الفاتورة");                                                
+
+}
+     }
+     catch(Exception ew){System.out.println("wrong");
+     }
+    */ 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,7 +294,6 @@ public class addorder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -228,8 +301,12 @@ public class addorder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
