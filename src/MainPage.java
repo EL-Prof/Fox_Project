@@ -62,14 +62,14 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
         mainSearchLbl.setBounds(294, 26, 80, 43);
 
         mainSearchCBox.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات", "آجل" }));
+        mainSearchCBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "منتج", "شركة", "فاتورة", "تصليحات", "آجل", "مدفوعات لشركة" }));
         mainSearchCBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mainSearchCBoxActionPerformed(evt);
             }
         });
         getContentPane().add(mainSearchCBox);
-        mainSearchCBox.setBounds(180, 29, 110, 40);
+        mainSearchCBox.setBounds(150, 29, 140, 40);
 
         mainSearchBtn.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         mainSearchBtn.setText("بحث");
@@ -93,7 +93,7 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
             }
         });
         getContentPane().add(mainSearchBtn);
-        mainSearchBtn.setBounds(80, 30, 80, 40);
+        mainSearchBtn.setBounds(60, 30, 80, 40);
 
         mainSellBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mainSellBtn.setText("بيع");
@@ -252,6 +252,12 @@ this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize()
             new Future().setVisible(true) ;
             this.dispose() ;
         }
+        else if (mainSearchCBox.getSelectedIndex()== 5) 
+        {
+            new searchPayment().setVisible(true) ;
+            this.dispose() ;
+        }
+        
     }//GEN-LAST:event_mainSearchBtnActionPerformed
 
     private void mainLogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainLogOutBtnActionPerformed

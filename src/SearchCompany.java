@@ -6,6 +6,9 @@
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -595,6 +598,9 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTelTxtActionPerformed
 
     private void updatePaidConfBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePaidConfBtnActionPerformed
+
+        String payDate = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+        System.out.println(payDate.toString());
         query = "Select remender from company where name = '" + updateCompTxt.getText() + "'" ;
        
          try 
@@ -642,9 +648,19 @@ public class SearchCompany extends javax.swing.JFrame {
                     updatePaidConfBtn.setVisible(false);
                     updatePaidLbl.setVisible(false);
                     updatePaidTxt.setVisible(false);
-                    updatePaidTxt.setText(null);
                             
                     JOptionPane.showMessageDialog(null, "تم اضافة المبلغ بنجاح ", "Success", 2, new ImageIcon("Ok.png"));
+                    
+                    //payments
+                    String updateQuery1 = "INSERT INTO `payment`(`company_name`, `paid`, `remain`, `date`) VALUES ('"+updateCompTxt.getText()+"', '"+Double.parseDouble(updatePaidTxt.getText())+"', '"+remenderNew+"', '"+payDate.toString()+"')" ;
+                  
+                    System.out.println(updateQuery1);
+                    int rowCount1 = DB.stmt.executeUpdate(updateQuery1);
+                    updatePaidTxt.setText(null);
+                    if(rowCount1 == 0)
+                    {
+                        JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث المدفوعات", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
               }
             }
