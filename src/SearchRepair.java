@@ -34,7 +34,7 @@ public class SearchRepair extends javax.swing.JFrame {
         reprConfirmBtn.hide();
         jLabel1.hide();
         jTextField1.hide();
-        jTextArea1.hide();
+        jScrollPane1.setVisible(false);
         jLabel2.hide();
     }
     
@@ -282,6 +282,7 @@ public class SearchRepair extends javax.swing.JFrame {
         jTextField1.setBounds(200, 80, 120, 20);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setEditable(false);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -304,7 +305,7 @@ public class SearchRepair extends javax.swing.JFrame {
 
         if(jComboBox1.getSelectedIndex() == 0)
         {
-            jTextArea1.setVisible(true);
+            jScrollPane1.setVisible(true);
             jLabel2.setVisible(true);
             query = "Select * from repair where code = '" + searchReprTxt.getText() + "'" ;
             if(!db.ValueIsExist(searchReprTbl, 9 , searchReprTxt.getText()))
@@ -320,7 +321,7 @@ public class SearchRepair extends javax.swing.JFrame {
         
         else if(jComboBox1.getSelectedIndex() == 1)
         {
-            jTextArea1.setVisible(true);
+            jScrollPane1.setVisible(true);
             jLabel2.setVisible(true);
             query = "Select * from repair where agent_name = '" + searchReprTxt.getText() + "'" ;
             search(query);
@@ -329,7 +330,7 @@ public class SearchRepair extends javax.swing.JFrame {
         
         else if(jComboBox1.getSelectedIndex() == 2)
         {
-            jTextArea1.setVisible(false);
+            jScrollPane1.setVisible(false);
             jLabel2.setVisible(false);
             query = "Select * from repair " ;
             search(query);
