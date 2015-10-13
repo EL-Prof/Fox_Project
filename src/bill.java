@@ -127,7 +127,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(0, 580, 130, 40);
+        jButton1.setBounds(0, 590, 130, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("رقم الفاتورة");
@@ -222,7 +222,6 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
         getContentPane().add(jTextField5);
         jTextField5.setBounds(720, 150, 60, 60);
 
-        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         getContentPane().add(jTextField6);
         jTextField6.setBounds(650, 150, 70, 60);
@@ -312,7 +311,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(350, 630, 100, 40);
+        jButton3.setBounds(300, 630, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("إجمالي الفاتورة : ");
@@ -342,7 +341,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(140, 630, 90, 40);
+        jButton6.setBounds(110, 630, 90, 40);
 
         jButton7.setLabel("مسـح");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -361,7 +360,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             }
         });
         getContentPane().add(jButton8);
-        jButton8.setBounds(240, 630, 100, 40);
+        jButton8.setBounds(200, 630, 100, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -424,8 +423,8 @@ jTextField5.setText("");
             return;
             }
             
-                total=Double.parseDouble(rset.getString(6))*Double.parseDouble(jTextField5.getText());
-            Object []  row = {total ,jTextField5.getText(),rset.getString(6)  ,
+                total=Double.parseDouble(jTextField6.getText())*Double.parseDouble(jTextField5.getText());
+            Object []  row = {total ,jTextField5.getText(),jTextField6.getText()  ,
                                                          rset.getString(3) , rset.getString(2) , rset.getString(1) } ;
 
             bill_model.addRow(row) ;
