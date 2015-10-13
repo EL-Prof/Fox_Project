@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -211,6 +213,16 @@ public class Future extends javax.swing.JFrame {
             }
         });
         searchFutureTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        searchFutureTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFutureTblMouseClicked(evt);
+            }
+        });
+        searchFutureTbl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFutureTblKeyTyped(evt);
+            }
+        });
         jScrollPaneFuture.setViewportView(searchFutureTbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -345,14 +357,7 @@ public class Future extends javax.swing.JFrame {
                     
                 } while (rset.next());
                 
-                int  srow = searchFutureTbl.getSelectedRow();
-                if(srow>-1)
-                {
-                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
-                    searchFutureTxt.setText(phone) ;
-                    updateFuturePaidBtn.setVisible(true);
-                    
-                }
+                
                 
             }
         } 
@@ -466,6 +471,30 @@ public class Future extends javax.swing.JFrame {
        new MainPage().setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
+    private void searchFutureTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFutureTblMouseClicked
+        int  srow = searchFutureTbl.getSelectedRow();
+                if(srow>-1)
+                {
+                    searchFutureTbl.setSelectionBackground(Color.PINK);
+                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
+                    searchFutureTxt.setText(phone) ;
+                    updateFuturePaidBtn.setVisible(true);
+                    
+                }
+    }//GEN-LAST:event_searchFutureTblMouseClicked
+
+    private void searchFutureTblKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFutureTblKeyTyped
+         int  srow = searchFutureTbl.getSelectedRow();
+                if(srow>-1)
+                {
+                    searchFutureTbl.setSelectionBackground(Color.PINK);
+                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
+                    searchFutureTxt.setText(phone) ;
+                    updateFuturePaidBtn.setVisible(true);
+                    
+                }
+    }//GEN-LAST:event_searchFutureTblKeyTyped
+        
     /**
      * @param args the command line arguments
      */
