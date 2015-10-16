@@ -149,7 +149,8 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
+  
+        String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
    String query3="SELECT * FROM company WHERE tel = "+jTextField1.getText();
 
         try{
@@ -157,8 +158,14 @@ this.dispose();
                             JOptionPane.showMessageDialog(null,"أدخل رقم التليفون بطريقة صحيحة");
 
             }
+   if(jTextField5.getText().isEmpty()){
+       jTextField5.setText("0");
+   }
+    if(jTextField2.getText().isEmpty()){
+       jTextField2.setText("0");
+   }
    
-        if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() )
+      else  if(jTextField4.getText().isEmpty() && jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() )
             JOptionPane.showMessageDialog(null,"برجاء إدخال كافة البيانات");
     else if (jTextField4.getText().isEmpty()){            JOptionPane.showMessageDialog(null,"برجاء إدخال اسم الشركة");
 
