@@ -841,7 +841,8 @@ public class SearchCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void updateAddBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAddBtn1ActionPerformed
-     addorder add =new addorder(updateCompTxt.getText());
+   
+        addorder add =new addorder(updateCompTxt.getText());
      add.setVisible(true);
      this.dispose();
         // TODO add your handling code here:
