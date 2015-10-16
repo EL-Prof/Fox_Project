@@ -1,9 +1,12 @@
 
 import java.awt.ComponentOrientation;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -20,6 +23,7 @@ public class addorder extends javax.swing.JFrame {
 
 DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
 String query ;
+ResultSet rset;
 
     /**
      * Creates new form addorder
@@ -227,12 +231,32 @@ String query ;
         }
      else
      try{
+         String payDate = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
          query="INSERT INTO foxproject.`order` (order_no,content,company_name,cost,paid,date,notes) VALUES("+jTextField1.getText()+",'"+jTextArea2.getText()+"','"+jTextField2.getText()+"',"+Double.parseDouble(jTextField5.getText())+","+Double.parseDouble(jTextField4.getText())+",'"+jTextField3.getText()+"','"+jTextArea1.getText()+"')";
                           String updateQuery = "UPDATE company SET paid = paid + '" + Double.parseDouble(jTextField4.getText()) + "' , remender = remender + '" + (Double.parseDouble(jTextField5.getText())-Double.parseDouble(jTextField4.getText())) + "' WHERE name = '" + jTextField2.getText() + "'" ;
 int x = DB.stmt.executeUpdate(updateQuery);
             if(DB.stmt.executeUpdate(query)>0&&x>0)
                 {
                    JOptionPane.showMessageDialog(null, "تم الاضافه بنجاح", "Success", 2, new ImageIcon("Ok.png"));
+                   //payments
+                   query = "Select remender from company where name = '" + jTextField2.getText() + "'" ;  
+                rset = DB.stmt.executeQuery(query) ;
+                if (!rset.next())
+               {
+                  JOptionPane.showMessageDialog(null,"لا يوجد بيانات");
+               }
+                else
+                {
+                     double remenderNew = rset.getDouble("remender") + (Double.parseDouble(jTextField5.getText()) - Double.parseDouble(jTextField4.getText()));
+                     String updateQuery1 = "INSERT INTO `payment`(`company_name`, `paid`, `remain`, `date`) VALUES ('"+jTextField2.getText()+"', '"+Double.parseDouble(jTextField4.getText())+"', '"+remenderNew+"', '"+payDate.toString()+"')" ;
+                     int rowCount = DB.stmt.executeUpdate(updateQuery1);
+                     if(rowCount == 0)
+                    {
+                        JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث المدفوعات", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                     
+                }
+                    
                 new SearchCompany().setVisible(true);
                   this.dispose();
                 
