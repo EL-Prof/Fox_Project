@@ -249,7 +249,7 @@ int x = DB.stmt.executeUpdate(updateQuery);
                }
                 else
                 {
-                     double remenderNew = rset.getDouble("remender") + (Double.parseDouble(jTextField5.getText()) - Double.parseDouble(jTextField4.getText()));
+                     double remenderNew = rset.getDouble("remender");
                      String updateQuery1 = "INSERT INTO `payment`(`company_name`, `paid`, `remain`, `date`) VALUES ('"+jTextField2.getText()+"', '"+Double.parseDouble(jTextField4.getText())+"', '"+remenderNew+"', '"+payDate.toString()+"')" ;
                      int rowCount = DB.stmt.executeUpdate(updateQuery1);
                      if(rowCount == 0)
