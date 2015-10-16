@@ -494,12 +494,18 @@ else
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       
+
+        if(bill_model.getRowCount()<1)
+        
+        JOptionPane.showMessageDialog(null, "من فضلك اضف فاتوره");
+        
+        else 
+        {
        reg_bill();
         JOptionPane.showMessageDialog(null,"تم التسجيل بنجاح !","Success!", 2 , new ImageIcon("Ok.png"));
        new bill().setVisible(true);
        this.dispose();
-        
+        }
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
