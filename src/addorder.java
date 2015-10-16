@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -265,7 +267,9 @@ int x = DB.stmt.executeUpdate(updateQuery);
 
 }
      }
-     catch(Exception ew){System.out.println("wrong");
+     catch(Exception ex){
+         System.out.println(ex.getMessage());
+         Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
      }
      /*
      try{
