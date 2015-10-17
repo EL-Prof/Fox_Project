@@ -4,6 +4,8 @@
  */
 
 
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,7 +26,8 @@ public class SearchBill extends javax.swing.JFrame {
     DefaultTableModel model ;
     ResultSet rset;
     String query;
-    
+     ByteArrayInputStream bais;
+     ObjectInputStream ins;
     public SearchBill() {
         initComponents();
         
@@ -350,7 +353,11 @@ public class SearchBill extends javax.swing.JFrame {
                 
                 model = (DefaultTableModel) searchBillTbl.getModel() ;
                 model.addRow(row) ;
-                
+               
+                bais = new ByteArrayInputStream(rset.getBytes(5));
+                ins = new ObjectInputStream(bais);
+                  
+              new Bill_details (ins.readObject()).setVisible(true) ;
             }
         }
         

@@ -1,4 +1,5 @@
 
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.PrintJob;
@@ -7,6 +8,9 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -16,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,8 +36,10 @@ public class bill extends javax.swing.JFrame {
     Double total , sum ;
    String query ; 
    ResultSet rset ; 
-    static  DefaultTableModel bill_model ;
-    
+      DefaultTableModel bill_model  ;
+    ByteArrayOutputStream bos = null;
+    ObjectOutputStream oos= null;
+    byte[] data;
 DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     
     
@@ -40,9 +47,9 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     public bill() {
         initComponents();
         jTextField4.requestFocus();
-     
-        
-        bill_model = (DefaultTableModel) jTable1.getModel();
+     DB.initializeconnection();
+
+       bill_model = (DefaultTableModel)jTable1.getModel() ;
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(DB.dateFormat.format(DB.d));
         jTextField3.setEditable(false);
@@ -669,17 +676,38 @@ else
                 }
               
             }
-         
+     
+         bos = new ByteArrayOutputStream();
+        try {
+             
+        oos = new ObjectOutputStream(bos);
+         oos.writeObject(bill_model);
+//          data = bos.toByteArray();
    query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
                     jTextField3.getText()+"','"+jTextField2.getText()+"')";
             
-        try {
            
             DB.stmt.executeUpdate(query);
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
+        } catch (IOException ex) {
+            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
+        String q = "update bill set details =? where ID =?" ; 
+        try {
+            DB.pstmt  = DB.c.prepareStatement(q);
+            DB.pstmt.setObject(1, data);
+            DB.pstmt.setString(2,jTextField1.getText());
+            DB.pstmt.executeUpdate();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
 }
 
 }

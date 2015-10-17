@@ -4,6 +4,7 @@ import java.awt.PrintJob;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,7 @@ static Connection c;
 ResultSet rset;
 static String emp_name ;
 static public Statement stmt;
+static public PreparedStatement pstmt;
     String query ; 
     String name,type,wholeprice,quantity,seelingprice ;
      public static void initializeconnection (){
