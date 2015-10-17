@@ -1,8 +1,11 @@
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -149,7 +152,8 @@ this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  
+          String payDate = new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime());
+
         String query2="SELECT * FROM company WHERE `name`="+"'"+jTextField4.getText()+"'";
    String query3="SELECT * FROM company WHERE tel = "+jTextField1.getText();
 
@@ -200,8 +204,17 @@ this.dispose();
     
         else 
         {
+            if(Double.parseDouble(jTextField5.getText()) != 0){  String updateQuery1 = "INSERT INTO `payment`(`company_name`, `paid`, `remain`, `date`) VALUES ('"+jTextField4.getText()+"', '"+Double.parseDouble(jTextField2.getText())+"', '"+(Double.parseDouble(jTextField5.getText())-Double.parseDouble(jTextField2.getText()))+"', '"+payDate.toString()+"')" ;
+                    int rowCount1 = DB.stmt.executeUpdate(updateQuery1);
+                  //  updatePaidTxt.setText(null);
+                    if(rowCount1 == 0)
+                    {
+                        JOptionPane.showMessageDialog(new JPanel(), "خطأ فى تحديث المدفوعات", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+            }
+
         
-        
+    
             try {
                 query = "INSERT INTO company "
                         + "(`name`, `tel`, `paid`, `remender`) VALUES"+"(" +
@@ -227,6 +240,7 @@ this.dispose();
             }
         
         }
+    
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
