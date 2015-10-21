@@ -209,35 +209,15 @@ ad.setVisible(true);
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+     
         
-          try{
-              
-			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
-	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
-		
-			}catch(Exception e){e.printStackTrace();
-    }
+//          try{
+//              
+//			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
+//	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
+//		
+//			}catch(Exception e){e.printStackTrace();
+//    }
     
 //if(!Authorize("00-21-9B-28-61-A9")){
 //JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));

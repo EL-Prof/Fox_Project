@@ -16,12 +16,9 @@ public class Bill_details extends javax.swing.JFrame {
     /**
      * Creates new form Bill_details
      */
-    public Bill_details(Object d) {
+    public Bill_details(DefaultTableModel d) {
         initComponents();
-       DefaultTableModel dd = (DefaultTableModel)d ; 
-        System.out.println((String)d);
-        DefaultTableModel ds = (DefaultTableModel) jTable1.getModel() ;
-        ds.setDataVector(dd.getDataVector(), null);
+       jTable1.setModel(d);
     }
 
     /**
@@ -36,7 +33,7 @@ public class Bill_details extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

@@ -1,5 +1,6 @@
 
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.PrintJob;
@@ -9,6 +10,7 @@ import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
@@ -36,20 +38,24 @@ public class bill extends javax.swing.JFrame {
     Double total , sum ;
    String query ; 
    ResultSet rset ; 
-      DefaultTableModel bill_model  ;
+      DefaultTableModel bill_model , mod  ;
     ByteArrayOutputStream bos = null;
     ObjectOutputStream oos= null;
-    byte[] data;
+    byte[] data  ;
 DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     
     
     
     public bill() {
-        initComponents();
+            initComponents();
+            bill_model = (DefaultTableModel)jTable1.getModel() ;
+        
         jTextField4.requestFocus();
      DB.initializeconnection();
 
-       bill_model = (DefaultTableModel)jTable1.getModel() ;
+   
+      
+
         jTextField2.setText(DB.emp_name);
         jTextField3.setText(DB.dateFormat.format(DB.d));
         jTextField3.setEditable(false);
@@ -269,22 +275,7 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
             new String [] {
                 "الاجمالي", "الكميه", "سعر الوحده", "النوع ", "اسم المنتج", "الباركود"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTable1.setDragEnabled(true);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -521,27 +512,7 @@ else
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(bill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(bill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(bill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(bill.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -677,36 +648,26 @@ else
               
             }
      
-         bos = new ByteArrayOutputStream();
+        
         try {
              
-        oos = new ObjectOutputStream(bos);
-         oos.writeObject(bill_model);
-//          data = bos.toByteArray();
-   query = "insert into foxproject.bill (`price`,`data`,`emp_name`) values ("+sum+",'"+
-                    jTextField3.getText()+"','"+jTextField2.getText()+"')";
-            
-           
-            DB.stmt.executeUpdate(query);
-        } catch (SQLException ex) {
-          JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
-        } catch (IOException ex) {
-            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         
-        String q = "update bill set details =? where ID =?" ; 
-        try {
-            DB.pstmt  = DB.c.prepareStatement(q);
-            DB.pstmt.setObject(1, data);
-            DB.pstmt.setString(2,jTextField1.getText());
+//   query = "insert into foxproject.bill (`price`,`data`,`emp_name`,`details` ) values ("+sum+",'"+
+//                    jTextField3.getText()+"','"+jTextField2.getText()+"',"+bill_model+")";
+   query = "insert into foxproject.bill (price, data, emp_name, details) values (?,?,?,?)";
+            DB.pstmt  = DB.c.prepareStatement(query);
+         
+             DB.pstmt.setString(1, sum.toString());
+              DB.pstmt.setString(2,  jTextField3.getText());
+               DB.pstmt.setString(3, jTextField2.getText());
+               DB.pstmt.setObject(4, bill_model);
             DB.pstmt.executeUpdate();
+        } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
+            
         }
-        catch (SQLException ex) {
-            Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+  
         
 }
 

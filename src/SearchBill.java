@@ -4,6 +4,9 @@
  */
 
 
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 import java.sql.ResultSet;
@@ -12,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -23,13 +27,56 @@ import javax.swing.table.DefaultTableModel;
 public class SearchBill extends javax.swing.JFrame {
 
     DB dbase = new DB() ;
-    DefaultTableModel model ;
+   DefaultTableModel model ;
     ResultSet rset;
     String query;
      ByteArrayInputStream bais;
      ObjectInputStream ins;
+      String   qu ;
     public SearchBill() {
         initComponents();
+        
+        
+        searchBillTbl.addMouseListener(new MouseAdapter() {
+    public void mousePressed(MouseEvent me) {
+        JTable table =(JTable) me.getSource();
+        Point p = me.getPoint();
+        int row = table.rowAtPoint(p);
+        if (me.getClickCount() == 2) {
+            System.out.println("I am here " + searchBillTbl.getSelectedRow());
+            
+              qu = "Select details from bill where ID ="+ model.getValueAt(searchBillTbl.getSelectedRow(), 3).toString()  ;
+        try {
+         rset =    DB.stmt.executeQuery(qu);
+         rset.next();
+       //  obj = rs.getObject(1) ; 
+         byte[] buf = rset.getBytes(1);
+         ObjectInputStream objectIn = null;
+		if (buf != null)
+			objectIn = new ObjectInputStream(new ByteArrayInputStream(buf));
+
+		Object deSerializedObject = objectIn.readObject();
+         new Bill_details((DefaultTableModel) deSerializedObject).setVisible(true) ;
+            
+        } 
+        catch(Exception e){
+        
+            System.out.println(e.getMessage());
+        
+        }
+
+        }
+    }
+});
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
     
@@ -354,10 +401,7 @@ public class SearchBill extends javax.swing.JFrame {
                 model = (DefaultTableModel) searchBillTbl.getModel() ;
                 model.addRow(row) ;
                
-                bais = new ByteArrayInputStream(rset.getBytes(5));
-                ins = new ObjectInputStream(bais);
-                  
-              new Bill_details (ins.readObject()).setVisible(true) ;
+             
             }
         }
         
@@ -500,6 +544,12 @@ public class SearchBill extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -563,4 +613,42 @@ public class SearchBill extends javax.swing.JFrame {
     private javax.swing.JTable searchBillTbl;
     private javax.swing.JTextField searchBillTxt;
     // End of variables declaration//GEN-END:variables
+
+
+
+public  void show_details (){
+
+  qu = "Select details from bill where ID ="+ model.getValueAt(searchBillTbl.getSelectedRow(), 5)  ;
+        try {
+         rset =    DB.stmt.executeQuery(qu);
+         rset.next();
+       //  obj = rs.getObject(1) ; 
+         byte[] buf = rset.getBytes(1);
+         ObjectInputStream objectIn = null;
+		if (buf != null)
+			objectIn = new ObjectInputStream(new ByteArrayInputStream(buf));
+
+		Object deSerializedObject = objectIn.readObject();
+         new Bill_details((DefaultTableModel) deSerializedObject).setVisible(true) ;
+            
+        } 
+        catch(Exception e){
+        
+            System.out.println(e.getMessage());
+        
+        }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
 }
