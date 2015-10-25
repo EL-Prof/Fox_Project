@@ -18,9 +18,11 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -37,8 +39,11 @@ import javax.swing.table.TableModel;
 public class bill extends javax.swing.JFrame {
     Double total , sum ;
    String query ; 
+    String col[] = new String [] {
+                "الاجمالي", "الكميه", "سعر الوحده", "النوع ", "اسم المنتج", "الباركود"
+            } ; 
    ResultSet rset ; 
-      DefaultTableModel bill_model , mod  ;
+      DefaultTableModel bill_model , mod  = new DefaultTableModel()  ;
     ByteArrayOutputStream bos = null;
     ObjectOutputStream oos= null;
     byte[] data  ;
@@ -49,10 +54,9 @@ DateFormat dF = new SimpleDateFormat("yyyy/MM/ddhh:mm:ss");
     public bill() {
             initComponents();
             bill_model = (DefaultTableModel)jTable1.getModel() ;
-        
+       
         jTextField4.requestFocus();
-     DB.initializeconnection();
-
+   
    
       
 
@@ -656,11 +660,17 @@ else
 //                    jTextField3.getText()+"','"+jTextField2.getText()+"',"+bill_model+")";
    query = "insert into foxproject.bill (price, data, emp_name, details) values (?,?,?,?)";
             DB.pstmt  = DB.c.prepareStatement(query);
-         
+            
+           Object[][] out = new Object[bill_model.getDataVector().size()][0];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = ((Vector) bill_model.getDataVector().get(i)).toArray();
+        }
+        mod.setDataVector(out, col);
+//         mod.setDataVector(jTable1.setUI(null), col)
              DB.pstmt.setString(1, sum.toString());
               DB.pstmt.setString(2,  jTextField3.getText());
                DB.pstmt.setString(3, jTextField2.getText());
-               DB.pstmt.setObject(4, bill_model);
+               DB.pstmt.setObject(4, mod);
             DB.pstmt.executeUpdate();
         } catch (SQLException ex) {
           System.out.println(ex.getMessage());

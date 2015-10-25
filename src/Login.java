@@ -211,13 +211,13 @@ ad.setVisible(true);
         /* Set the Nimbus look and feel */
      
         
-//          try{
-//              
-//			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
-//	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
-//		
-//			}catch(Exception e){e.printStackTrace();
-//    }
+          try{
+              
+			UIManager.setLookAndFeel(new SyntheticaAluOxideLookAndFeel() )	;
+	ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("PT Separated Baloon.ttf")));
+		
+			}catch(Exception e){e.printStackTrace();
+    }
     
 //if(!Authorize("00-21-9B-28-61-A9")){
 //JOptionPane.showMessageDialog(null, "حقوق الملكيه غير متوفره ", "Error in Authentication", 1, new ImageIcon("Thief-icon.png"));

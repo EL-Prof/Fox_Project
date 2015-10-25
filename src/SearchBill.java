@@ -43,8 +43,7 @@ public class SearchBill extends javax.swing.JFrame {
         Point p = me.getPoint();
         int row = table.rowAtPoint(p);
         if (me.getClickCount() == 2) {
-            System.out.println("I am here " + searchBillTbl.getSelectedRow());
-            
+         
               qu = "Select details from bill where ID ="+ model.getValueAt(searchBillTbl.getSelectedRow(), 3).toString()  ;
         try {
          rset =    DB.stmt.executeQuery(qu);
