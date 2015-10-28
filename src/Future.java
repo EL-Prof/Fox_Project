@@ -23,6 +23,7 @@ public class Future extends javax.swing.JFrame {
     DefaultTableModel model ;
     ResultSet rset;
     String query;
+    public static String phone ;
     
     public Future() {
         initComponents();
@@ -32,6 +33,7 @@ public class Future extends javax.swing.JFrame {
         updateFuturePaidLbl.hide();
         updateFuturePaidConfBtn.hide();
         updateFuturePaidTxt.hide();
+        jButton1.hide();
     }
     
     private void search(JTextField text)
@@ -106,6 +108,7 @@ public class Future extends javax.swing.JFrame {
         futureMainBtn = new javax.swing.JButton();
         jScrollPaneFuture = new javax.swing.JScrollPane();
         searchFutureTbl = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -225,6 +228,14 @@ public class Future extends javax.swing.JFrame {
         });
         jScrollPaneFuture.setViewportView(searchFutureTbl);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("فواتير");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,23 +249,25 @@ public class Future extends javax.swing.JFrame {
                         .addComponent(searchFutureBtn)
                         .addGap(194, 194, 194))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(updateFuturePaidConfBtn)
-                                .addGap(37, 37, 37)
-                                .addComponent(updateFuturePaidTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(updateFuturePaidLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateFuturePaidBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateFutureBtn)
-                                .addGap(39, 39, 39)
-                                .addComponent(searchFutureTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchFutureCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(searchFutureLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(updateFutureBtn)
+                                    .addGap(39, 39, 39)
+                                    .addComponent(searchFutureTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(searchFutureCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(searchFutureLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(updateFuturePaidConfBtn)
+                                    .addGap(37, 37, 37)
+                                    .addComponent(updateFuturePaidTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(4, 4, 4)
+                                    .addComponent(updateFuturePaidLbl)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(updateFuturePaidBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(68, 68, 68))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(259, 259, 259)
@@ -289,7 +302,9 @@ public class Future extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(updateFuturePaidBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(updateFuturePaidLbl)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(futureMainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -476,10 +491,10 @@ public class Future extends javax.swing.JFrame {
                 if(srow>-1)
                 {
                     searchFutureTbl.setSelectionBackground(Color.PINK);
-                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
+                    phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
                     searchFutureTxt.setText(phone) ;
                     updateFuturePaidBtn.setVisible(true);
-                    
+                    jButton1.setVisible(true);
                 }
     }//GEN-LAST:event_searchFutureTblMouseClicked
 
@@ -488,12 +503,16 @@ public class Future extends javax.swing.JFrame {
                 if(srow>-1)
                 {
                     searchFutureTbl.setSelectionBackground(Color.PINK);
-                    String phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
+                    phone = searchFutureTbl.getValueAt(srow, 3).toString() ;
                     searchFutureTxt.setText(phone) ;
                     updateFuturePaidBtn.setVisible(true);
-                    
+                    jButton1.setVisible(true);
                 }
     }//GEN-LAST:event_searchFutureTblKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new FwaterAgel().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
         
     /**
      * @param args the command line arguments
@@ -538,6 +557,7 @@ public class Future extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton futureMainBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPaneFuture;
     private javax.swing.JButton noSearchFutureBtn;
     private javax.swing.JButton searchFutureBtn;
