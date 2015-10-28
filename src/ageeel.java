@@ -244,13 +244,14 @@ return;
             rset=DB.stmt.executeQuery(query);
             if(rset.next()){
                 if(rset.getString("agent_name").equalsIgnoreCase(jTextField5.getText())){
-                    query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no = '"+jTextField4.getText()+"'";
+        query="UPDATE client SET total=total+"+ Double.parseDouble(jTextField1.getText())+" , paid=paid+"+Double.parseDouble(jTextField3.getText())+" WHERE mob_no = '"+jTextField4.getText()+"'";
                     int i =DB.stmt.executeUpdate(query);
                     if (i!=0) {System.out.println("ay7aga");
-                        JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
-                        b.reg_bill();
-                        this.dispose();
-                        
+          JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+ b.reg_bill(Double.parseDouble(jTextField3.getText()),Double.parseDouble(jTextField1.getText())-Double.parseDouble(jTextField3.getText()),jTextField4.getText());
+               this.dispose();
+               new bill().setVisible(true);
+               b.dispose();
 
                     }
 
@@ -263,8 +264,12 @@ return;
                 "','"+ jTextField4.getText() + "','" +Double.parseDouble(jTextField1.getText())
                 + "','"+ Double.parseDouble(jTextField3.getText())+"')";
                 int x =DB.stmt.executeUpdate(query);
-                if(x>0){JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
-                this.dispose();
+                if(x>0){
+                 b.reg_bill(Double.parseDouble(jTextField3.getText()),Double.parseDouble(jTextField1.getText())-Double.parseDouble(jTextField3.getText()),jTextField4.getText());
+                JOptionPane.showMessageDialog(null, "تمت الاضافه بنجاح");
+                 this.dispose();
+                   new bill().setVisible(true);
+               b.dispose();
                 }
             }
 

@@ -681,4 +681,61 @@ else
         
 }
 
+
+public void reg_bill(double paid , double remain , String mob_no){
+  
+     for (int i = 0; i < bill_model.getRowCount(); i++) {
+            
+         query = "select quantity from product where barcode ="+ bill_model.getValueAt(i, 5) ; 
+         try {
+         rset = DB.stmt.executeQuery(query);
+         rset.next();
+         if(rset.getInt(1)<Integer.parseInt(bill_model.getValueAt(i, 1).toString()))
+             query = "UPDATE `foxproject`.`product` SET `quantity`=0"
+                    +" WHERE `barcode`='"+bill_model.getValueAt(i, 5)+"'" ;
+else
+         query = "UPDATE `foxproject`.`product` SET `quantity`=quantity -"+
+                    Integer.parseInt(bill_model.getValueAt(i, 1).toString())+" WHERE `barcode`='"+bill_model.getValueAt(i, 5)+"'";
+      
+                
+                    DB.stmt.executeUpdate(query);
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(bill.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                }
+              
+            }
+     
+        
+        try {
+             
+        
+//   query = "insert into foxproject.bill (`price`,`data`,`emp_name`,`details` ) values ("+sum+",'"+
+//                    jTextField3.getText()+"','"+jTextField2.getText()+"',"+bill_model+")";
+   query = "insert into foxproject.bill (price, data, emp_name, details,paid,remain,client_mob) values (?,?,?,?,?,?,?)";
+            DB.pstmt  = DB.c.prepareStatement(query);
+            
+           Object[][] out = new Object[bill_model.getDataVector().size()][0];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = ((Vector) bill_model.getDataVector().get(i)).toArray();
+        }
+        mod.setDataVector(out, col);
+//         mod.setDataVector(jTable1.setUI(null), col)
+             DB.pstmt.setString(1, sum.toString());
+              DB.pstmt.setString(2,  jTextField3.getText());
+               DB.pstmt.setString(3, jTextField2.getText());
+               DB.pstmt.setObject(4, mod);
+               DB.pstmt.setDouble(5, paid);
+               DB.pstmt.setDouble(6, remain);
+               DB.pstmt.setString(7, mob_no);
+            DB.pstmt.executeUpdate();
+        } catch (SQLException ex) {
+          System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, "خطأ في تسجيل الفاتوره!");
+            
+        }
+  
+        
+}
 }
