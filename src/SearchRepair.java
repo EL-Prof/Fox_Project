@@ -212,12 +212,14 @@ public class SearchRepair extends javax.swing.JFrame {
             }
         });
         jScrollPaneRepr.setViewportView(searchReprTbl);
-        searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
-        searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
-        searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
-        searchReprTbl.getColumnModel().getColumn(6).setPreferredWidth(140);
-        searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
-        searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
+        if (searchReprTbl.getColumnModel().getColumnCount() > 0) {
+            searchReprTbl.getColumnModel().getColumn(0).setPreferredWidth(130);
+            searchReprTbl.getColumnModel().getColumn(4).setPreferredWidth(140);
+            searchReprTbl.getColumnModel().getColumn(5).setPreferredWidth(140);
+            searchReprTbl.getColumnModel().getColumn(6).setPreferredWidth(140);
+            searchReprTbl.getColumnModel().getColumn(7).setPreferredWidth(100);
+            searchReprTbl.getColumnModel().getColumn(8).setPreferredWidth(130);
+        }
 
         getContentPane().add(jScrollPaneRepr);
         jScrollPaneRepr.setBounds(0, 159, 1060, 220);
@@ -258,7 +260,7 @@ public class SearchRepair extends javax.swing.JFrame {
         recieptLabel.setBounds(270, 20, 130, 30);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "كود العميل", "اسم العميل", "الكل" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "كود العميل", "اسم العميل", "موديل الجهاز", "الكل" }));
         jComboBox1.setMinimumSize(new java.awt.Dimension(56, 15));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,7 +329,13 @@ public class SearchRepair extends javax.swing.JFrame {
             search(query);
             
         }//end if of index 1
-        
+           else if(jComboBox1.getSelectedIndex() == 2)
+        {
+            jScrollPane1.setVisible(true);
+            jLabel2.setVisible(true);
+            query = "Select * from repair where mob_model = '" + searchReprTxt.getText() + "'" ;
+            search(query);
+        }
         else if(jComboBox1.getSelectedIndex() == 2)
         {
             jScrollPane1.setVisible(false);
@@ -483,7 +491,7 @@ public class SearchRepair extends javax.swing.JFrame {
     }//GEN-LAST:event_searchReprTblMouseClicked
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if(jComboBox1.getSelectedIndex() == 0 || jComboBox1.getSelectedIndex() == 1)
+        if(jComboBox1.getSelectedIndex() == 0 || jComboBox1.getSelectedIndex() == 1||jComboBox1.getSelectedIndex() == 2)
         {
             searchReprTxt.setText(null);
             searchReprTxt.setVisible(true);
